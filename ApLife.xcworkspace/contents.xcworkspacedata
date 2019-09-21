@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <FileRef
+      location = "group:Modules/App/ApLife.xcodeproj">
+   </FileRef>
+   <Group
+      location = "group:Modules/Infrastructure"
+      name = "Infrastructure">
+      <FileRef
+         location = "group:Storage/Storage.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Network/Network.xcodeproj">
+      </FileRef>
+   </Group>
+   <Group
+      location = "group:Modules/UIs"
+      name = "UIs">
+      <FileRef
+         location = "group:Blog/Blog.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:UIComponents/UIComponents.xcodeproj">
+      </FileRef>
+   </Group>
+   <Group
+      location = "group:Modules/Domain"
+      name = "Domain">
+      <FileRef
+         location = "group:Services/Services.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Models/Models.xcodeproj">
+      </FileRef>
+   </Group>
+   <Group
+      location = "group:Modules/Common"
+      name = "Common">
+      <FileRef
+         location = "group:Common.xcodeproj">
+      </FileRef>
+   </Group>
+   <Group
+      location = "group:Modules/ThirdParty"
+      name = "ThirdParty">
+   </Group>
+</Workspace>
