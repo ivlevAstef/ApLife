@@ -35,6 +35,13 @@
       </FileRef>
    </Group>
    <Group
+      location = "container:"
+      name = "Core">
+      <FileRef
+         location = "group:Modules/Core/Core.xcodeproj">
+      </FileRef>
+   </Group>
+   <Group
       location = "group:Modules/Common"
       name = "Common">
       <FileRef
@@ -44,5 +51,11 @@
    <Group
       location = "group:Modules/ThirdParty"
       name = "ThirdParty">
+      <FileRef
+         location = "group:Carthage/Checkouts/SwiftLazy/SwiftLazy.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Carthage/Checkouts/DITranquillity/DITranquillity.xcodeproj">
+      </FileRef>
    </Group>
 </Workspace>
