@@ -12,12 +12,16 @@ public final class NavigationController {
     
     private let uiController: UINavigationController
     
-    init(controller: UINavigationController) {
+    public init(controller: UINavigationController) {
         self.uiController = controller
     }
     
     public func push(_ vc: UIViewController, animated: Bool = true) {
-        self.uiController.pushViewController(vc, animated: animated)
+        if self.uiController.viewControllers.isEmpty {
+            self.uiController.setViewControllers([vc], animated: animated)
+        } else {
+            self.uiController.pushViewController(vc, animated: animated)
+        }
     }
     
     public func pop(animated: Bool = true) {

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB0BBF30233A86250082DDC6 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0BBF2F233A86250082DDC6 /* libCommon.a */; };
+		AB0BBF32233A86250082DDC6 /* libCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0BBF31233A86250082DDC6 /* libCore.a */; };
+		AB0BBF34233A86250082DDC6 /* libModels.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0BBF33233A86250082DDC6 /* libModels.a */; };
 		AB5B58432336B1F600E3E61A /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B58422336B1F600E3E61A /* Services.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +26,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AB0BBF2F233A86250082DDC6 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB0BBF31233A86250082DDC6 /* libCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB0BBF33233A86250082DDC6 /* libModels.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libModels.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB5B57C22336B04200E3E61A /* libServices.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libServices.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB5B58422336B1F600E3E61A /* Services.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -32,17 +38,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB0BBF32233A86250082DDC6 /* libCore.a in Frameworks */,
+				AB0BBF30233A86250082DDC6 /* libCommon.a in Frameworks */,
+				AB0BBF34233A86250082DDC6 /* libModels.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB0BBF2E233A86250082DDC6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AB0BBF2F233A86250082DDC6 /* libCommon.a */,
+				AB0BBF31233A86250082DDC6 /* libCore.a */,
+				AB0BBF33233A86250082DDC6 /* libModels.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		AB5B57B92336B04200E3E61A = {
 			isa = PBXGroup;
 			children = (
 				AB5B58412336B1F600E3E61A /* Sources */,
 				AB5B57C32336B04200E3E61A /* Products */,
+				AB0BBF2E233A86250082DDC6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -246,6 +266,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../ThirdParty/**";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../**";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -258,6 +280,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../ThirdParty/**";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../**";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

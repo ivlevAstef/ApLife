@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB0BBF37233A86330082DDC6 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0BBF36233A86330082DDC6 /* libCommon.a */; };
 		AB5B58402336B1E000E3E61A /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B583F2336B1E000E3E61A /* Models.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +24,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AB0BBF36233A86330082DDC6 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB5B57D52336B08700E3E61A /* libModels.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libModels.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB5B583F2336B1E000E3E61A /* Models.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -32,17 +34,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB0BBF37233A86330082DDC6 /* libCommon.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB0BBF35233A86330082DDC6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AB0BBF36233A86330082DDC6 /* libCommon.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		AB5B57CC2336B08700E3E61A = {
 			isa = PBXGroup;
 			children = (
 				AB5B583E2336B1E000E3E61A /* Sources */,
 				AB5B57D62336B08700E3E61A /* Products */,
+				AB0BBF35233A86330082DDC6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -246,6 +258,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../ThirdParty/**";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../**";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -258,6 +272,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../ThirdParty/**";
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../**";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

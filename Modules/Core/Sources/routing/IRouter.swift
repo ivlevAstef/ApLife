@@ -8,9 +8,7 @@
 
 import UIKit
 
-public protocol IRouter {
-    var name: DeepLink.Name { get }
-    
+public protocol IRouter {    
     var rootViewController: UIViewController { get }
     
     func start(parameters: RoutingParamaters)

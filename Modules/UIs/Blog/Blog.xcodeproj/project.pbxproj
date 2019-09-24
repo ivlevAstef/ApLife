@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AB5B584C2336B22600E3E61A /* Blog.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B58482336B22600E3E61A /* Blog.swift */; };
+		AB0BBF10233A797B0082DDC6 /* BlogRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0BBF0F233A797B0082DDC6 /* BlogRouter.swift */; };
+		AB0BBF14233A7A4A0082DDC6 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0BBF13233A7A490082DDC6 /* FirstViewController.swift */; };
+		AB0BBF22233A855A0082DDC6 /* libCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0BBF21233A855A0082DDC6 /* libCore.a */; };
+		AB0BBF24233A85DF0082DDC6 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0BBF23233A85DF0082DDC6 /* libCommon.a */; };
+		AB0BBF26233A85DF0082DDC6 /* libUIComponents.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0BBF25233A85DF0082DDC6 /* libUIComponents.a */; };
+		AB32FAAC23392AAB002B8F1B /* BlogStartPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32FAAB23392AAB002B8F1B /* BlogStartPoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +28,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AB0BBF0F233A797B0082DDC6 /* BlogRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogRouter.swift; sourceTree = "<group>"; };
+		AB0BBF13233A7A490082DDC6 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		AB0BBF18233A7FEE0082DDC6 /* libCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB0BBF1A233A80060082DDC6 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB0BBF21233A855A0082DDC6 /* libCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB0BBF23233A85DF0082DDC6 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB0BBF25233A85DF0082DDC6 /* libUIComponents.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libUIComponents.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB32FAAB23392AAB002B8F1B /* BlogStartPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogStartPoint.swift; sourceTree = "<group>"; };
 		AB5B58342336B1A200E3E61A /* libBlog.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBlog.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB5B58482336B22600E3E61A /* Blog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blog.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,17 +44,42 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB0BBF24233A85DF0082DDC6 /* libCommon.a in Frameworks */,
+				AB0BBF26233A85DF0082DDC6 /* libUIComponents.a in Frameworks */,
+				AB0BBF22233A855A0082DDC6 /* libCore.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB0BBF17233A7FEE0082DDC6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AB0BBF23233A85DF0082DDC6 /* libCommon.a */,
+				AB0BBF25233A85DF0082DDC6 /* libUIComponents.a */,
+				AB0BBF21233A855A0082DDC6 /* libCore.a */,
+				AB0BBF1A233A80060082DDC6 /* libCommon.a */,
+				AB0BBF18233A7FEE0082DDC6 /* libCore.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AB32FAAA23392A73002B8F1B /* initialization */ = {
+			isa = PBXGroup;
+			children = (
+				AB32FAAB23392AAB002B8F1B /* BlogStartPoint.swift */,
+				AB0BBF0F233A797B0082DDC6 /* BlogRouter.swift */,
+			);
+			path = initialization;
+			sourceTree = "<group>";
+		};
 		AB5B582B2336B1A200E3E61A = {
 			isa = PBXGroup;
 			children = (
 				AB5B58472336B22600E3E61A /* Sources */,
 				AB5B58352336B1A200E3E61A /* Products */,
+				AB0BBF17233A7FEE0082DDC6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -57,7 +94,8 @@
 		AB5B58472336B22600E3E61A /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				AB5B58482336B22600E3E61A /* Blog.swift */,
+				AB0BBF13233A7A490082DDC6 /* FirstViewController.swift */,
+				AB32FAAA23392A73002B8F1B /* initialization */,
 				AB5B58492336B22600E3E61A /* post */,
 				AB5B584A2336B22600E3E61A /* comment */,
 				AB5B584B2336B22600E3E61A /* ribbon */,
@@ -143,7 +181,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB5B584C2336B22600E3E61A /* Blog.swift in Sources */,
+				AB0BBF14233A7A4A0082DDC6 /* FirstViewController.swift in Sources */,
+				AB32FAAC23392AAB002B8F1B /* BlogStartPoint.swift in Sources */,
+				AB0BBF10233A797B0082DDC6 /* BlogRouter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,6 +227,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../ThirdParty/**";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -201,7 +242,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../**";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -248,6 +290,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../ThirdParty/**";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -256,7 +299,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/../../**";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

@@ -11,19 +11,16 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-    
-    private let dependencies = Dependencies()
-    private lazy var app: Application = {
-        return dependencies.application
-    }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        AppStartPoint.reg()
+        
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
-        app.setWindow(window)
+        AppStartPoint.app.setWindow(window)
         window.makeKeyAndVisible()
         
-        app.start(launchOptions: launchOptions)
+        AppStartPoint.app.start(launchOptions: launchOptions)
         
         return true
     }

@@ -1,5 +1,5 @@
 //
-//  Dependencies.swift
+//  AppDependency.swift
 //  ApLife
 //
 //  Created by Alexander Ivlev on 22/09/2019.
@@ -9,21 +9,19 @@
 import DITranquillity
 import Core
 
-class Dependencies {
-    var application: Application {
-        return container.resolve()
-    }
-    
-    private let container = DIContainer()
-    
-    init() {
+final class AppDependency {
+    static func configure() {
         DISetting.Defaults.injectToSubviews = false
         DISetting.Defaults.lifeTime = .prototype
         DISetting.Log.level = .verbose
-        DISetting.Log.fun = Dependencies.log
-        
+        DISetting.Log.fun = Self.log
+    }
+    
+    static func reg(container: DIContainer) {
         container.append(framework: AppFramework.self)
-        
+    }
+    
+    static func validate(container: DIContainer) {
         #if DEBUG
         if !container.validate(checkGraphCycles: false) {
             fatalError("DI graph validation failed")

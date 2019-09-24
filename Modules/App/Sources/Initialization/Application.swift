@@ -10,7 +10,7 @@ import UIKit
 import Core
 
 // Start point
-class Application {
+final class Application {
     private let router: AppRouter
     
     init(router: AppRouter) {

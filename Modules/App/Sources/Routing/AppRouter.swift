@@ -9,16 +9,16 @@
 import UIKit
 import Core
 
-class AppRouter: IRouter {
+import Blog
+
+final class AppRouter: IRouter {
     private enum Tabs {
         case blog
         case account
         case settings
     }
     
-    var name: DeepLink.Name {
-        return "app"
-    }
+    static let name: DeepLink.Name = "app"
     
     var rootViewController: UIViewController {
         return uiTabBarController
@@ -36,7 +36,9 @@ class AppRouter: IRouter {
     }
     
     func start(parameters: RoutingParamaters) {
-        tabController.addTab(name: .blog, vc: FirstViewController(nibName: nil, bundle: nil), animated: false)
+        let blogStartPoint = StartPoints.ui[BlogStartPoint.name]!
+        
+        tabController.addTab(name: .blog, vc: blogStartPoint.makeRouter().rootViewController, animated: false)
         tabController.addTab(name: .account, vc: SecondViewController(nibName: nil, bundle: nil), animated: false)
         
         tabController.selectTab(name: .blog)
