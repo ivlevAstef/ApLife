@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		AB0BBF10233A797B0082DDC6 /* BlogRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0BBF0F233A797B0082DDC6 /* BlogRouter.swift */; };
-		AB0BBF14233A7A4A0082DDC6 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0BBF13233A7A490082DDC6 /* FirstViewController.swift */; };
 		AB0BBF22233A855A0082DDC6 /* libCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0BBF21233A855A0082DDC6 /* libCore.a */; };
 		AB0BBF24233A85DF0082DDC6 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0BBF23233A85DF0082DDC6 /* libCommon.a */; };
 		AB0BBF26233A85DF0082DDC6 /* libUIComponents.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0BBF25233A85DF0082DDC6 /* libUIComponents.a */; };
+		AB0D8B6B233FBCB600CC5579 /* BlogDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8B6A233FBCB600CC5579 /* BlogDependency.swift */; };
+		AB0D8B6D233FBCCC00CC5579 /* RibbonScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8B6C233FBCCC00CC5579 /* RibbonScreenView.swift */; };
+		AB0D8B6F233FBCD600CC5579 /* RibbonScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8B6E233FBCD600CC5579 /* RibbonScreenPresenter.swift */; };
 		AB32FAAC23392AAB002B8F1B /* BlogStartPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32FAAB23392AAB002B8F1B /* BlogStartPoint.swift */; };
 		AB423463233F4A24005A78A8 /* libDesign.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB423462233F4A24005A78A8 /* libDesign.a */; };
 /* End PBXBuildFile section */
@@ -30,12 +32,14 @@
 
 /* Begin PBXFileReference section */
 		AB0BBF0F233A797B0082DDC6 /* BlogRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogRouter.swift; sourceTree = "<group>"; };
-		AB0BBF13233A7A490082DDC6 /* FirstViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		AB0BBF18233A7FEE0082DDC6 /* libCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB0BBF1A233A80060082DDC6 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB0BBF21233A855A0082DDC6 /* libCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB0BBF23233A85DF0082DDC6 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB0BBF25233A85DF0082DDC6 /* libUIComponents.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libUIComponents.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB0D8B6A233FBCB600CC5579 /* BlogDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogDependency.swift; sourceTree = "<group>"; };
+		AB0D8B6C233FBCCC00CC5579 /* RibbonScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RibbonScreenView.swift; sourceTree = "<group>"; };
+		AB0D8B6E233FBCD600CC5579 /* RibbonScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RibbonScreenPresenter.swift; sourceTree = "<group>"; };
 		AB32FAAB23392AAB002B8F1B /* BlogStartPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogStartPoint.swift; sourceTree = "<group>"; };
 		AB423462233F4A24005A78A8 /* libDesign.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libDesign.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB5B58342336B1A200E3E61A /* libBlog.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBlog.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,7 +95,7 @@
 			children = (
 				AB32FAAB23392AAB002B8F1B /* BlogStartPoint.swift */,
 				AB0BBF0F233A797B0082DDC6 /* BlogRouter.swift */,
-				AB0BBF13233A7A490082DDC6 /* FirstViewController.swift */,
+				AB0D8B6A233FBCB600CC5579 /* BlogDependency.swift */,
 				AB5B58492336B22600E3E61A /* post */,
 				AB5B584A2336B22600E3E61A /* comment */,
 				AB5B584B2336B22600E3E61A /* ribbon */,
@@ -116,6 +120,8 @@
 		AB5B584B2336B22600E3E61A /* ribbon */ = {
 			isa = PBXGroup;
 			children = (
+				AB0D8B6C233FBCCC00CC5579 /* RibbonScreenView.swift */,
+				AB0D8B6E233FBCD600CC5579 /* RibbonScreenPresenter.swift */,
 			);
 			path = ribbon;
 			sourceTree = "<group>";
@@ -177,9 +183,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB0BBF14233A7A4A0082DDC6 /* FirstViewController.swift in Sources */,
 				AB32FAAC23392AAB002B8F1B /* BlogStartPoint.swift in Sources */,
 				AB0BBF10233A797B0082DDC6 /* BlogRouter.swift in Sources */,
+				AB0D8B6D233FBCCC00CC5579 /* RibbonScreenView.swift in Sources */,
+				AB0D8B6B233FBCB600CC5579 /* BlogDependency.swift in Sources */,
+				AB0D8B6F233FBCD600CC5579 /* RibbonScreenPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

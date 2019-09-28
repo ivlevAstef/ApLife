@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		AB0BBF16233A7AC70082DDC6 /* StartPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0BBF15233A7AC70082DDC6 /* StartPoints.swift */; };
+		AB0D8B74233FC1A400CC5579 /* DITranquillity in Frameworks */ = {isa = PBXBuildFile; productRef = AB0D8B73233FC1A400CC5579 /* DITranquillity */; };
 		AB32FA2F2337A8D9002B8F1B /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32FA2E2337A8D9002B8F1B /* AppRouter.swift */; };
 		AB32FA312337A8E6002B8F1B /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32FA302337A8E6002B8F1B /* Application.swift */; };
 		AB32FA332337A977002B8F1B /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32FA322337A977002B8F1B /* AppDependency.swift */; };
@@ -18,8 +19,6 @@
 		AB32FA672337B441002B8F1B /* libServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB32FA602337B441002B8F1B /* libServices.a */; };
 		AB32FA682337B441002B8F1B /* libStorage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB32FA612337B441002B8F1B /* libStorage.a */; };
 		AB32FA692337B441002B8F1B /* libUIComponents.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB32FA622337B441002B8F1B /* libUIComponents.a */; };
-		AB32FA772337CC78002B8F1B /* DITranquillity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB32FA762337CC78002B8F1B /* DITranquillity.framework */; };
-		AB32FA7B2337CC7F002B8F1B /* SwiftLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB32FA7A2337CC7F002B8F1B /* SwiftLazy.framework */; };
 		AB32FAA82337D36F002B8F1B /* libCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB32FAA72337D36F002B8F1B /* libCore.a */; };
 		AB32FAB923393183002B8F1B /* AppStartPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32FAB823393183002B8F1B /* AppStartPoint.swift */; };
 		AB423467233F4A3D005A78A8 /* libDesign.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB423466233F4A3D005A78A8 /* libDesign.a */; };
@@ -64,9 +63,8 @@
 				AB32FA662337B441002B8F1B /* libNetwork.a in Frameworks */,
 				AB423467233F4A3D005A78A8 /* libDesign.a in Frameworks */,
 				AB32FA682337B441002B8F1B /* libStorage.a in Frameworks */,
-				AB32FA7B2337CC7F002B8F1B /* SwiftLazy.framework in Frameworks */,
 				AB32FA672337B441002B8F1B /* libServices.a in Frameworks */,
-				AB32FA772337CC78002B8F1B /* DITranquillity.framework in Frameworks */,
+				AB0D8B74233FC1A400CC5579 /* DITranquillity in Frameworks */,
 				AB32FA642337B441002B8F1B /* libCommon.a in Frameworks */,
 				AB32FA632337B441002B8F1B /* libBlog.a in Frameworks */,
 				AB423489233F5097005A78A8 /* libMenu.a in Frameworks */,
@@ -172,6 +170,9 @@
 			dependencies = (
 			);
 			name = ApLife;
+			packageProductDependencies = (
+				AB0D8B73233FC1A400CC5579 /* DITranquillity */,
+			);
 			productName = ApLife;
 			productReference = AB05387A2336ABE90014138E /* ApLife.app */;
 			productType = "com.apple.product-type.application";
@@ -200,6 +201,9 @@
 				Base,
 			);
 			mainGroup = AB0538712336ABE90014138E;
+			packageReferences = (
+				AB0D8B72233FC1A400CC5579 /* XCRemoteSwiftPackageReference "DITranquillity" */,
+			);
 			productRefGroup = AB05387B2336ABE90014138E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -379,7 +383,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "apostle-life.ApLife";
+				PRODUCT_BUNDLE_IDENTIFIER = "personal.apostle-life.ApLife";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -399,7 +403,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "apostle-life.ApLife";
+				PRODUCT_BUNDLE_IDENTIFIER = "personal.apostle-life.ApLife";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -428,6 +432,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AB0D8B72233FC1A400CC5579 /* XCRemoteSwiftPackageReference "DITranquillity" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ivlevAstef/DITranquillity";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.8.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AB0D8B73233FC1A400CC5579 /* DITranquillity */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AB0D8B72233FC1A400CC5579 /* XCRemoteSwiftPackageReference "DITranquillity" */;
+			productName = DITranquillity;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AB0538722336ABE90014138E /* Project object */;
 }

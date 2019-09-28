@@ -8,9 +8,14 @@
 
 import UIKit
 import Core
+import SwiftLazy
+
+typealias RibbonScreen = Screen<RibbonScreenView, RibbonScreenPresenter>
 
 final class BlogRouter: IRouter {
     static let name: DeepLink.Name = "blog"
+
+    /*dependency*/var ribbonScreenProvider = Provider<RibbonScreen>()
     
     var rootViewController: UIViewController {
         return uiNavigationController
@@ -24,10 +29,16 @@ final class BlogRouter: IRouter {
     }
     
     func start(parameters: RoutingParamaters) {
-        navigationController.push(FirstViewController(nibName: nil, bundle: nil))
+        showRibbonScreen(animated: false)
     }
 
     func show(_ viewController: UIViewController) {
         navigationController.push(viewController, animated: true)
+    }
+
+    private func showRibbonScreen(animated: Bool) {
+        let screen = ribbonScreenProvider.value
+
+        navigationController.push(screen.view, animated: animated)
     }
 }

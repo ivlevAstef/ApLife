@@ -9,6 +9,8 @@
 public struct RoutingParamaters {
     public let isEmpty: Bool = true
 
+    public let startPointName: String = ""
+
     public init() {
 
     }

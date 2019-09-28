@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "DITranquillity",
+        "repositoryURL": "https://github.com/ivlevAstef/DITranquillity",
+        "state": {
+          "branch": null,
+          "revision": "5ab7f1d1b49f9224d2d5c8cb7fc6b5f7497843c1",
+          "version": "3.8.4"
+        }
+      },
+      {
+        "package": "SwiftLazy",
+        "repositoryURL": "https://github.com/ivlevAstef/SwiftLazy.git",
+        "state": {
+          "branch": null,
+          "revision": "988bd1bc5850115a8f3ae20e4db937963b076960",
+          "version": "1.1.5"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

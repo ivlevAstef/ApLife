@@ -10,6 +10,7 @@
 		AB0BBF1E233A85100082DDC6 /* DITranquillity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0BBF1D233A85100082DDC6 /* DITranquillity.framework */; };
 		AB0BBF20233A85210082DDC6 /* SwiftLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0BBF1F233A85210082DDC6 /* SwiftLazy.framework */; };
 		AB0BBF2D233A86060082DDC6 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0BBF2C233A86060082DDC6 /* libCommon.a */; };
+		AB0D8B71233FBD4400CC5579 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8B70233FBD4400CC5579 /* Screen.swift */; };
 		AB32FA972337D1D2002B8F1B /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32FA962337D1D2002B8F1B /* Core.swift */; };
 		AB32FA9F2337D237002B8F1B /* IRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32FA9B2337D1FB002B8F1B /* IRouter.swift */; };
 		AB32FAA02337D239002B8F1B /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32FA982337D1D7002B8F1B /* NavigationController.swift */; };
@@ -36,6 +37,7 @@
 		AB0BBF1D233A85100082DDC6 /* DITranquillity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DITranquillity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB0BBF1F233A85210082DDC6 /* SwiftLazy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB0BBF2C233A86060082DDC6 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB0D8B70233FBD4400CC5579 /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		AB32FA8B2337D159002B8F1B /* libCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB32FA962337D1D2002B8F1B /* Core.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
 		AB32FA982337D1D7002B8F1B /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 		AB32FA9D2337D1FB002B8F1B /* routing */ = {
 			isa = PBXGroup;
 			children = (
+				AB0D8B70233FBD4400CC5579 /* Screen.swift */,
 				AB32FA9B2337D1FB002B8F1B /* IRouter.swift */,
 				AB32FAA52337D296002B8F1B /* RoutingParamaters.swift */,
 			);
@@ -198,6 +201,7 @@
 				AB32FA9F2337D237002B8F1B /* IRouter.swift in Sources */,
 				AB32FAB52339309F002B8F1B /* UIStartPoint.swift in Sources */,
 				AB32FAA02337D239002B8F1B /* NavigationController.swift in Sources */,
+				AB0D8B71233FBD4400CC5579 /* Screen.swift in Sources */,
 				AB32FAA42337D267002B8F1B /* DeepLink.swift in Sources */,
 				AB32FAA62337D296002B8F1B /* RoutingParamaters.swift in Sources */,
 				AB32FA972337D1D2002B8F1B /* Core.swift in Sources */,
