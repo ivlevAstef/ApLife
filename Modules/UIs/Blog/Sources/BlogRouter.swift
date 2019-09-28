@@ -26,4 +26,8 @@ final class BlogRouter: IRouter {
     func start(parameters: RoutingParamaters) {
         navigationController.push(FirstViewController(nibName: nil, bundle: nil))
     }
+
+    func show(_ viewController: UIViewController) {
+        navigationController.push(viewController, animated: true)
+    }
 }

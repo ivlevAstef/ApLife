@@ -22,6 +22,8 @@
 		AB32FA7B2337CC7F002B8F1B /* SwiftLazy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB32FA7A2337CC7F002B8F1B /* SwiftLazy.framework */; };
 		AB32FAA82337D36F002B8F1B /* libCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB32FAA72337D36F002B8F1B /* libCore.a */; };
 		AB32FAB923393183002B8F1B /* AppStartPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32FAB823393183002B8F1B /* AppStartPoint.swift */; };
+		AB423467233F4A3D005A78A8 /* libDesign.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB423466233F4A3D005A78A8 /* libDesign.a */; };
+		AB423489233F5097005A78A8 /* libMenu.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB423488233F5097005A78A8 /* libMenu.a */; };
 		AB5B57B32336AF5B00E3E61A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B57A92336AF5B00E3E61A /* AppDelegate.swift */; };
 		AB5B57B42336AF5B00E3E61A /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B57AA2336AF5B00E3E61A /* SecondViewController.swift */; };
 		AB5B57B52336AF5B00E3E61A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB5B57AC2336AF5B00E3E61A /* Assets.xcassets */; };
@@ -45,6 +47,8 @@
 		AB32FA7A2337CC7F002B8F1B /* SwiftLazy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB32FAA72337D36F002B8F1B /* libCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB32FAB823393183002B8F1B /* AppStartPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStartPoint.swift; sourceTree = "<group>"; };
+		AB423466233F4A3D005A78A8 /* libDesign.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libDesign.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB423488233F5097005A78A8 /* libMenu.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libMenu.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB5B57A92336AF5B00E3E61A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB5B57AA2336AF5B00E3E61A /* SecondViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		AB5B57AC2336AF5B00E3E61A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -58,12 +62,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB32FA662337B441002B8F1B /* libNetwork.a in Frameworks */,
+				AB423467233F4A3D005A78A8 /* libDesign.a in Frameworks */,
 				AB32FA682337B441002B8F1B /* libStorage.a in Frameworks */,
 				AB32FA7B2337CC7F002B8F1B /* SwiftLazy.framework in Frameworks */,
 				AB32FA672337B441002B8F1B /* libServices.a in Frameworks */,
 				AB32FA772337CC78002B8F1B /* DITranquillity.framework in Frameworks */,
 				AB32FA642337B441002B8F1B /* libCommon.a in Frameworks */,
 				AB32FA632337B441002B8F1B /* libBlog.a in Frameworks */,
+				AB423489233F5097005A78A8 /* libMenu.a in Frameworks */,
 				AB32FA652337B441002B8F1B /* libModels.a in Frameworks */,
 				AB32FAA82337D36F002B8F1B /* libCore.a in Frameworks */,
 				AB32FA692337B441002B8F1B /* libUIComponents.a in Frameworks */,
@@ -94,6 +100,8 @@
 		AB32FA5B2337B441002B8F1B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AB423488233F5097005A78A8 /* libMenu.a */,
+				AB423466233F4A3D005A78A8 /* libDesign.a */,
 				AB32FAA72337D36F002B8F1B /* libCore.a */,
 				AB32FA7A2337CC7F002B8F1B /* SwiftLazy.framework */,
 				AB32FA762337CC78002B8F1B /* DITranquillity.framework */,

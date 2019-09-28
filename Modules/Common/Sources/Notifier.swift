@@ -191,6 +191,12 @@ public final class Notifier<Result> {
             listener.call(result)
         }
     }
+
+    public func hasListeners() -> Bool {
+        locker.lock()
+        defer { locker.unlock() }
+        return !listeners.isEmpty
+    }
 }
 
 // MARK: - support debug information

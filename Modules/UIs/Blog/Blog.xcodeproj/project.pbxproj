@@ -13,6 +13,7 @@
 		AB0BBF24233A85DF0082DDC6 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0BBF23233A85DF0082DDC6 /* libCommon.a */; };
 		AB0BBF26233A85DF0082DDC6 /* libUIComponents.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0BBF25233A85DF0082DDC6 /* libUIComponents.a */; };
 		AB32FAAC23392AAB002B8F1B /* BlogStartPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32FAAB23392AAB002B8F1B /* BlogStartPoint.swift */; };
+		AB423463233F4A24005A78A8 /* libDesign.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB423462233F4A24005A78A8 /* libDesign.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,6 +37,7 @@
 		AB0BBF23233A85DF0082DDC6 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB0BBF25233A85DF0082DDC6 /* libUIComponents.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libUIComponents.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB32FAAB23392AAB002B8F1B /* BlogStartPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogStartPoint.swift; sourceTree = "<group>"; };
+		AB423462233F4A24005A78A8 /* libDesign.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libDesign.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB5B58342336B1A200E3E61A /* libBlog.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBlog.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -47,6 +49,7 @@
 				AB0BBF24233A85DF0082DDC6 /* libCommon.a in Frameworks */,
 				AB0BBF26233A85DF0082DDC6 /* libUIComponents.a in Frameworks */,
 				AB0BBF22233A855A0082DDC6 /* libCore.a in Frameworks */,
+				AB423463233F4A24005A78A8 /* libDesign.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +59,7 @@
 		AB0BBF17233A7FEE0082DDC6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AB423462233F4A24005A78A8 /* libDesign.a */,
 				AB0BBF23233A85DF0082DDC6 /* libCommon.a */,
 				AB0BBF25233A85DF0082DDC6 /* libUIComponents.a */,
 				AB0BBF21233A855A0082DDC6 /* libCore.a */,
@@ -63,15 +67,6 @@
 				AB0BBF18233A7FEE0082DDC6 /* libCore.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		AB32FAAA23392A73002B8F1B /* initialization */ = {
-			isa = PBXGroup;
-			children = (
-				AB32FAAB23392AAB002B8F1B /* BlogStartPoint.swift */,
-				AB0BBF0F233A797B0082DDC6 /* BlogRouter.swift */,
-			);
-			path = initialization;
 			sourceTree = "<group>";
 		};
 		AB5B582B2336B1A200E3E61A = {
@@ -94,8 +89,9 @@
 		AB5B58472336B22600E3E61A /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				AB32FAAB23392AAB002B8F1B /* BlogStartPoint.swift */,
+				AB0BBF0F233A797B0082DDC6 /* BlogRouter.swift */,
 				AB0BBF13233A7A490082DDC6 /* FirstViewController.swift */,
-				AB32FAAA23392A73002B8F1B /* initialization */,
 				AB5B58492336B22600E3E61A /* post */,
 				AB5B584A2336B22600E3E61A /* comment */,
 				AB5B584B2336B22600E3E61A /* ribbon */,

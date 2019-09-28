@@ -8,13 +8,19 @@
 
 import Core
 
+import Menu
 import Blog
 
 enum StartPoints {
+    static let menu = MenuStartPoint()
+    static let blog = BlogStartPoint()
+
     static let common: [CommonStartPoint] = [
     ]
-    
+
+
     static let ui: [DeepLink.Name: UIStartPoint] = [
-        BlogStartPoint.name: BlogStartPoint()
+        MenuStartPoint.name: menu,
+        BlogStartPoint.name: blog
     ]
 }

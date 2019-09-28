@@ -8,39 +8,51 @@
 
 import UIKit
 import Core
+import SwiftLazy
 
+import Menu
 import Blog
 
 final class AppRouter: IRouter {
-    private enum Tabs {
-        case blog
-        case account
-        case settings
-    }
-    
-    static let name: DeepLink.Name = "app"
-    
     var rootViewController: UIViewController {
-        return uiTabBarController
+        return menuRouter.rootViewController
     }
     
-    private let uiTabBarController = UITabBarController(nibName: nil, bundle: nil)
-    private let tabController: TabController<Tabs>
+    private lazy var menuRouter: IRouter = {
+        return StartPoints.menu.makeRouter()
+    }()
     
     init() {
-        tabController = TabController(controller: uiTabBarController)
-        
-        tabController.addCustomization(name: .blog, tabBar: UITabBarItem(tabBarSystemItem: .featured, tag: 0))
-        tabController.addCustomization(name: .account, tabBar: UITabBarItem(tabBarSystemItem: .contacts, tag: 1))
-        tabController.addCustomization(name: .settings, tabBar: UITabBarItem(tabBarSystemItem: .more, tag: 2))
+        self.subscribeOn(StartPoints.menu)
+        self.subscribeOn(StartPoints.blog)
     }
     
     func start(parameters: RoutingParamaters) {
-        let blogStartPoint = StartPoints.ui[BlogStartPoint.name]!
-        
-        tabController.addTab(name: .blog, vc: blogStartPoint.makeRouter().rootViewController, animated: false)
-        tabController.addTab(name: .account, vc: SecondViewController(nibName: nil, bundle: nil), animated: false)
-        
-        tabController.selectTab(name: .blog)
+        menuRouter.start(parameters: parameters)
+
+        if !parameters.isEmpty {
+            for startPoint in StartPoints.ui.values {
+                if startPoint.isSupportOpen(with: parameters) {
+                    show(startPoint.makeRouter().rootViewController)
+                    break
+                }
+            }
+        }
+
+        show(SecondViewController(nibName: nil, bundle: nil))
+    }
+
+    func show(_ viewController: UIViewController) {
+        menuRouter.show(viewController)
+    }
+
+    private func subscribeOn(_ startPoint: MenuStartPoint) {
+        StartPoints.menu.blogRouterProvider = Lazy {
+            return StartPoints.blog.makeRouter()
+        }
+    }
+
+    private func subscribeOn(_ startPoint: BlogStartPoint) {
+
     }
 }

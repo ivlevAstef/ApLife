@@ -18,10 +18,16 @@
       location = "group:Modules/UIs"
       name = "UIs">
       <FileRef
+         location = "group:Menu/Menu.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:Blog/Blog.xcodeproj">
       </FileRef>
       <FileRef
          location = "group:UIComponents/UIComponents.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Design/Design.xcodeproj">
       </FileRef>
    </Group>
    <Group
