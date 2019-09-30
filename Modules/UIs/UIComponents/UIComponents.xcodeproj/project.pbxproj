@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		AB0BBF29233A85F80082DDC6 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0BBF28233A85F80082DDC6 /* libCommon.a */; };
 		AB0BBF2B233A85F80082DDC6 /* libCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0BBF2A233A85F80082DDC6 /* libCore.a */; };
+		AB0D8B7D2340FDAE00CC5579 /* ChangeableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8B7C2340FDAE00CC5579 /* ChangeableImage.swift */; };
 		AB423465233F4A2C005A78A8 /* libDesign.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB423464233F4A2C005A78A8 /* libDesign.a */; };
-		AB5B58502336B23800E3E61A /* UIComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5B584F2336B23800E3E61A /* UIComponents.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,9 +28,9 @@
 /* Begin PBXFileReference section */
 		AB0BBF28233A85F80082DDC6 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB0BBF2A233A85F80082DDC6 /* libCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB0D8B7C2340FDAE00CC5579 /* ChangeableImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeableImage.swift; sourceTree = "<group>"; };
 		AB423464233F4A2C005A78A8 /* libDesign.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libDesign.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB5B58212336B16500E3E61A /* libUIComponents.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUIComponents.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB5B584F2336B23800E3E61A /* UIComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIComponents.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				AB5B584E2336B23800E3E61A /* smartpreview */,
-				AB5B584F2336B23800E3E61A /* UIComponents.swift */,
+				AB0D8B7C2340FDAE00CC5579 /* ChangeableImage.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -147,7 +147,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB5B58502336B23800E3E61A /* UIComponents.swift in Sources */,
+				AB0D8B7D2340FDAE00CC5579 /* ChangeableImage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

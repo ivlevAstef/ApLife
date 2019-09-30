@@ -8,7 +8,8 @@
 
 import UIKit
 
-public protocol IRouter {
+public protocol IRouter
+{
     var rootViewController: UIViewController { get }
 
     func start(parameters: RoutingParamaters)

@@ -10,7 +10,8 @@ import Core
 import DITranquillity
 import SwiftLazy
 
-public final class BlogStartPoint: UIStartPoint {
+public final class BlogStartPoint: UIStartPoint
+{
     public static let name: DeepLink.Name = "blog"
 
     private var routerProvider = Provider<BlogRouter>()

@@ -11,8 +11,8 @@ import UIKit
 
 private /*static*/var associatedForRetainKey: UInt8 = 0
 
-public class Screen<View: UIViewController, Presenter: AnyObject> {
-
+public class Screen<View: UIViewController, Presenter: AnyObject>
+{	
     public let view: View
     public let presenter: Presenter
 

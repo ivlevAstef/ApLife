@@ -8,8 +8,8 @@
 
 import UIKit
 
-public final class TabController<EnumType: Hashable> {
-
+public final class TabController<EnumType: Hashable>
+{
     public var selectedTab: EnumType? {
         return getSelectedTab()
     }

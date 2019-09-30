@@ -39,31 +39,31 @@
 ///   // b deinited, but if A notify then C received result
 /// }
 /// ```
-public final class Notifier<Result> {
-    
+public final class Notifier<Result>
+{
     private class Listener {
         let shortPath: String
         let call: (Result) -> Void
         let needRemove: () -> Bool
-        
+
         init(shortPath: String, call: @escaping (Result) -> Void, needRemove: @escaping () -> Bool = { return false }) {
             self.shortPath = shortPath
             self.call = call
             self.needRemove = needRemove
         }
     }
-    
+
     private let name: String
     private let line: UInt
-    
+
     private let locker = FastLock()
     private var listeners: [Listener] = []
-    
+
     public init(file: String = #file, line: UInt = #line) {
         self.name = file.components(separatedBy: ["\\","/"]).last ?? "unknown"
         self.line = line
     }
-    
+
     // MARK: - strong joins
     
     /// Add listener into listeners list for notify about changes.
@@ -71,25 +71,25 @@ public final class Notifier<Result> {
     public func join(_ listener: @escaping (Result) -> Void,
                      file: String = #file, line: UInt = #line) {
         let name = file.components(separatedBy: ["\\","/"]).last ?? "unknown"
-        
+
         locker.lock()
         defer { locker.unlock() }
-        
+
         listeners.append(Listener(shortPath: "Closure<\(name):\(line)>", call: listener))
     }
-    
+
     /// Add listener into listeners list for notify about changes.
     /// - Parameter listener: Notifier for receive result, and notify self listeners.
     public func join(_ listener: Notifier<Result>,
                      file: StaticString = #file, line: UInt = #line) {
         locker.lock()
         defer { locker.unlock() }
-        
+
         listeners.append(Listener(shortPath: "\(listener)", call: { result in
             listener.notify(result)
         }))
     }
-    
+
     /// Add listener into listeners list for notify about changes.
     /// - Parameter listener: Notifier for receive result, and notify self listeners.
     /// - Parameter map: Method for convert result to listener result type.
@@ -98,14 +98,14 @@ public final class Notifier<Result> {
                                      file: StaticString = #file, line: UInt = #line) {
         locker.lock()
         defer { locker.unlock() }
-        
+
         listeners.append(Listener(shortPath: "\(listener)", call: { result in
             listener.notify(map(result))
         }))
     }
-    
+
     // MARK: - weak joins
-    
+
     /// Add listener into listeners list for notify about changes.
     /// Removed if owner deinited.
     /// - Parameter listener: Closure for receive result.
@@ -114,17 +114,17 @@ public final class Notifier<Result> {
                                            owner: Owner,
                                            file: String = #file, line: UInt = #line) {
         let name = file.components(separatedBy: ["\\","/"]).last ?? "unknown"
-        
+
         locker.lock()
         defer { locker.unlock() }
-        
+
         listeners.append(Listener(shortPath: "Closure<\(name):\(line)>", call: { [weak owner] result in
             if let owner = owner {
                 listener(owner, result)
             }
         }, needRemove: { [weak owner] in return nil == owner }))
     }
-    
+
     /// Add listener into listeners list for notify about changes.
     /// If all retains removed from listeners then listener not notify about changes.
     /// - Parameter listener: If don't deinited notifier for receive result, and notify self listeners.
@@ -132,12 +132,12 @@ public final class Notifier<Result> {
                          file: StaticString = #file, line: UInt = #line) {
         locker.lock()
         defer { locker.unlock() }
-        
+
         listeners.append(Listener(shortPath: "\(listener)", call: { [weak listener] result in
             listener?.notify(result)
         }, needRemove: { [weak listener] in return nil == listener }))
     }
-    
+
     /// Add listener into listeners list for notify about changes.
     /// If all retains removed from listeners then listener not notify about changes.
     /// - Parameter listener: If don't deinited notifier for receive result, and notify self listeners.
@@ -147,12 +147,12 @@ public final class Notifier<Result> {
                                          file: StaticString = #file, line: UInt = #line) {
         locker.lock()
         defer { locker.unlock() }
-        
+
         listeners.append(Listener(shortPath: "\(listener)", call: { [weak listener] result in
             listener?.notify(map(result))
         }, needRemove: { [weak listener] in return nil == listener }))
     }
-    
+
     /// add listener into listeners list for notify about changes.
     /// if all retains removed from listeners then listener not notify about changes.
     /// Also removed if owner deinited.
@@ -165,28 +165,28 @@ public final class Notifier<Result> {
                                                            file: StaticString = #file, line: UInt = #line) {
         locker.lock()
         defer { locker.unlock() }
-        
+
         listeners.append(Listener(shortPath: "\(listener)", call: { [weak owner, weak listener] result in
             if let owner = owner, let listener = listener {
                 listener.notify(map(owner, result))
             }
         }, needRemove: { [weak owner, weak listener] in return nil == owner || nil == listener }))
     }
-    
+
     // MARK: - notify
-    
+
     /// Notify all listeners about new result.
     /// - Parameter result: Result data for move all listeners.
     public func notify(_ result: Result) {
         locker.lock()
         assert(listeners.count == 0, "\(self) not has listeners - maybe needs join?")
-        
+
         listeners.removeAll(where: { $0.needRemove() })
         // need copy for unlock (because call need unknown time), but not crash in multithread
         let copyListeners = listeners
-        
+
         locker.unlock()
-        
+
         for listener in copyListeners {
             listener.call(result)
         }
@@ -201,7 +201,8 @@ public final class Notifier<Result> {
 
 // MARK: - support debug information
 
-extension Notifier {
+extension Notifier
+{
     /// Return string with information about Notiier, and all current listeners.
     /// Potencial could contains weak join - listeners prints, but not called. But after call this listeners removed.
     public var information: String {
@@ -210,26 +211,27 @@ extension Notifier {
         // need copy for unlock (because work with string is slow), but not crash in multithread
         let copyListeners = listeners
         locker.unlock()
-        
+
         if copyListeners.isEmpty {
             return "\(self) Listeners empty"
         }
-        
+
         var result = "\(self) Listeners: ["
         result += copyListeners.map{ "    " + $0.shortPath }.joined(separator: ",\n")
         result += "]\n"
-        
+
         return result
     }
 }
 
 // MARK: - utility and debug
 
-extension Notifier: CustomDebugStringConvertible, CustomStringConvertible {
+extension Notifier: CustomDebugStringConvertible, CustomStringConvertible
+{
     public var debugDescription: String {
         return "Callback<\(name):\(line)>"
     }
-    
+
     public var description: String {
         return "Callback<\(name):\(line)>"
     }

@@ -54,8 +54,4 @@
          location = "group:Common.xcodeproj">
       </FileRef>
    </Group>
-   <Group
-      location = "group:Modules/ThirdParty"
-      name = "ThirdParty">
-   </Group>
 </Workspace>

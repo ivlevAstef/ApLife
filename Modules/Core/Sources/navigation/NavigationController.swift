@@ -8,14 +8,14 @@
 
 import UIKit
 
-public final class NavigationController {
-    
+public final class NavigationController
+{
     private let uiController: UINavigationController
-    
+
     public init(controller: UINavigationController) {
         self.uiController = controller
     }
-    
+
     public func push(_ vc: UIViewController, animated: Bool = true) {
         if self.uiController.viewControllers.isEmpty {
             self.uiController.setViewControllers([vc], animated: animated)
@@ -23,7 +23,7 @@ public final class NavigationController {
             self.uiController.pushViewController(vc, animated: animated)
         }
     }
-    
+
     public func pop(animated: Bool = true) {
         self.uiController.popViewController(animated: animated)
     }

@@ -11,7 +11,8 @@ import Core
 import Menu
 import Blog
 
-enum StartPoints {
+enum StartPoints
+{
     static let menu = MenuStartPoint()
     static let blog = BlogStartPoint()
 

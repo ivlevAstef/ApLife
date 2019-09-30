@@ -12,7 +12,8 @@ import SwiftLazy
 
 typealias RibbonScreen = Screen<RibbonScreenView, RibbonScreenPresenter>
 
-final class BlogRouter: IRouter {
+final class BlogRouter: IRouter
+{
     static let name: DeepLink.Name = "blog"
 
     /*dependency*/var ribbonScreenProvider = Provider<RibbonScreen>()

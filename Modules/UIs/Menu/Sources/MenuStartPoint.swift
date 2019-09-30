@@ -10,7 +10,8 @@ import Core
 import SwiftLazy
 import DITranquillity
 
-public final class MenuStartPoint: UIStartPoint {
+public final class MenuStartPoint: UIStartPoint
+{
     public static let name: DeepLink.Name = "menu"
 
     public var blogRouterProvider: Lazy<IRouter>?

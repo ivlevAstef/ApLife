@@ -11,7 +11,8 @@ import UIKit
 import Core
 import SwiftLazy
 
-final class MenuRouter: IRouter {
+final class MenuRouter: IRouter
+{
     enum Tab {
         case blog
         case account

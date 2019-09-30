@@ -9,18 +9,19 @@
 import DITranquillity
 import Core
 
-final class AppDependency {
+final class AppDependency
+{
     static func configure() {
         DISetting.Defaults.injectToSubviews = false
         DISetting.Defaults.lifeTime = .prototype
         DISetting.Log.level = .verbose
         DISetting.Log.fun = Self.log
     }
-    
+
     static func reg(container: DIContainer) {
         container.append(framework: AppFramework.self)
     }
-    
+
     static func validate(container: DIContainer) {
         #if DEBUG
         if !container.validate(checkGraphCycles: false) {
@@ -28,18 +29,18 @@ final class AppDependency {
         }
         #endif
     }
-    
+
     private static func log(level: DILogLevel, msg: String) {
         print("[\(level)]: \(msg)")
     }
-    
 }
 
-private class AppFramework: DIFramework {
+private class AppFramework: DIFramework
+{
     static func load(container: DIContainer) {
         container.register(Application.init)
             .lifetime(.perRun(.strong))
-        
+
         container.register(AppRouter.init)
             .as(IRouter.self)
             .lifetime(.objectGraph)

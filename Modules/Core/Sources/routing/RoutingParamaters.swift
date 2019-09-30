@@ -6,7 +6,8 @@
 //  Copyright © 2019 ApostleLife. All rights reserved.
 //
 
-public struct RoutingParamaters {
+public struct RoutingParamaters
+{
     public let isEmpty: Bool = true
 
     public let startPointName: String = ""

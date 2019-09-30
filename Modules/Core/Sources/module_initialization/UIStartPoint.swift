@@ -9,11 +9,11 @@
 public protocol UIStartPoint: CommonStartPoint
 {
     static var name: DeepLink.Name { get }
-    
+
     /// check for can make and start this module for paramater
     /// - Parameter parameters: start parameters
     func isSupportOpen(with parameters: RoutingParamaters) -> Bool
-    
+
     /// make router for startup project
     func makeRouter() -> IRouter
 }

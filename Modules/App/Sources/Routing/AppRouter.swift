@@ -13,20 +13,21 @@ import SwiftLazy
 import Menu
 import Blog
 
-final class AppRouter: IRouter {
+final class AppRouter: IRouter
+{
     var rootViewController: UIViewController {
         return menuRouter.rootViewController
     }
-    
+
     private lazy var menuRouter: IRouter = {
         return StartPoints.menu.makeRouter()
     }()
-    
+
     init() {
         self.subscribeOn(StartPoints.menu)
         self.subscribeOn(StartPoints.blog)
     }
-    
+
     func start(parameters: RoutingParamaters) {
         menuRouter.start(parameters: parameters)
 

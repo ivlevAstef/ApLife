@@ -8,8 +8,8 @@
 
 import DITranquillity
 
-final class BlogDependency: DIFramework {
-
+final class BlogDependency: DIFramework
+{
     static func load(container: DIContainer) {
         container.register(BlogRouter.init)
             .injection(\.ribbonScreenProvider)

@@ -14,6 +14,9 @@
 		AB0D8B6B233FBCB600CC5579 /* BlogDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8B6A233FBCB600CC5579 /* BlogDependency.swift */; };
 		AB0D8B6D233FBCCC00CC5579 /* RibbonScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8B6C233FBCCC00CC5579 /* RibbonScreenView.swift */; };
 		AB0D8B6F233FBCD600CC5579 /* RibbonScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8B6E233FBCD600CC5579 /* RibbonScreenPresenter.swift */; };
+		AB0D8B762340656D00CC5579 /* RibbonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8B752340656D00CC5579 /* RibbonViewModel.swift */; };
+		AB0D8B79234067DC00CC5579 /* RibbonTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8B78234067DC00CC5579 /* RibbonTableView.swift */; };
+		AB0D8B7B234068BD00CC5579 /* RibbonArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8B7A234068BD00CC5579 /* RibbonArticleCell.swift */; };
 		AB32FAAC23392AAB002B8F1B /* BlogStartPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32FAAB23392AAB002B8F1B /* BlogStartPoint.swift */; };
 		AB423463233F4A24005A78A8 /* libDesign.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB423462233F4A24005A78A8 /* libDesign.a */; };
 /* End PBXBuildFile section */
@@ -40,6 +43,9 @@
 		AB0D8B6A233FBCB600CC5579 /* BlogDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogDependency.swift; sourceTree = "<group>"; };
 		AB0D8B6C233FBCCC00CC5579 /* RibbonScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RibbonScreenView.swift; sourceTree = "<group>"; };
 		AB0D8B6E233FBCD600CC5579 /* RibbonScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RibbonScreenPresenter.swift; sourceTree = "<group>"; };
+		AB0D8B752340656D00CC5579 /* RibbonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RibbonViewModel.swift; sourceTree = "<group>"; };
+		AB0D8B78234067DC00CC5579 /* RibbonTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RibbonTableView.swift; sourceTree = "<group>"; };
+		AB0D8B7A234068BD00CC5579 /* RibbonArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RibbonArticleCell.swift; sourceTree = "<group>"; };
 		AB32FAAB23392AAB002B8F1B /* BlogStartPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlogStartPoint.swift; sourceTree = "<group>"; };
 		AB423462233F4A24005A78A8 /* libDesign.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libDesign.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB5B58342336B1A200E3E61A /* libBlog.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBlog.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +77,24 @@
 				AB0BBF18233A7FEE0082DDC6 /* libCore.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AB0D8B77234067C800CC5579 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				AB0D8B80234103C600CC5579 /* cells */,
+				AB0D8B6C233FBCCC00CC5579 /* RibbonScreenView.swift */,
+				AB0D8B78234067DC00CC5579 /* RibbonTableView.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		AB0D8B80234103C600CC5579 /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				AB0D8B7A234068BD00CC5579 /* RibbonArticleCell.swift */,
+			);
+			path = cells;
 			sourceTree = "<group>";
 		};
 		AB5B582B2336B1A200E3E61A = {
@@ -120,8 +144,9 @@
 		AB5B584B2336B22600E3E61A /* ribbon */ = {
 			isa = PBXGroup;
 			children = (
-				AB0D8B6C233FBCCC00CC5579 /* RibbonScreenView.swift */,
+				AB0D8B77234067C800CC5579 /* view */,
 				AB0D8B6E233FBCD600CC5579 /* RibbonScreenPresenter.swift */,
+				AB0D8B752340656D00CC5579 /* RibbonViewModel.swift */,
 			);
 			path = ribbon;
 			sourceTree = "<group>";
@@ -184,8 +209,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB32FAAC23392AAB002B8F1B /* BlogStartPoint.swift in Sources */,
+				AB0D8B7B234068BD00CC5579 /* RibbonArticleCell.swift in Sources */,
 				AB0BBF10233A797B0082DDC6 /* BlogRouter.swift in Sources */,
+				AB0D8B762340656D00CC5579 /* RibbonViewModel.swift in Sources */,
 				AB0D8B6D233FBCCC00CC5579 /* RibbonScreenView.swift in Sources */,
+				AB0D8B79234067DC00CC5579 /* RibbonTableView.swift in Sources */,
 				AB0D8B6B233FBCB600CC5579 /* BlogDependency.swift in Sources */,
 				AB0D8B6F233FBCD600CC5579 /* RibbonScreenPresenter.swift in Sources */,
 			);

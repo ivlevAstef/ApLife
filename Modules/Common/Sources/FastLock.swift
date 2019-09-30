@@ -8,14 +8,15 @@
 
 import Foundation
 
-public final class FastLock {
-  private var monitor: os_unfair_lock = os_unfair_lock()
+public final class FastLock
+{
+    private var monitor: os_unfair_lock = os_unfair_lock()
 
-  public func lock() {
-    os_unfair_lock_lock(&monitor)
-  }
+    public func lock() {
+        os_unfair_lock_lock(&monitor)
+    }
 
-  public func unlock() {
-    os_unfair_lock_unlock(&monitor)
-  }
+    public func unlock() {
+        os_unfair_lock_unlock(&monitor)
+    }
 }
