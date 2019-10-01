@@ -15,13 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         AppStartPoint.reg()
+        AppStartPoint.app.configure(launchOptions: launchOptions)
         
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
-        AppStartPoint.app.setWindow(window)
+        AppStartPoint.app.start(window)
         window.makeKeyAndVisible()
-        
-        AppStartPoint.app.start(launchOptions: launchOptions)
         
         return true
     }

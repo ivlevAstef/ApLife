@@ -25,11 +25,11 @@ final class RibbonTableView: UIView
     }
 
     public func update(_ newViewModels: [RibbonElementViewModel]) {
-        viewModels
+        //viewModels
     }
 
     public func add(_ newViewModels: [RibbonElementViewModel], animated: Bool) {
-        viewModels
+        //viewModels
     }
 
     private func configure() {
@@ -49,7 +49,7 @@ final class RibbonTableView: UIView
 private class TableController: NSObject, UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModels.count
+        return 0 //viewModels.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

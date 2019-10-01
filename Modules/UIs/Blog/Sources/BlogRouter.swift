@@ -16,30 +16,31 @@ final class BlogRouter: IRouter
 {
     static let name: DeepLink.Name = "blog"
 
-    /*dependency*/var ribbonScreenProvider = Provider<RibbonScreen>()
+    /*dependency*/var ribbonScreenProvider = Lazy<RibbonScreen>()
     
     var rootViewController: UIViewController {
-        return uiNavigationController
-    }
-    
-    private let uiNavigationController = UINavigationController(nibName: nil, bundle: nil)
-    private let navigationController: NavigationController
-    
-    init() {
-        navigationController = NavigationController(controller: uiNavigationController)
-    }
-    
-    func start(parameters: RoutingParamaters) {
-        showRibbonScreen(animated: false)
+        assert(ribbonScreenProvider.wasMade, "Please call start before get root view controller")
+        return ribbonScreenProvider.value.view
     }
 
-    func show(_ viewController: UIViewController) {
-        navigationController.push(viewController, animated: true)
+    private let navController: NavigationController
+    
+    init(navController: NavigationController) {
+        self.navController = navController
+    }
+    
+    func configure(parameters: RoutingParamaters) -> IRouter {
+        configureRibbonScreen()
+
+        return self
     }
 
-    private func showRibbonScreen(animated: Bool) {
+    func start() {
+
+    }
+
+    private func configureRibbonScreen() {
         let screen = ribbonScreenProvider.value
-
-        navigationController.push(screen.view, animated: animated)
+        _ = screen
     }
 }

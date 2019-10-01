@@ -8,7 +8,7 @@
 
 public protocol UIStartPoint: CommonStartPoint
 {
-    static var name: DeepLink.Name { get }
+    static var name: UIModuleName { get }
 
     /// check for can make and start this module for paramater
     /// - Parameter parameters: start parameters

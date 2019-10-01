@@ -1,19 +1,20 @@
 //
-//  SecondViewController.swift
-//  ApLife
+//  MenuScreenView.swift
+//  Menu
 //
-//  Created by Alexander Ivlev on 22/09/2019.
+//  Created by Alexander Ivlev on 30/09/2019.
 //  Copyright © 2019 ApostleLife. All rights reserved.
 //
 
 import UIKit
+import Common
 
-class SecondViewController: UIViewController
+final class MenuScreenView: UIViewController, MenuScreenViewContract
 {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .yellow
+        view.backgroundColor = .green
         // Do any additional setup after loading the view.
     }
 }

@@ -10,7 +10,8 @@
 		AB0BBF3B233BE2E90082DDC6 /* Notifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0BBF3A233BE2E80082DDC6 /* Notifier.swift */; };
 		AB0BBF3D233BE3250082DDC6 /* FastLock.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0BBF3C233BE3250082DDC6 /* FastLock.swift */; };
 		AB0D8B7F2341005F00CC5579 /* DispatchQueue+mainSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8B7E2341005F00CC5579 /* DispatchQueue+mainSync.swift */; };
-		AB0D8B852341C58600CC5579 /* ModelsDiffMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8B842341C58600CC5579 /* ModelsDiffMaker.swift */; };
+		AB0D8B852341C58600CC5579 /* ModelsDiff.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8B842341C58600CC5579 /* ModelsDiff.swift */; };
+		AB0D8B942343A8FC00CC5579 /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8B932343A8FC00CC5579 /* Weak.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,7 +30,8 @@
 		AB0BBF3A233BE2E80082DDC6 /* Notifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifier.swift; sourceTree = "<group>"; };
 		AB0BBF3C233BE3250082DDC6 /* FastLock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastLock.swift; sourceTree = "<group>"; };
 		AB0D8B7E2341005F00CC5579 /* DispatchQueue+mainSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+mainSync.swift"; sourceTree = "<group>"; };
-		AB0D8B842341C58600CC5579 /* ModelsDiffMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsDiffMaker.swift; sourceTree = "<group>"; };
+		AB0D8B842341C58600CC5579 /* ModelsDiff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsDiff.swift; sourceTree = "<group>"; };
+		AB0D8B932343A8FC00CC5579 /* Weak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weak.swift; sourceTree = "<group>"; };
 		AB5B580E2336B12700E3E61A /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -66,7 +68,8 @@
 				AB0BBF3A233BE2E80082DDC6 /* Notifier.swift */,
 				AB0BBF3C233BE3250082DDC6 /* FastLock.swift */,
 				AB0D8B7E2341005F00CC5579 /* DispatchQueue+mainSync.swift */,
-				AB0D8B842341C58600CC5579 /* ModelsDiffMaker.swift */,
+				AB0D8B842341C58600CC5579 /* ModelsDiff.swift */,
+				AB0D8B932343A8FC00CC5579 /* Weak.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -112,6 +115,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = AB5B58052336B12700E3E61A;
 			productRefGroup = AB5B580F2336B12700E3E61A /* Products */;
@@ -129,7 +133,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB0BBF3D233BE3250082DDC6 /* FastLock.swift in Sources */,
-				AB0D8B852341C58600CC5579 /* ModelsDiffMaker.swift in Sources */,
+				AB0D8B852341C58600CC5579 /* ModelsDiff.swift in Sources */,
+				AB0D8B942343A8FC00CC5579 /* Weak.swift in Sources */,
 				AB0D8B7F2341005F00CC5579 /* DispatchQueue+mainSync.swift in Sources */,
 				AB0BBF3B233BE2E90082DDC6 /* Notifier.swift in Sources */,
 			);
@@ -262,6 +267,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -274,6 +280,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

@@ -21,7 +21,7 @@ final class RibbonScreenView: UIViewController, RibbonScreenViewContract
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .green
+        view.backgroundColor = .blue
         // Do any additional setup after loading the view.
     }
 

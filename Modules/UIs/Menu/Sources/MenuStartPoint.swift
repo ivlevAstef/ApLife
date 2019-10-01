@@ -7,16 +7,20 @@
 //
 
 import Core
-import SwiftLazy
+import Common
 import DITranquillity
+import SwiftLazy
 
 public final class MenuStartPoint: UIStartPoint
 {
-    public static let name: DeepLink.Name = "menu"
+    public static let name: UIModuleName = .menu
 
-    public var blogRouterProvider: Lazy<IRouter>?
-    public var accountRouterProvider: Lazy<IRouter>?
-    public var settingsRouterProvider: Lazy<IRouter>?
+    public let showAccountNotifier = Notifier<Void>()
+    public let showBlogNotifier = Notifier<Void>()
+    public let showBiographyNotifier = Notifier<Void>()
+    public let showSettingsNotifier = Notifier<Void>()
+
+    private var routerProvider = Provider<MenuRouter>()
 
     public init() {
 
@@ -27,20 +31,20 @@ public final class MenuStartPoint: UIStartPoint
     }
 
     public func reg(container: DIContainer) {
-
+        container.append(framework: MenuDependency.self)
+        routerProvider = container.resolve()
     }
 
     public func isSupportOpen(with parameters: RoutingParamaters) -> Bool {
-        return false
+        return parameters.moduleName == Self.name
     }
 
     public func makeRouter() -> IRouter {
-        let router = MenuRouter()
-        router.routerProviders = [
-            .blog: blogRouterProvider,
-            .account: accountRouterProvider,
-            .settings: settingsRouterProvider
-        ].compactMapValues { $0 }
+        let router = routerProvider.value
+        router.showAccountNotifier.join(showAccountNotifier)
+        router.showBlogNotifier.join(showBlogNotifier)
+        router.showBiographyNotifier.join(showBiographyNotifier)
+        router.showSettingsNotifier.join(showSettingsNotifier)
 
         return router
     }

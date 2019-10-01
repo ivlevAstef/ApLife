@@ -179,7 +179,7 @@ public final class Notifier<Result>
     /// - Parameter result: Result data for move all listeners.
     public func notify(_ result: Result) {
         locker.lock()
-        assert(listeners.count == 0, "\(self) not has listeners - maybe needs join?")
+        assert(listeners.count > 0, "\(self) not has listeners - maybe needs join?")
 
         listeners.removeAll(where: { $0.needRemove() })
         // need copy for unlock (because call need unknown time), but not crash in multithread
@@ -229,10 +229,10 @@ extension Notifier
 extension Notifier: CustomDebugStringConvertible, CustomStringConvertible
 {
     public var debugDescription: String {
-        return "Callback<\(name):\(line)>"
+        return "Notifier<\(name):\(line)>"
     }
 
     public var description: String {
-        return "Callback<\(name):\(line)>"
+        return "Notifier<\(name):\(line)>"
     }
 }

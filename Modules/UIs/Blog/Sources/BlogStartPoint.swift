@@ -12,7 +12,7 @@ import SwiftLazy
 
 public final class BlogStartPoint: UIStartPoint
 {
-    public static let name: DeepLink.Name = "blog"
+    public static let name: UIModuleName = .blog
 
     private var routerProvider = Provider<BlogRouter>()
 
@@ -25,12 +25,12 @@ public final class BlogStartPoint: UIStartPoint
     }
 
     public func reg(container: DIContainer) {
-        BlogDependency.load(container: container)
+        container.append(framework: BlogDependency.self)
         routerProvider = container.resolve()
     }
 
     public func isSupportOpen(with parameters: RoutingParamaters) -> Bool {
-        return true
+        return parameters.moduleName == Self.name
     }
 
     public func makeRouter() -> IRouter {

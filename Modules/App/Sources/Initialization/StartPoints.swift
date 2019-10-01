@@ -17,9 +17,10 @@ enum StartPoints
     static let blog = BlogStartPoint()
 
     static let common: [CommonStartPoint] = [
+        CoreStartPoint()
     ]
 
-    static let ui: [DeepLink.Name: UIStartPoint] = [
+    static let ui: [UIModuleName: UIStartPoint] = [
         MenuStartPoint.name: menu,
         BlogStartPoint.name: blog
     ]

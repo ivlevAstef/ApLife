@@ -16,41 +16,53 @@ import Blog
 final class AppRouter: IRouter
 {
     var rootViewController: UIViewController {
-        return menuRouter.rootViewController
+        return navController.uiController
     }
 
-    private lazy var menuRouter: IRouter = {
-        return StartPoints.menu.makeRouter()
-    }()
+    private let navController: NavigationController
+    private var isConfigured: Bool = false
+    private var needAnimated: Bool { return !isConfigured }
 
-    init() {
+    init(navController: NavigationController) {
+        self.navController = navController
+
         self.subscribeOn(StartPoints.menu)
         self.subscribeOn(StartPoints.blog)
     }
 
-    func start(parameters: RoutingParamaters) {
-        menuRouter.start(parameters: parameters)
+    @discardableResult
+    func configure(parameters: RoutingParamaters) -> IRouter {
+        isConfigured = false
+        defer { isConfigured = true }
 
-        if !parameters.isEmpty {
-            for startPoint in StartPoints.ui.values {
-                if startPoint.isSupportOpen(with: parameters) {
-                    show(startPoint.makeRouter().rootViewController)
-                    break
-                }
-            }
+        let router = StartPoints.menu.makeRouter().configure(parameters: parameters)
+
+        let startPointsCanOpened = parameters.isEmpty
+            ? []
+            : StartPoints.ui.values.filter { $0.isSupportOpen(with: parameters) }
+
+        if startPointsCanOpened.isEmpty {
+            navController.push(router, animated: needAnimated)
+        } else {
+            navController.notStartPush(router, animated: needAnimated)
         }
 
-        show(SecondViewController(nibName: nil, bundle: nil))
-    }
+        assert(startPointsCanOpened.count <= 1, "By parameters can open more start points - it's correct, or not?")
+        for startPoint in startPointsCanOpened {
+            let router = startPoint.makeRouter().configure(parameters: parameters)
+            navController.push(router, animated: needAnimated)
+        }
 
-    func show(_ viewController: UIViewController) {
-        menuRouter.show(viewController)
+        return self
     }
 
     private func subscribeOn(_ startPoint: MenuStartPoint) {
-        StartPoints.menu.blogRouterProvider = Lazy {
-            return StartPoints.blog.makeRouter()
-        }
+        StartPoints.menu.showBlogNotifier.join({ [weak self] in
+            if let self = self {
+                let router = StartPoints.blog.makeRouter().configure()
+                self.navController.push(router, animated: self.needAnimated)
+            }
+        })
     }
 
     private func subscribeOn(_ startPoint: BlogStartPoint) {
