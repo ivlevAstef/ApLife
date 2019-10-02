@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Common
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate
@@ -14,13 +15,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        AppStartPoint.configure()
+        log.info("configuration finished")
         AppStartPoint.reg()
-        AppStartPoint.app.configure(launchOptions: launchOptions)
+        log.info("registration and validate dependency finished")
+
+        AppStartPoint.app.configureAndInitialization(launchOptions: launchOptions)
+        log.info("configure and initializate application finished")
         
         let window = UIWindow(frame: UIScreen.main.bounds)
         self.window = window
         AppStartPoint.app.start(window)
         window.makeKeyAndVisible()
+
+        log.info("setup windows and started application")
         
         return true
     }

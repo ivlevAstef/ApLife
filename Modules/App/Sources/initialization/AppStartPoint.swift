@@ -19,6 +19,7 @@ final class AppStartPoint
 
 
     static func configure() {
+        LogInitialization.configure()
         AppDependency.configure()
 
         for startPoint in StartPoints.common + StartPoints.ui.values.map({ $0 as CommonStartPoint }) {

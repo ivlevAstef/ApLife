@@ -25,7 +25,7 @@ final class MenuRouter: IRouter
     /*dependency*/var menuScreenProvider = Lazy<MenuScreen>()
     
     var rootViewController: UIViewController {
-        assert(menuScreenProvider.wasMade, "Please call start before get root view controller")
+        log.assert(menuScreenProvider.wasMade, "Please call start before get root view controller")
         return menuScreenProvider.value.view
     }
 
@@ -41,12 +41,15 @@ final class MenuRouter: IRouter
     }
 
     func start() {
+        log.info("will notify show blog")
         showBlogNotifier.notify(())
     }
 
     private func configureMenuScreen() {
         let screen = menuScreenProvider.value
-        _ = screen
+        _ = screen.presenter
+
+        log.info("configure menu screen success")
     }
 }
 

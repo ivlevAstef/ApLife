@@ -179,7 +179,7 @@ public final class Notifier<Result>
     /// - Parameter result: Result data for move all listeners.
     public func notify(_ result: Result) {
         locker.lock()
-        assert(listeners.count > 0, "\(self) not has listeners - maybe needs join?")
+        log.assert(listeners.count > 0, "\(self) not has listeners - maybe needs join?")
 
         listeners.removeAll(where: { $0.needRemove() })
         // need copy for unlock (because call need unknown time), but not crash in multithread

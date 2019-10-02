@@ -8,7 +8,7 @@
 
 import UIKit
 import Core
-import SwiftLazy
+import Common
 
 import Menu
 import Blog
@@ -41,13 +41,17 @@ final class AppRouter: IRouter
             ? []
             : StartPoints.ui.values.filter { $0.isSupportOpen(with: parameters) }
 
+        log.debug("configure first screens, use parameters finished.")
+        log.trace("Params: \(parameters)")
+        log.trace("Opened Start Points: \(startPointsCanOpened)")
+
         if startPointsCanOpened.isEmpty {
             navController.push(router, animated: needAnimated)
         } else {
             navController.notStartPush(router, animated: needAnimated)
         }
 
-        assert(startPointsCanOpened.count <= 1, "By parameters can open more start points - it's correct, or not?")
+        log.assert(startPointsCanOpened.count <= 1, "By parameters can open more start points - it's correct, or not?")
         for startPoint in startPointsCanOpened {
             let router = startPoint.makeRouter().configure(parameters: parameters)
             navController.push(router, animated: needAnimated)

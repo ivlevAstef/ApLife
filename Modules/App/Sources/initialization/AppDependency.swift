@@ -8,6 +8,7 @@
 
 import DITranquillity
 import Core
+import Common
 
 final class AppDependency
 {
@@ -15,7 +16,8 @@ final class AppDependency
         DISetting.Defaults.injectToSubviews = false
         DISetting.Defaults.lifeTime = .prototype
         DISetting.Log.level = .verbose
-        DISetting.Log.fun = Self.log
+        DISetting.Log.tab = "   "
+        DISetting.Log.fun = Self.logMethod
     }
 
     static func reg(container: DIContainer) {
@@ -30,8 +32,20 @@ final class AppDependency
         #endif
     }
 
-    private static func log(level: DILogLevel, msg: String) {
-        print("[\(level)]: \(msg)")
+    private static func logMethod(level: DILogLevel, msg: String) {
+        switch level {
+        case .error:
+            log.error(msg)
+        case .warning:
+            log.warning(msg)
+        case .info:
+            log.debug(msg)
+        case .verbose:
+            log.trace(msg)
+        case .none:
+            break
+        }
+
     }
 }
 

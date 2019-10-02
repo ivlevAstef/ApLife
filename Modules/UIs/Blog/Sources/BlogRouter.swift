@@ -8,6 +8,7 @@
 
 import UIKit
 import Core
+import Common
 import SwiftLazy
 
 typealias RibbonScreen = Screen<RibbonScreenView, RibbonScreenPresenter>
@@ -19,7 +20,7 @@ final class BlogRouter: IRouter
     /*dependency*/var ribbonScreenProvider = Lazy<RibbonScreen>()
     
     var rootViewController: UIViewController {
-        assert(ribbonScreenProvider.wasMade, "Please call start before get root view controller")
+        log.assert(ribbonScreenProvider.wasMade, "Please call start before get root view controller")
         return ribbonScreenProvider.value.view
     }
 
@@ -41,6 +42,8 @@ final class BlogRouter: IRouter
 
     private func configureRibbonScreen() {
         let screen = ribbonScreenProvider.value
-        _ = screen
+        _ = screen.presenter
+
+        log.info("configure ribbon screen success")
     }
 }

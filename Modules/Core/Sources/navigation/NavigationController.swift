@@ -24,18 +24,20 @@ public final class NavigationController
     }
 
     public func push(_ router: IRouter, animated: Bool = true) {
+        notStartPush(router, animated: animated)
+
+        router.start()
+
+        log.info("router: \(type(of: router)) started")
+    }
+
+    public func notStartPush(_ router: IRouter, animated: Bool = true) {
         let vc = router.rootViewController
         push(vc, animated: animated)
         vcRouterContainer.push(vc: vc, router: router)
 
-        router.start()
-    }
-
-    public func notStartPush(_ router: IRouter, animated: Bool = true) {
-           let vc = router.rootViewController
-           push(vc, animated: animated)
-           vcRouterContainer.push(vc: vc, router: router)
-       }
+        log.info("push router: \(type(of: router))")
+   }
 
     public func push(_ vc: UIViewController, animated: Bool = true) {
         if self.uiController.viewControllers.isEmpty {
@@ -43,6 +45,8 @@ public final class NavigationController
         } else {
             self.uiController.pushViewController(vc, animated: animated)
         }
+
+        log.info("push view controller: \(type(of: vc))")
     }
 
     public func pop(animated: Bool = true) {
@@ -50,6 +54,8 @@ public final class NavigationController
             vcRouterContainer.pop(vc: popingVC)?.stop()
         }
         self.uiController.popViewController(animated: animated)
+
+        log.info("pop view controller")
     }
 
     public func popTo(_ vc: UIViewController, animated: Bool = true) {
@@ -63,10 +69,12 @@ public final class NavigationController
             }
         }
 
-        assert(found, "Call pop to vc, but view controller not found.")
+        log.assert(found, "Call pop to vc, but view controller not found.")
         if found {
             vcRouterContainer.pop(vcs: foundedVCs).forEach { $0.stop() }
             self.uiController.popToViewController(vc, animated: animated)
+
+            log.info("pop to view controller: \(type(of: vc))")
         }
     }
 
@@ -74,6 +82,8 @@ public final class NavigationController
         let vcsWithoutRoot = Array(self.uiController.viewControllers.dropFirst())
         vcRouterContainer.pop(vcs: vcsWithoutRoot).forEach { $0.stop() }
         self.uiController.popToRootViewController(animated: animated)
+
+        log.info("pop to root")
     }
 }
 
@@ -102,7 +112,7 @@ private class VCRouterContainer {
         let foundRouters = vcWithRouterList.compactMap { (vcRef, routerRef) -> IRouter? in
             return vcRef.value === vc ? routerRef.value : nil
         }
-        assert(foundRouters.count <= 1)
+        log.assert(foundRouters.count <= 1, "found more equals view controllers in vc+router stack.")
 
         vcWithRouterList.removeAll { (vcRef, routerRef) -> Bool in
             return vcRef.value === vc
@@ -117,7 +127,7 @@ private class VCRouterContainer {
         let foundRouters = vcWithRouterList.compactMap { (vcRef, routerRef) -> IRouter? in
             return vcs.contains(where: { $0 == vcRef.value }) ? routerRef.value : nil
         }
-        assert(foundRouters.count <= vcs.count)
+        log.assert(foundRouters.count <= vcs.count, "found very more equals view controllers in vc+router stack.")
 
         vcWithRouterList.removeAll { (vcRef, routerRef) -> Bool in
             return vcs.contains(where: { $0 == vcRef.value })

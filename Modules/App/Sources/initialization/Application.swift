@@ -19,12 +19,12 @@ final class Application
     }
 
     func start(_ window: UIWindow) {
-        window.rootViewController = self.router.rootViewController
-        self.router.start()
+        window.rootViewController = router.rootViewController
+        router.start()
     }
 
-    func configure(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
+    func configureAndInitialization(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         // TODO: support parse launch options
-        self.router.configure(parameters: RoutingParamaters())
+        router.configure(parameters: RoutingParamaters())
     }
 }

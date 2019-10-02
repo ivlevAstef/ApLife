@@ -12,6 +12,10 @@
 		AB0D8B7F2341005F00CC5579 /* DispatchQueue+mainSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8B7E2341005F00CC5579 /* DispatchQueue+mainSync.swift */; };
 		AB0D8B852341C58600CC5579 /* ModelsDiff.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8B842341C58600CC5579 /* ModelsDiff.swift */; };
 		AB0D8B942343A8FC00CC5579 /* Weak.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8B932343A8FC00CC5579 /* Weak.swift */; };
+		AB0D8B9C2344F97700CC5579 /* LogDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8B982344F97700CC5579 /* LogDestination.swift */; };
+		AB0D8B9E2344F97700CC5579 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8B9A2344F97700CC5579 /* Logger.swift */; };
+		AB0D8B9F2344F97700CC5579 /* LogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8B9B2344F97700CC5579 /* LogLevel.swift */; };
+		AB0D8BA12344F9C100CC5579 /* Logger+Levels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8BA02344F9C100CC5579 /* Logger+Levels.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,6 +36,10 @@
 		AB0D8B7E2341005F00CC5579 /* DispatchQueue+mainSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+mainSync.swift"; sourceTree = "<group>"; };
 		AB0D8B842341C58600CC5579 /* ModelsDiff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsDiff.swift; sourceTree = "<group>"; };
 		AB0D8B932343A8FC00CC5579 /* Weak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weak.swift; sourceTree = "<group>"; };
+		AB0D8B982344F97700CC5579 /* LogDestination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogDestination.swift; sourceTree = "<group>"; };
+		AB0D8B9A2344F97700CC5579 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		AB0D8B9B2344F97700CC5579 /* LogLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogLevel.swift; sourceTree = "<group>"; };
+		AB0D8BA02344F9C100CC5579 /* Logger+Levels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Logger+Levels.swift"; sourceTree = "<group>"; };
 		AB5B580E2336B12700E3E61A /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -46,6 +54,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB0D8B952344F8D300CC5579 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				AB0BBF3A233BE2E80082DDC6 /* Notifier.swift */,
+				AB0D8B842341C58600CC5579 /* ModelsDiff.swift */,
+				AB0D8B932343A8FC00CC5579 /* Weak.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		AB0D8B962344F8E400CC5579 /* multithreads */ = {
+			isa = PBXGroup;
+			children = (
+				AB0D8B7E2341005F00CC5579 /* DispatchQueue+mainSync.swift */,
+				AB0BBF3C233BE3250082DDC6 /* FastLock.swift */,
+			);
+			path = multithreads;
+			sourceTree = "<group>";
+		};
+		AB0D8B972344F8F800CC5579 /* logs */ = {
+			isa = PBXGroup;
+			children = (
+				AB0D8BA02344F9C100CC5579 /* Logger+Levels.swift */,
+				AB0D8B982344F97700CC5579 /* LogDestination.swift */,
+				AB0D8B9A2344F97700CC5579 /* Logger.swift */,
+				AB0D8B9B2344F97700CC5579 /* LogLevel.swift */,
+			);
+			path = logs;
+			sourceTree = "<group>";
+		};
 		AB5B58052336B12700E3E61A = {
 			isa = PBXGroup;
 			children = (
@@ -65,11 +103,9 @@
 		AB5B58442336B20C00E3E61A /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				AB0BBF3A233BE2E80082DDC6 /* Notifier.swift */,
-				AB0BBF3C233BE3250082DDC6 /* FastLock.swift */,
-				AB0D8B7E2341005F00CC5579 /* DispatchQueue+mainSync.swift */,
-				AB0D8B842341C58600CC5579 /* ModelsDiff.swift */,
-				AB0D8B932343A8FC00CC5579 /* Weak.swift */,
+				AB0D8B972344F8F800CC5579 /* logs */,
+				AB0D8B962344F8E400CC5579 /* multithreads */,
+				AB0D8B952344F8D300CC5579 /* utils */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -133,10 +169,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB0BBF3D233BE3250082DDC6 /* FastLock.swift in Sources */,
+				AB0D8B9C2344F97700CC5579 /* LogDestination.swift in Sources */,
 				AB0D8B852341C58600CC5579 /* ModelsDiff.swift in Sources */,
 				AB0D8B942343A8FC00CC5579 /* Weak.swift in Sources */,
 				AB0D8B7F2341005F00CC5579 /* DispatchQueue+mainSync.swift in Sources */,
+				AB0D8BA12344F9C100CC5579 /* Logger+Levels.swift in Sources */,
 				AB0BBF3B233BE2E90082DDC6 /* Notifier.swift in Sources */,
+				AB0D8B9F2344F97700CC5579 /* LogLevel.swift in Sources */,
+				AB0D8B9E2344F97700CC5579 /* Logger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

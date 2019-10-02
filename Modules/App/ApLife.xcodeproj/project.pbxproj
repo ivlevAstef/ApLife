@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		AB0BBF16233A7AC70082DDC6 /* StartPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0BBF15233A7AC70082DDC6 /* StartPoints.swift */; };
 		AB0D8B74233FC1A400CC5579 /* DITranquillity in Frameworks */ = {isa = PBXBuildFile; productRef = AB0D8B73233FC1A400CC5579 /* DITranquillity */; };
+		AB0D8BA52344FC2500CC5579 /* ConsoleLogDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8BA32344FC2500CC5579 /* ConsoleLogDestination.swift */; };
+		AB0D8BA62344FC2500CC5579 /* LogFileDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8BA42344FC2500CC5579 /* LogFileDestination.swift */; };
+		AB0D8BA82344FCD000CC5579 /* LogInitialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8BA72344FCD000CC5579 /* LogInitialization.swift */; };
+		AB0D8BAA2344FDAB00CC5579 /* XcodeDebugLogDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8BA92344FDAB00CC5579 /* XcodeDebugLogDestination.swift */; };
 		AB32FA2F2337A8D9002B8F1B /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32FA2E2337A8D9002B8F1B /* AppRouter.swift */; };
 		AB32FA312337A8E6002B8F1B /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32FA302337A8E6002B8F1B /* Application.swift */; };
 		AB32FA332337A977002B8F1B /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32FA322337A977002B8F1B /* AppDependency.swift */; };
@@ -31,6 +35,10 @@
 /* Begin PBXFileReference section */
 		AB05387A2336ABE90014138E /* ApLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB0BBF15233A7AC70082DDC6 /* StartPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartPoints.swift; sourceTree = "<group>"; };
+		AB0D8BA32344FC2500CC5579 /* ConsoleLogDestination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsoleLogDestination.swift; sourceTree = "<group>"; };
+		AB0D8BA42344FC2500CC5579 /* LogFileDestination.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogFileDestination.swift; sourceTree = "<group>"; };
+		AB0D8BA72344FCD000CC5579 /* LogInitialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInitialization.swift; sourceTree = "<group>"; };
+		AB0D8BA92344FDAB00CC5579 /* XcodeDebugLogDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeDebugLogDestination.swift; sourceTree = "<group>"; };
 		AB32FA2E2337A8D9002B8F1B /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		AB32FA302337A8E6002B8F1B /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		AB32FA322337A977002B8F1B /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
@@ -93,6 +101,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		AB0D8BA22344FBF800CC5579 /* logger */ = {
+			isa = PBXGroup;
+			children = (
+				AB0D8BA32344FC2500CC5579 /* ConsoleLogDestination.swift */,
+				AB0D8BA42344FC2500CC5579 /* LogFileDestination.swift */,
+				AB0D8BA92344FDAB00CC5579 /* XcodeDebugLogDestination.swift */,
+				AB0D8BA72344FCD000CC5579 /* LogInitialization.swift */,
+			);
+			path = logger;
+			sourceTree = "<group>";
+		};
 		AB32FA5B2337B441002B8F1B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,8 +134,9 @@
 		AB5B57A72336AF5B00E3E61A /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				AB5B58572336B28200E3E61A /* Initialization */,
-				AB5B58582336B28B00E3E61A /* Routing */,
+				AB0D8BA22344FBF800CC5579 /* logger */,
+				AB5B58572336B28200E3E61A /* initialization */,
+				AB5B58582336B28B00E3E61A /* routing */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -131,7 +151,7 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		AB5B58572336B28200E3E61A /* Initialization */ = {
+		AB5B58572336B28200E3E61A /* initialization */ = {
 			isa = PBXGroup;
 			children = (
 				AB5B57A92336AF5B00E3E61A /* AppDelegate.swift */,
@@ -140,15 +160,15 @@
 				AB32FAB823393183002B8F1B /* AppStartPoint.swift */,
 				AB0BBF15233A7AC70082DDC6 /* StartPoints.swift */,
 			);
-			path = Initialization;
+			path = initialization;
 			sourceTree = "<group>";
 		};
-		AB5B58582336B28B00E3E61A /* Routing */ = {
+		AB5B58582336B28B00E3E61A /* routing */ = {
 			isa = PBXGroup;
 			children = (
 				AB32FA2E2337A8D9002B8F1B /* AppRouter.swift */,
 			);
-			path = Routing;
+			path = routing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,10 +249,14 @@
 			files = (
 				AB32FA332337A977002B8F1B /* AppDependency.swift in Sources */,
 				AB32FA312337A8E6002B8F1B /* Application.swift in Sources */,
+				AB0D8BA52344FC2500CC5579 /* ConsoleLogDestination.swift in Sources */,
 				AB32FA2F2337A8D9002B8F1B /* AppRouter.swift in Sources */,
+				AB0D8BA82344FCD000CC5579 /* LogInitialization.swift in Sources */,
+				AB0D8BAA2344FDAB00CC5579 /* XcodeDebugLogDestination.swift in Sources */,
 				AB5B57B32336AF5B00E3E61A /* AppDelegate.swift in Sources */,
 				AB32FAB923393183002B8F1B /* AppStartPoint.swift in Sources */,
 				AB0BBF16233A7AC70082DDC6 /* StartPoints.swift in Sources */,
+				AB0D8BA62344FC2500CC5579 /* LogFileDestination.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
