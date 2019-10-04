@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Core
 import Common
 
 public final class NavigationController
@@ -17,10 +18,14 @@ public final class NavigationController
         return vcRouterContainer.lastRouter
     }
 
+    private var child: NavigationController?
+
     private let vcRouterContainer = VCRouterContainer()
 
     public init(controller: UINavigationController) {
         self.uiController = controller
+
+        controller.setNavigationBarHidden(true, animated: false)
     }
 
     public func push(_ router: IRouter, animated: Bool = true) {

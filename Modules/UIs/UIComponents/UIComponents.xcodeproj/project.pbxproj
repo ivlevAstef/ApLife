@@ -10,6 +10,10 @@
 		AB0BBF29233A85F80082DDC6 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0BBF28233A85F80082DDC6 /* libCommon.a */; };
 		AB0BBF2B233A85F80082DDC6 /* libCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0BBF2A233A85F80082DDC6 /* libCore.a */; };
 		AB0D8B7D2340FDAE00CC5579 /* ChangeableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8B7C2340FDAE00CC5579 /* ChangeableImage.swift */; };
+		AB0D8BDD23479D3C00CC5579 /* UIComponentsStartPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8BDC23479D3C00CC5579 /* UIComponentsStartPoint.swift */; };
+		AB0D8BE723479DBB00CC5579 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8BE523479DBB00CC5579 /* NavigationController.swift */; };
+		AB0D8BE823479DBB00CC5579 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8BE623479DBB00CC5579 /* NavigationBar.swift */; };
+		AB0D8BEA23479E1B00CC5579 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8BE923479E1B00CC5579 /* Screen.swift */; };
 		AB423465233F4A2C005A78A8 /* libDesign.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB423464233F4A2C005A78A8 /* libDesign.a */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +33,10 @@
 		AB0BBF28233A85F80082DDC6 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB0BBF2A233A85F80082DDC6 /* libCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB0D8B7C2340FDAE00CC5579 /* ChangeableImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeableImage.swift; sourceTree = "<group>"; };
+		AB0D8BDC23479D3C00CC5579 /* UIComponentsStartPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIComponentsStartPoint.swift; sourceTree = "<group>"; };
+		AB0D8BE523479DBB00CC5579 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		AB0D8BE623479DBB00CC5579 /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		AB0D8BE923479E1B00CC5579 /* Screen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		AB423464233F4A2C005A78A8 /* libDesign.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libDesign.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB5B58212336B16500E3E61A /* libUIComponents.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUIComponents.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -57,6 +65,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AB0D8BDB23479CF700CC5579 /* navigation */ = {
+			isa = PBXGroup;
+			children = (
+				AB0D8BE923479E1B00CC5579 /* Screen.swift */,
+				AB0D8BE623479DBB00CC5579 /* NavigationBar.swift */,
+				AB0D8BE523479DBB00CC5579 /* NavigationController.swift */,
+			);
+			path = navigation;
+			sourceTree = "<group>";
+		};
 		AB5B58182336B16500E3E61A = {
 			isa = PBXGroup;
 			children = (
@@ -77,6 +95,8 @@
 		AB5B584D2336B23800E3E61A /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				AB0D8BDC23479D3C00CC5579 /* UIComponentsStartPoint.swift */,
+				AB0D8BDB23479CF700CC5579 /* navigation */,
 				AB5B584E2336B23800E3E61A /* smartpreview */,
 				AB0D8B7C2340FDAE00CC5579 /* ChangeableImage.swift */,
 			);
@@ -148,7 +168,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB0D8BEA23479E1B00CC5579 /* Screen.swift in Sources */,
 				AB0D8B7D2340FDAE00CC5579 /* ChangeableImage.swift in Sources */,
+				AB0D8BE723479DBB00CC5579 /* NavigationController.swift in Sources */,
+				AB0D8BDD23479D3C00CC5579 /* UIComponentsStartPoint.swift in Sources */,
+				AB0D8BE823479DBB00CC5579 /* NavigationBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

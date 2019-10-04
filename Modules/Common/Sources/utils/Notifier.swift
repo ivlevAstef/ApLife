@@ -80,8 +80,7 @@ public final class Notifier<Result>
 
     /// Add listener into listeners list for notify about changes.
     /// - Parameter listener: Notifier for receive result, and notify self listeners.
-    public func join(_ listener: Notifier<Result>,
-                     file: StaticString = #file, line: UInt = #line) {
+    public func join(_ listener: Notifier<Result>) {
         locker.lock()
         defer { locker.unlock() }
 
@@ -94,8 +93,7 @@ public final class Notifier<Result>
     /// - Parameter listener: Notifier for receive result, and notify self listeners.
     /// - Parameter map: Method for convert result to listener result type.
     public func join<ListenerResult>(_ listener: Notifier<ListenerResult>,
-                                     map: @escaping (Result) -> ListenerResult,
-                                     file: StaticString = #file, line: UInt = #line) {
+                                     map: @escaping (Result) -> ListenerResult) {
         locker.lock()
         defer { locker.unlock() }
 
@@ -128,8 +126,7 @@ public final class Notifier<Result>
     /// Add listener into listeners list for notify about changes.
     /// If all retains removed from listeners then listener not notify about changes.
     /// - Parameter listener: If don't deinited notifier for receive result, and notify self listeners.
-    public func weakJoin(_ listener: Notifier<Result>,
-                         file: StaticString = #file, line: UInt = #line) {
+    public func weakJoin(_ listener: Notifier<Result>) {
         locker.lock()
         defer { locker.unlock() }
 
@@ -143,8 +140,7 @@ public final class Notifier<Result>
     /// - Parameter listener: If don't deinited notifier for receive result, and notify self listeners.
     /// - Parameter map: Method for convert result to listener result type.
     public func weakJoin<ListenerResult>(_ listener: Notifier<ListenerResult>,
-                                         map: @escaping (Result) -> ListenerResult,
-                                         file: StaticString = #file, line: UInt = #line) {
+                                         map: @escaping (Result) -> ListenerResult) {
         locker.lock()
         defer { locker.unlock() }
 
@@ -161,8 +157,7 @@ public final class Notifier<Result>
     /// - Parameter map: Method for convert result to listener result type.
     public func weakJoin<ListenerResult, Owner: AnyObject>(_ listener: Notifier<ListenerResult>,
                                                            owner: Owner,
-                                                           map: @escaping (Owner, Result) -> ListenerResult,
-                                                           file: StaticString = #file, line: UInt = #line) {
+                                                           map: @escaping (Owner, Result) -> ListenerResult) {
         locker.lock()
         defer { locker.unlock() }
 

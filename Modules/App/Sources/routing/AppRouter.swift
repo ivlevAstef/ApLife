@@ -9,9 +9,11 @@
 import UIKit
 import Core
 import Common
+import UIComponents
 
 import Menu
 import Blog
+import Biography
 
 final class AppRouter: IRouter
 {
@@ -20,21 +22,17 @@ final class AppRouter: IRouter
     }
 
     private let navController: NavigationController
-    private var isConfigured: Bool = false
-    private var needAnimated: Bool { return !isConfigured }
 
     init(navController: NavigationController) {
         self.navController = navController
 
         self.subscribeOn(StartPoints.menu)
         self.subscribeOn(StartPoints.blog)
+        self.subscribeOn(StartPoints.biography)
     }
 
     @discardableResult
     func configure(parameters: RoutingParamaters) -> IRouter {
-        isConfigured = false
-        defer { isConfigured = true }
-
         let router = StartPoints.menu.makeRouter().configure(parameters: parameters)
 
         let startPointsCanOpened = parameters.isEmpty
@@ -46,30 +44,34 @@ final class AppRouter: IRouter
         log.trace("Opened Start Points: \(startPointsCanOpened)")
 
         if startPointsCanOpened.isEmpty {
-            navController.push(router, animated: needAnimated)
+            navController.push(router, animated: false)
         } else {
-            navController.notStartPush(router, animated: needAnimated)
+            navController.notStartPush(router, animated: false)
         }
 
         log.assert(startPointsCanOpened.count <= 1, "By parameters can open more start points - it's correct, or not?")
         for startPoint in startPointsCanOpened {
             let router = startPoint.makeRouter().configure(parameters: parameters)
-            navController.push(router, animated: needAnimated)
+            navController.push(router, animated: false)
         }
 
         return self
     }
 
     private func subscribeOn(_ startPoint: MenuStartPoint) {
-        StartPoints.menu.showBlogNotifier.join({ [weak self] in
-            if let self = self {
-                let router = StartPoints.blog.makeRouter().configure()
-                self.navController.push(router, animated: self.needAnimated)
-            }
+        StartPoints.menu.blogGetter.take(use: {
+            return StartPoints.blog.makeRouter().configure()
+        })
+        StartPoints.menu.biographyGetter.take(use: {
+            return StartPoints.biography.makeRouter().configure()
         })
     }
 
     private func subscribeOn(_ startPoint: BlogStartPoint) {
+
+    }
+
+    private func subscribeOn(_ startPoint: BiographyStartPoint) {
 
     }
 }

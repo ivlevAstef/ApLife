@@ -7,21 +7,26 @@
 //
 
 import Core
+import UIComponents
 
 import Menu
 import Blog
+import Biography
 
 enum StartPoints
 {
     static let menu = MenuStartPoint()
     static let blog = BlogStartPoint()
+    static let biography = BiographyStartPoint()
 
     static let common: [CommonStartPoint] = [
-        CoreStartPoint()
+        CoreStartPoint(),
+        UIComponentsStartPoint()
     ]
 
     static let ui: [UIModuleName: UIStartPoint] = [
         MenuStartPoint.name: menu,
-        BlogStartPoint.name: blog
+        BlogStartPoint.name: blog,
+        BiographyStartPoint.name: biography
     ]
 }

@@ -9,6 +9,7 @@
 
 import UIKit
 import Core
+import UIComponents
 import Common
 import SwiftLazy
 
@@ -17,10 +18,11 @@ typealias MenuScreen = Screen<MenuScreenView, MenuScreenPresenter>
 
 final class MenuRouter: IRouter
 {
-    let showAccountNotifier = Notifier<Void>()
-    let showBlogNotifier = Notifier<Void>()
-    let showBiographyNotifier = Notifier<Void>()
-    let showSettingsNotifier = Notifier<Void>()
+    let accountGetter = Getter<Void, IRouter>()
+    let blogGetter = Getter<Void, IRouter>()
+    let favoritesGetter = Getter<Void, IRouter>()
+    let biographyGetter = Getter<Void, IRouter>()
+    let settingsGetter = Getter<Void, IRouter>()
 
     /*dependency*/var menuScreenProvider = Lazy<MenuScreen>()
     
@@ -41,8 +43,11 @@ final class MenuRouter: IRouter
     }
 
     func start() {
-        log.info("will notify show blog")
-        showBlogNotifier.notify(())
+//        log.info("will show blog")
+//        if let blogRouter = blogGetter.get(()) {
+//            navController.push(blogRouter, animated: false)
+//            log.info("did show blog")
+//        }
     }
 
     private func configureMenuScreen() {

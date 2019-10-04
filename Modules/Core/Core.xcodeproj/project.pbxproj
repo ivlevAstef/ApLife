@@ -8,12 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		AB0BBF2D233A86060082DDC6 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0BBF2C233A86060082DDC6 /* libCommon.a */; };
-		AB0D8B71233FBD4400CC5579 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8B70233FBD4400CC5579 /* Screen.swift */; };
 		AB0D8B832341071400CC5579 /* DITranquillity in Frameworks */ = {isa = PBXBuildFile; productRef = AB0D8B822341071400CC5579 /* DITranquillity */; };
 		AB0D8B88234265F400CC5579 /* UIModuleName.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8B87234265F400CC5579 /* UIModuleName.swift */; };
 		AB0D8B9223426D4600CC5579 /* CoreStartPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8B9123426D4600CC5579 /* CoreStartPoint.swift */; };
 		AB32FA9F2337D237002B8F1B /* IRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32FA9B2337D1FB002B8F1B /* IRouter.swift */; };
-		AB32FAA02337D239002B8F1B /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32FA982337D1D7002B8F1B /* NavigationController.swift */; };
 		AB32FAA42337D267002B8F1B /* DeepLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32FAA32337D267002B8F1B /* DeepLink.swift */; };
 		AB32FAA62337D296002B8F1B /* RoutingParamaters.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32FAA52337D296002B8F1B /* RoutingParamaters.swift */; };
 		AB32FAB52339309F002B8F1B /* UIStartPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32FAB42339309F002B8F1B /* UIStartPoint.swift */; };
@@ -36,11 +34,9 @@
 		AB0BBF1D233A85100082DDC6 /* DITranquillity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DITranquillity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB0BBF1F233A85210082DDC6 /* SwiftLazy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftLazy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB0BBF2C233A86060082DDC6 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB0D8B70233FBD4400CC5579 /* Screen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		AB0D8B87234265F400CC5579 /* UIModuleName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIModuleName.swift; sourceTree = "<group>"; };
 		AB0D8B9123426D4600CC5579 /* CoreStartPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreStartPoint.swift; sourceTree = "<group>"; };
 		AB32FA8B2337D159002B8F1B /* libCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		AB32FA982337D1D7002B8F1B /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		AB32FA9B2337D1FB002B8F1B /* IRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRouter.swift; sourceTree = "<group>"; };
 		AB32FAA32337D267002B8F1B /* DeepLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLink.swift; sourceTree = "<group>"; };
 		AB32FAA52337D296002B8F1B /* RoutingParamaters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingParamaters.swift; sourceTree = "<group>"; };
@@ -95,23 +91,13 @@
 				AB32FAAD23392B8A002B8F1B /* module_initialization */,
 				AB32FAA22337D243002B8F1B /* deeplinks */,
 				AB32FA9D2337D1FB002B8F1B /* routing */,
-				AB32FA9A2337D1D7002B8F1B /* navigation */,
 			);
 			path = Sources;
-			sourceTree = "<group>";
-		};
-		AB32FA9A2337D1D7002B8F1B /* navigation */ = {
-			isa = PBXGroup;
-			children = (
-				AB32FA982337D1D7002B8F1B /* NavigationController.swift */,
-			);
-			path = navigation;
 			sourceTree = "<group>";
 		};
 		AB32FA9D2337D1FB002B8F1B /* routing */ = {
 			isa = PBXGroup;
 			children = (
-				AB0D8B70233FBD4400CC5579 /* Screen.swift */,
 				AB32FA9B2337D1FB002B8F1B /* IRouter.swift */,
 				AB32FAA52337D296002B8F1B /* RoutingParamaters.swift */,
 			);
@@ -204,8 +190,6 @@
 				AB32FA9F2337D237002B8F1B /* IRouter.swift in Sources */,
 				AB0D8B9223426D4600CC5579 /* CoreStartPoint.swift in Sources */,
 				AB32FAB52339309F002B8F1B /* UIStartPoint.swift in Sources */,
-				AB32FAA02337D239002B8F1B /* NavigationController.swift in Sources */,
-				AB0D8B71233FBD4400CC5579 /* Screen.swift in Sources */,
 				AB32FAA42337D267002B8F1B /* DeepLink.swift in Sources */,
 				AB0D8B88234265F400CC5579 /* UIModuleName.swift in Sources */,
 				AB32FAA62337D296002B8F1B /* RoutingParamaters.swift in Sources */,

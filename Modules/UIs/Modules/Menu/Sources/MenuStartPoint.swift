@@ -15,10 +15,11 @@ public final class MenuStartPoint: UIStartPoint
 {
     public static let name: UIModuleName = .menu
 
-    public let showAccountNotifier = Notifier<Void>()
-    public let showBlogNotifier = Notifier<Void>()
-    public let showBiographyNotifier = Notifier<Void>()
-    public let showSettingsNotifier = Notifier<Void>()
+    public let accountGetter = Getter<Void, IRouter>()
+    public let blogGetter = Getter<Void, IRouter>()
+    public let favoritesGetter = Getter<Void, IRouter>()
+    public let biographyGetter = Getter<Void, IRouter>()
+    public let settingsGetter = Getter<Void, IRouter>()
 
     private var routerProvider = Provider<MenuRouter>()
 
@@ -41,10 +42,11 @@ public final class MenuStartPoint: UIStartPoint
 
     public func makeRouter() -> IRouter {
         let router = routerProvider.value
-        router.showAccountNotifier.join(showAccountNotifier)
-        router.showBlogNotifier.join(showBlogNotifier)
-        router.showBiographyNotifier.join(showBiographyNotifier)
-        router.showSettingsNotifier.join(showSettingsNotifier)
+        router.accountGetter.take(from: accountGetter)
+        router.blogGetter.take(from: blogGetter)
+        router.favoritesGetter.take(from: favoritesGetter)
+        router.biographyGetter.take(from: biographyGetter)
+        router.settingsGetter.take(from: settingsGetter)
 
         return router
     }

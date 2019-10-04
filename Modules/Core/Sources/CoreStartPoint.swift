@@ -21,9 +21,6 @@ public final class CoreStartPoint: CommonStartPoint
     }
 
     public func reg(container: DIContainer) {
-        container.register {
-            NavigationController(controller: UINavigationController(nibName: nil, bundle: nil))
-        }.lifetime(.perContainer(.weak))
     }
 }
 

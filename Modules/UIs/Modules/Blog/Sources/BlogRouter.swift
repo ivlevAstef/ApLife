@@ -10,13 +10,12 @@ import UIKit
 import Core
 import Common
 import SwiftLazy
+import UIComponents
 
 typealias RibbonScreen = Screen<RibbonScreenView, RibbonScreenPresenter>
 
 final class BlogRouter: IRouter
 {
-    static let name: DeepLink.Name = "blog"
-
     /*dependency*/var ribbonScreenProvider = Lazy<RibbonScreen>()
     
     var rootViewController: UIViewController {
