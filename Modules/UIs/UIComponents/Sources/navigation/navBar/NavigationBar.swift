@@ -13,22 +13,27 @@ private enum Consts {
     static let defaultHeight: CGFloat = 44.0
     static let largeHeight: CGFloat = 96.0
     static let superLargeHeight: CGFloat = 150.0
+
+    static let velocityHeightFactor: CGFloat = 250.0 // 250 miliseconds
 }
 
 
 public class NavigationBar: UIView, INavigationBar
 {
+    public var startStyle: NavigationBarStartStyle = .default {
+        didSet { update() }
+    }
     public var resizePolicy: NavigationBarResizePolicy = .default {
         didSet { update(force: true) }
     }
 
-    public var preferredHeight: CGFloat = Consts.defaultHeight {
-        didSet { update() }
+    public var preferredHeight: CGFloat {
+        set { _preferredHeight = newValue; update() }
+        get { return _preferredHeight }
     }
 
     public var minHeight: CGFloat { return calculateHeightTakingInResizePolicy(for: 0.0) }
     public var maxHeight: CGFloat { return calculateHeightTakingInResizePolicy(for: UIScreen.main.bounds.height) }
-    public var minAutoHeight: CGFloat { return calculateConstsHeightTakingInResizePolicy(for: preferredHeight) }
 
     public var leftItems: [UIView] = [] {
         didSet { configureLeftItems() }
@@ -36,6 +41,7 @@ public class NavigationBar: UIView, INavigationBar
     public var rightItems: [UIView] = [] {
         didSet { configureRightItems() }
     }
+    public var rightItemsGlueBottom: Bool = false
 
     public var backgroundView: UIView? {
         didSet { updateBackgroundView(prev: oldValue) }
@@ -44,12 +50,15 @@ public class NavigationBar: UIView, INavigationBar
         didSet { updateCenterContentView(prev: oldValue) }
     }
 
+    private var isFullyInitialized: Bool = false
+    private var _preferredHeight: CGFloat = 0.0 // need for change value without call update - else recursive call
+
     private let leftView: UIView = UIView(frame: .zero)
     private let centerView: UIView = UIView(frame: .zero)
     private let rightView: UIView = UIView(frame: .zero)
 
     public init() {
-        super.init(frame: .zero)
+        super.init(frame: CGRect(x: 0, y: 0, width: 0, height: -1.0/*for first update without force*/))
 
         translatesAutoresizingMaskIntoConstraints = false
         leftView.translatesAutoresizingMaskIntoConstraints = false
@@ -72,6 +81,7 @@ public class NavigationBar: UIView, INavigationBar
             return
         }
 
+        initializePreferredHeightIfNeeded()
         let newHeight = calculateHeightTakingInResizePolicy(for: preferredHeight)
 
         if !force && abs(newHeight - frame.size.height) < 0.1 {
@@ -91,6 +101,23 @@ public class NavigationBar: UIView, INavigationBar
         recalculateSubviews(for: t)
 
         setNeedsLayout()
+
+        isFullyInitialized = true
+    }
+
+    private func initializePreferredHeightIfNeeded() {
+        if isFullyInitialized {
+            return
+        }
+
+        switch startStyle {
+        case .hide:
+            _preferredHeight = 0.0
+        case .default:
+            _preferredHeight = Consts.defaultHeight
+        case .large:
+            _preferredHeight = Consts.largeHeight
+        }
     }
 
     private func configureLeftItems() {
@@ -168,8 +195,10 @@ public class NavigationBar: UIView, INavigationBar
         }
     }
 
-    private func calculateConstsHeightTakingInResizePolicy(for height: CGFloat) -> CGFloat {
-        let normalHeight = calculateHeightTakingInResizePolicy(for: height)
+    public func calculatePreferredHeight(velocity: CGFloat) -> CGFloat {
+        let finalHeight = velocity * Consts.velocityHeightFactor + preferredHeight
+        let normalHeight = calculateHeightTakingInResizePolicy(for: finalHeight)
+
         switch resizePolicy {
         case .hide:
             return 0.0
@@ -206,6 +235,13 @@ public class NavigationBar: UIView, INavigationBar
         leftView.alpha = globalAlpha
         centerView.alpha = globalAlpha
         rightView.alpha = globalAlpha
+
+        leftView.frame.origin.y = (min(t, 1.0) - 1.0) * Consts.defaultHeight
+        if rightItemsGlueBottom {
+            rightView.frame.origin.y = frame.height - rightView.frame.height
+        } else {
+            rightView.frame.origin.y = (min(t, 1.0) - 1.0) * Consts.defaultHeight
+        }
 
         let y = max(0.0, min((t - 1.0) * Consts.defaultHeight, Consts.defaultHeight))
         let leftX = leftView.frame.origin.x + max(0.0, min(leftView.frame.width * (2.0 - t), leftView.frame.width))

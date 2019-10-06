@@ -8,6 +8,12 @@
 
 import UIKit
 
+public enum NavigationBarStartStyle {
+    case hide
+    case `default`
+    case large
+}
+
 public enum NavigationBarResizePolicy {
     /// any time navigation bar is hide
     case hide
@@ -32,20 +38,23 @@ public protocol INavigationBarResizableView {
 }
 
 public protocol INavigationBar: class {
+    var startStyle: NavigationBarStartStyle { get set }
     var resizePolicy: NavigationBarResizePolicy { get set }
     var preferredHeight: CGFloat { get set }
 
     var minHeight: CGFloat { get }
     var maxHeight: CGFloat { get }
-    var minAutoHeight: CGFloat { get }
 
     /// before set leftItems setup items width
     var leftItems: [UIView] { get set }
     /// before set rightItems setup items width
     var rightItems: [UIView] { get set }
+    var rightItemsGlueBottom: Bool { get set }
 
     var backgroundView: UIView? { get set }
     var centerContentView: (UIView & INavigationBarResizableView)? { get set }
+
+    func calculatePreferredHeight(velocity: CGFloat) -> CGFloat
 
     func update(force: Bool)
 }

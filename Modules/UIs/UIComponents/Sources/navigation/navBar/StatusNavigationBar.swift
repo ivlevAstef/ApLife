@@ -15,6 +15,10 @@ private enum Consts {
 
 public class StatusNavigationBar: UIView, INavigationBar
 {
+    public var startStyle: NavigationBarStartStyle {
+        set { navBar.startStyle = newValue; update() }
+        get { return navBar.startStyle }
+    }
     public var resizePolicy: NavigationBarResizePolicy {
         set { navBar.resizePolicy = newValue; update() }
         get { return navBar.resizePolicy }
@@ -26,16 +30,19 @@ public class StatusNavigationBar: UIView, INavigationBar
 
     public var minHeight: CGFloat { return navBar.minHeight + Consts.statusBarHeight }
     public var maxHeight: CGFloat { return navBar.maxHeight + Consts.statusBarHeight }
-    public var minAutoHeight: CGFloat { return navBar.minAutoHeight + Consts.statusBarHeight }
 
     public var leftItems: [UIView] {
-        set { navBar.leftItems = newValue; update() }
+        set { navBar.leftItems = newValue; }
         get { return navBar.leftItems }
     }
     public var rightItems: [UIView] {
-       set { navBar.rightItems = newValue; update() }
-       get { return navBar.rightItems }
-   }
+        set { navBar.rightItems = newValue; }
+        get { return navBar.rightItems }
+    }
+    public var rightItemsGlueBottom: Bool {
+        set { navBar.rightItemsGlueBottom = newValue }
+        get { return navBar.rightItemsGlueBottom }
+    }
 
     public var backgroundView: UIView? {
         didSet { updateBackgroundView(prev: oldValue) }
@@ -59,6 +66,10 @@ public class StatusNavigationBar: UIView, INavigationBar
         addSubview(navBar)
 
         update(force: true)
+    }
+
+    public func calculatePreferredHeight(velocity: CGFloat) -> CGFloat {
+        return navBar.calculatePreferredHeight(velocity: velocity) + Consts.statusBarHeight
     }
 
     public func update(force: Bool) {

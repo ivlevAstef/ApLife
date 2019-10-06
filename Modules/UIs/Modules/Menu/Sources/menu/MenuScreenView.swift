@@ -55,10 +55,7 @@ final class MenuScreenView: UIViewController, MenuScreenViewContract
         let rightView1 = UIView(frame: CGRect(x: 0, y: 0, width: 45.0, height: 0.0))
         rightView1.backgroundColor = .black
         rightView1.translatesAutoresizingMaskIntoConstraints = false
-        let rightView2 = UIView(frame: CGRect(x: 0, y: 0, width: 25.0, height: 0.0))
-        rightView2.backgroundColor = .white
-        rightView2.translatesAutoresizingMaskIntoConstraints = false
-        navStatusBar.rightItems = [rightView1, rightView2]
+        navStatusBar.rightItems = [rightView1]
 
         let centerContentView = NavCenterLabelView()
         navStatusBar.centerContentView = centerContentView
@@ -67,7 +64,11 @@ final class MenuScreenView: UIViewController, MenuScreenViewContract
 
         navStatusBar.backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
 
+        navStatusBar.rightItemsGlueBottom = true
         navStatusBar.resizePolicy = .fullyAuto
+        navStatusBar.startStyle = .large
+
+        navStatusBar.frame.origin = .zero
     }
 
     override func viewWillLayoutSubviews() {
@@ -77,9 +78,12 @@ final class MenuScreenView: UIViewController, MenuScreenViewContract
             scrollView.frame = view.bounds
         }
 
-        navStatusBar.frame.origin = .zero
-        navStatusBar.frame.size.width = view.bounds.width
-        navStatusBar.update()
+        if abs(navStatusBar.frame.width - view.bounds.width) > 0.1 {
+            navStatusBar.frame.size.width = view.bounds.width
+
+            navStatusBar.update(force: true)
+            scrollNavController.update()
+        }
     }
 }
 
