@@ -25,7 +25,7 @@ public final class ScrollNavigationBarController: NSObject, UIScrollViewDelegate
 
     public func update() {
         if let scrollView = scrollView {
-            setContentInsets(scrollView: scrollView, changeContentOffset: true, animated: false)
+            setStartedContentInsets(scrollView: scrollView)
         }
     }
 
@@ -42,27 +42,44 @@ public final class ScrollNavigationBarController: NSObject, UIScrollViewDelegate
     }
 
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        // TODO: need remove by begin touch - not dragging :(
-        scrollView.layer.removeAllAnimations()
     }
 
     public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        setContentInsets(velocity: -velocity.y, scrollView: scrollView, changeContentOffset: abs(velocity.y) < 1.0e-3)
-    }
-
-    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        setContentInsets(scrollView: scrollView, changeContentOffset: true)
-    }
-
-    private func setContentInsets(velocity: CGFloat = 0.0,
-                                  scrollView: UIScrollView,
-                                  changeContentOffset: Bool,
-                                  animated: Bool = true) {
         guard let navBar = navBar else {
             return
         }
 
-        let height = navBar.calculatePreferredHeight(velocity: velocity)
+        let distance = calculateMoveDistance(velocity: velocity.y, decelerationRate: scrollView.decelerationRate.rawValue)
+
+        let targetHeight = -scrollView.contentOffset.y - distance
+        setContentInsets(scrollView: scrollView, targetHeight: targetHeight - scrollView.safeAreaInsets.top)
+
+        if navBar.minHeight <= targetHeight && targetHeight <= navBar.maxHeight {
+            let height = scrollView.contentInset.top + scrollView.safeAreaInsets.top
+            targetContentOffset.pointee = CGPoint(x: 0.0, y: -height)
+        }
+    }
+
+    private func calculateMoveDistance(velocity: CGFloat, decelerationRate: CGFloat) -> CGFloat {
+        return velocity * decelerationRate / (1.0 - decelerationRate)
+    }
+
+    private func setStartedContentInsets(scrollView: UIScrollView) {
+        guard let navBar = navBar else {
+            return
+        }
+
+        setContentInsets(scrollView: scrollView, targetHeight: navBar.preferredHeight)
+        let height = scrollView.contentInset.top + scrollView.safeAreaInsets.top
+        scrollView.setContentOffset(CGPoint(x: 0, y: -height), animated: false)
+    }
+
+    private func setContentInsets(scrollView: UIScrollView, targetHeight: CGFloat) {
+        guard let navBar = navBar else {
+            return
+        }
+
+        let height = navBar.calculatePreferredHeight(targetHeight: targetHeight)
 
         let inset = height - scrollView.safeAreaInsets.top
         if scrollView.contentInset.top != inset {
@@ -70,10 +87,6 @@ public final class ScrollNavigationBarController: NSObject, UIScrollViewDelegate
         }
         if scrollView.verticalScrollIndicatorInsets.top != inset {
             scrollView.verticalScrollIndicatorInsets.top = inset
-        }
-
-        if scrollView.contentOffset.y <= -navBar.minHeight && changeContentOffset {
-            scrollView.setContentOffset(CGPoint(x: 0.0, y: -height), animated: animated)
         }
     }
 }

@@ -54,7 +54,7 @@ public protocol INavigationBar: class {
     var backgroundView: UIView? { get set }
     var centerContentView: (UIView & INavigationBarResizableView)? { get set }
 
-    func calculatePreferredHeight(velocity: CGFloat) -> CGFloat
+    func calculatePreferredHeight(targetHeight: CGFloat) -> CGFloat
 
     func update(force: Bool)
 }

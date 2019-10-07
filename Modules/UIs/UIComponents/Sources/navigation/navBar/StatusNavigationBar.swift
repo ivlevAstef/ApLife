@@ -25,7 +25,7 @@ public class StatusNavigationBar: UIView, INavigationBar
     }
     public var preferredHeight: CGFloat {
         set { navBar.preferredHeight = newValue - Consts.statusBarHeight; update() }
-        get { return navBar.preferredHeight }
+        get { return navBar.preferredHeight + Consts.statusBarHeight }
     }
 
     public var minHeight: CGFloat { return navBar.minHeight + Consts.statusBarHeight }
@@ -68,8 +68,8 @@ public class StatusNavigationBar: UIView, INavigationBar
         update(force: true)
     }
 
-    public func calculatePreferredHeight(velocity: CGFloat) -> CGFloat {
-        return navBar.calculatePreferredHeight(velocity: velocity) + Consts.statusBarHeight
+    public func calculatePreferredHeight(targetHeight: CGFloat) -> CGFloat {
+        return navBar.calculatePreferredHeight(targetHeight: targetHeight) + Consts.statusBarHeight
     }
 
     public func update(force: Bool) {

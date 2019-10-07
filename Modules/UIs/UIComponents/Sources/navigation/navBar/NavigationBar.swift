@@ -91,7 +91,8 @@ public class NavigationBar: UIView, INavigationBar
 
         let t: CGFloat
         if newHeight > Consts.largeHeight {
-            t = 2.0 + ((newHeight - Consts.largeHeight) / (UIScreen.main.bounds.height - Consts.largeHeight))
+            let denominator = max(Consts.largeHeight, 0.5 * UIScreen.main.bounds.height - Consts.largeHeight)
+            t = 2.0 + ((newHeight - Consts.largeHeight) / denominator)
         } else if newHeight > Consts.defaultHeight {
             t = 1.0 + ((newHeight - Consts.defaultHeight) / (Consts.largeHeight - Consts.defaultHeight))
         } else {
@@ -195,9 +196,8 @@ public class NavigationBar: UIView, INavigationBar
         }
     }
 
-    public func calculatePreferredHeight(velocity: CGFloat) -> CGFloat {
-        let finalHeight = velocity * Consts.velocityHeightFactor + preferredHeight
-        let normalHeight = calculateHeightTakingInResizePolicy(for: finalHeight)
+    public func calculatePreferredHeight(targetHeight: CGFloat) -> CGFloat {
+        let normalHeight = calculateHeightTakingInResizePolicy(for: targetHeight)
 
         switch resizePolicy {
         case .hide:

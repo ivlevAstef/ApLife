@@ -41,6 +41,14 @@ final class MenuScreenView: UIViewController, MenuScreenViewContract
         contentView.frame.origin = .zero
         contentView.frame.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 2.0)
         contentView.backgroundColor = .blue
+        contentView.clipsToBounds = true
+        for i in 0..<75 {
+            let label = UILabel(frame: .zero)
+            label.text = "\(i)"
+            label.font = UIFont.systemFont(ofSize: 20.0)
+            label.frame = CGRect(x: 100, y: i * 30, width: 100, height: 20)
+            contentView.addSubview(label)
+        }
 
         view.addSubview(navStatusBar)
 
