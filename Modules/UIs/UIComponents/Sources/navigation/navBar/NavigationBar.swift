@@ -7,24 +7,24 @@
 //
 
 import UIKit
+import Common
 
 private enum Consts {
     // TODO: changed if change rotation
     static let defaultHeight: CGFloat = 44.0
     static let largeHeight: CGFloat = 96.0
-    static let superLargeHeight: CGFloat = 150.0
 
-    static let velocityHeightFactor: CGFloat = 250.0 // 250 miliseconds
+    static let extraLargeHeightRelativeToScreenHeight: CGFloat = 0.4
 }
 
 
 public class NavigationBar: UIView, INavigationBar
 {
-    public var startStyle: NavigationBarStartStyle = .default {
+    public var initialDisplayMode: NavigationBarInitialDisplayMode = .default {
         didSet { update() }
     }
-    public var resizePolicy: NavigationBarResizePolicy = .default {
-        didSet { update(force: true) }
+    public var displayMode: NavigationBarDisplayMode = .default {
+        didSet { updateHeightAnchorsAndInfinityMode(); update(force: true) }
     }
 
     public var preferredHeight: CGFloat {
@@ -32,8 +32,8 @@ public class NavigationBar: UIView, INavigationBar
         get { return _preferredHeight }
     }
 
-    public var minHeight: CGFloat { return calculateHeightTakingInResizePolicy(for: 0.0) }
-    public var maxHeight: CGFloat { return calculateHeightTakingInResizePolicy(for: UIScreen.main.bounds.height) }
+    public var minHeight: CGFloat { return getMinHeightInNormalRange() }
+    public var maxHeight: CGFloat { return getMaxHeightInNormalRange() }
 
     public var leftItems: [UIView] = [] {
         didSet { configureLeftItems() }
@@ -42,6 +42,10 @@ public class NavigationBar: UIView, INavigationBar
         didSet { configureRightItems() }
     }
     public var rightItemsGlueBottom: Bool = false
+
+    public var accessoryItems: [UIView & INavigationBarResizableView] = [] {
+        didSet { updateHeightAnchorsAndInfinityMode(); configureAccessoryItems(oldItems: oldValue) }
+    }
 
     public var backgroundView: UIView? {
         didSet { updateBackgroundView(prev: oldValue) }
@@ -52,6 +56,12 @@ public class NavigationBar: UIView, INavigationBar
 
     private var isFullyInitialized: Bool = false
     private var _preferredHeight: CGFloat = 0.0 // need for change value without call update - else recursive call
+
+    /// height values for attachments height to it
+    private var heightAnchors: [CGFloat] = []
+    private var infinityMode: Bool = true
+
+    private var accessoryItemsHeights: [CGFloat] = []
 
     private let leftView: UIView = UIView(frame: .zero)
     private let centerView: UIView = UIView(frame: .zero)
@@ -73,6 +83,8 @@ public class NavigationBar: UIView, INavigationBar
         addSubview(leftView)
         addSubview(rightView)
         addSubview(centerView)
+
+        updateHeightAnchorsAndInfinityMode()
     }
 
     public func update(force: Bool) {
@@ -82,44 +94,27 @@ public class NavigationBar: UIView, INavigationBar
         }
 
         initializePreferredHeightIfNeeded()
-        let newHeight = calculateHeightTakingInResizePolicy(for: preferredHeight)
+        let newHeight = calculateHeightInNormalRange(for: preferredHeight)
 
         if !force && abs(newHeight - frame.size.height) < 0.1 {
             return
         }
         frame.size.height = newHeight
 
-        let t: CGFloat
-        if newHeight > Consts.largeHeight {
-            let denominator = max(Consts.largeHeight, 0.5 * UIScreen.main.bounds.height - Consts.largeHeight)
-            t = 2.0 + ((newHeight - Consts.largeHeight) / denominator)
-        } else if newHeight > Consts.defaultHeight {
-            t = 1.0 + ((newHeight - Consts.defaultHeight) / (Consts.largeHeight - Consts.defaultHeight))
-        } else {
-            t = newHeight / Consts.defaultHeight
-        }
-
-        recalculateSubviews(for: t)
+        recalculateSubviews()
 
         setNeedsLayout()
 
         isFullyInitialized = true
     }
 
-    private func initializePreferredHeightIfNeeded() {
-        if isFullyInitialized {
-            return
-        }
-
-        switch startStyle {
-        case .hide:
-            _preferredHeight = 0.0
-        case .default:
-            _preferredHeight = Consts.defaultHeight
-        case .large:
-            _preferredHeight = Consts.largeHeight
-        }
+    public func calculatePreferredHeight(targetHeight: CGFloat) -> CGFloat {
+        log.assert(!heightAnchors.isEmpty, "height anchors empty - WTF? need check logic")
+        let preferredHeight = heightAnchors.min(by: { abs(targetHeight - $0) < abs(targetHeight - $1) })
+        return preferredHeight ?? 0
     }
+
+    // MARK: - configure any views
 
     private func configureLeftItems() {
         leftView.subviews.forEach { $0.removeFromSuperview() }
@@ -147,6 +142,20 @@ public class NavigationBar: UIView, INavigationBar
         }
 
         rightView.frame = CGRect(x: frame.width - originX, y: 0.0, width: originX, height: Consts.defaultHeight)
+
+        update(force: true)
+    }
+
+    private func configureAccessoryItems(oldItems: [UIView]) {
+        oldItems.forEach { $0.removeFromSuperview() }
+
+        accessoryItemsHeights = accessoryItems.map { $0.frame.height }
+        assert(!accessoryItemsHeights.contains(0.0), "Found accessory item with zero height - it's invalid")
+
+        for accessoryItem in accessoryItems {
+            accessoryItem.isHidden = true
+            addSubview(accessoryItem)
+        }
 
         update(force: true)
     }
@@ -179,68 +188,37 @@ public class NavigationBar: UIView, INavigationBar
         update(force: true)
     }
 
-    private func calculateHeightTakingInResizePolicy(for height: CGFloat) -> CGFloat {
-        switch resizePolicy {
-        case .hide:
-            return 0.0
-        case .default:
-            return Consts.defaultHeight
-        case .large:
-            return Consts.largeHeight
-        case .smallAuto:
-            return max(0.0, min(height, Consts.defaultHeight))
-        case .largeAuto:
-            return max(Consts.defaultHeight, height)
-        case .fullyAuto:
-            return max(0.0, height)
-        }
-    }
+    // MARK: - recalculate frames and childs
 
-    public func calculatePreferredHeight(targetHeight: CGFloat) -> CGFloat {
-        let normalHeight = calculateHeightTakingInResizePolicy(for: targetHeight)
-
-        switch resizePolicy {
-        case .hide:
-            return 0.0
-        case .default:
-            return Consts.defaultHeight
-        case .large:
-            return Consts.largeHeight
-        case .smallAuto:
-            if normalHeight < Consts.defaultHeight - normalHeight {
-                return 0.0
-            }
-            return Consts.defaultHeight
-        case .largeAuto:
-            if normalHeight - Consts.defaultHeight < (Consts.largeHeight - Consts.defaultHeight) * 0.5 {
-                return Consts.defaultHeight
-            }
-            return Consts.largeHeight
-        case .fullyAuto:
-            if normalHeight < Consts.defaultHeight - normalHeight {
-                return 0.0
-            }
-            if normalHeight - Consts.defaultHeight < (Consts.largeHeight - Consts.defaultHeight) * 0.5 {
-                return Consts.defaultHeight
-            }
-            return Consts.largeHeight
-        }
-    }
-
-    private func recalculateSubviews(for t: CGFloat) {
-        leftView.frame.origin = .zero
-        rightView.frame.origin = CGPoint(x: frame.width - rightView.frame.width, y: 0.0)
+    private func recalculateSubviews() {
+        let t = calculateGlobalT(for: frame.height)
 
         let globalAlpha = min(t, 1.0)
         leftView.alpha = globalAlpha
         centerView.alpha = globalAlpha
         rightView.alpha = globalAlpha
 
+        recalculateLeftAndRightViews(for: t)
+        recalculateCenterContentView(for: t)
+
+        backgroundView?.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
+    }
+
+    private func recalculateLeftAndRightViews(for t: CGFloat) {
+        leftView.frame.origin = .zero
+        rightView.frame.origin = CGPoint(x: frame.width - rightView.frame.width, y: 0.0)
+
         leftView.frame.origin.y = (min(t, 1.0) - 1.0) * Consts.defaultHeight
         if rightItemsGlueBottom {
             rightView.frame.origin.y = frame.height - rightView.frame.height
         } else {
             rightView.frame.origin.y = (min(t, 1.0) - 1.0) * Consts.defaultHeight
+        }
+    }
+
+    private func recalculateCenterContentView(for t: CGFloat) {
+        guard let centerContentView = centerContentView else {
+            return
         }
 
         let y = max(0.0, min((t - 1.0) * Consts.defaultHeight, Consts.defaultHeight))
@@ -251,10 +229,106 @@ public class NavigationBar: UIView, INavigationBar
                                   width: rightX - leftX,
                                   height: frame.height - y)
 
-        backgroundView?.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
+        centerContentView.frame = CGRect(x: 0, y: 0, width: centerView.frame.width, height: centerView.frame.height)
+        centerContentView.recalculateViews(for: t)
+    }
 
-        centerContentView?.frame = CGRect(x: 0, y: 0, width: centerView.frame.width, height: centerView.frame.height)
-        centerContentView?.recalculateViews(for: t)
+    private func recalculateAccessoryViews() {
+        log.assert(accessoryItems.count == accessoryItemsHeights.count, "accessory items count not equals heights -> check configure this")
+
+        var originX = heightAnchors.last ?? 0.0
+        for (accessoryView, height) in zip(accessoryItems, accessoryItemsHeights) {
+            let normalHeight = max(0.0, min(frame.height - originX, height))
+            let t = normalHeight / height
+
+            accessoryView.frame.origin = CGPoint(x: 0, y: originX)
+            accessoryView.isHidden = (t == 0.0)
+            accessoryView.frame.size = CGSize(width: frame.width, height: t * height)
+            accessoryView.recalculateViews(for: t)
+
+            originX += height
+        }
+    }
+
+    // MARK: - math
+
+    private func initializePreferredHeightIfNeeded() {
+        if isFullyInitialized {
+            return
+        }
+
+        switch initialDisplayMode {
+        case .hide:
+            _preferredHeight = 0.0
+        case .default:
+            _preferredHeight = Consts.defaultHeight
+        case .large:
+            _preferredHeight = Consts.largeHeight
+        }
+    }
+
+    private func updateHeightAnchorsAndInfinityMode() {
+        heightAnchors = []
+
+        switch displayMode {
+        case .hide:
+            heightAnchors = [0.0]
+            infinityMode = false
+        case .default:
+            heightAnchors = [Consts.defaultHeight]
+            infinityMode = false
+        case .large:
+            heightAnchors = [Consts.largeHeight]
+            infinityMode = false
+        case .smallAuto:
+            heightAnchors = [0.0, Consts.defaultHeight]
+            infinityMode = false
+        case .largeAuto:
+            heightAnchors = [Consts.defaultHeight, Consts.largeHeight]
+            infinityMode = true
+        case .fullyAuto:
+            heightAnchors = [0.0, Consts.defaultHeight, Consts.largeHeight]
+            infinityMode = true
+        }
+
+        var height = heightAnchors.last!
+        for accessoryItem in accessoryItems {
+            height += accessoryItem.frame.height
+            heightAnchors.append(height)
+        }
+    }
+
+    private func getMinHeightInNormalRange() -> CGFloat {
+        log.assert(!heightAnchors.isEmpty, "height anchors empty - WTF? need check logic")
+        return heightAnchors.first ?? 0.0
+    }
+
+    private func getMaxHeightInNormalRange() -> CGFloat {
+        log.assert(!heightAnchors.isEmpty, "height anchors empty - WTF? need check logic")
+
+        return heightAnchors.last ?? 0.0
+    }
+
+    private func calculateHeightInNormalRange(for height: CGFloat) -> CGFloat {
+        log.assert(!heightAnchors.isEmpty, "height anchors empty - WTF? need check logic")
+        if infinityMode {
+            return max(minHeight, height)
+        }
+        return max(minHeight, min(height, maxHeight))
+    }
+
+    private func calculateGlobalT(for height: CGFloat) -> CGFloat {
+        let extraHeight = Consts.extraLargeHeightRelativeToScreenHeight * UIScreen.main.bounds.height
+        let t: CGFloat
+        if height > Consts.largeHeight {
+            let denominator = Consts.largeHeight + extraHeight
+            t = min(3.0, 2.0 + ((height - Consts.largeHeight) / denominator))
+        } else if height > Consts.defaultHeight {
+            t = 1.0 + ((height - Consts.defaultHeight) / (Consts.largeHeight - Consts.defaultHeight))
+        } else {
+            t = height / Consts.defaultHeight
+        }
+        return t
     }
 
     required init?(coder: NSCoder) {

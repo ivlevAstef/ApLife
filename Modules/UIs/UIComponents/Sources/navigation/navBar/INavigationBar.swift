@@ -8,13 +8,13 @@
 
 import UIKit
 
-public enum NavigationBarStartStyle {
+public enum NavigationBarInitialDisplayMode {
     case hide
     case `default`
     case large
 }
 
-public enum NavigationBarResizePolicy {
+public enum NavigationBarDisplayMode {
     /// any time navigation bar is hide
     case hide
     /// any time navigation bar is default height
@@ -38,18 +38,25 @@ public protocol INavigationBarResizableView {
 }
 
 public protocol INavigationBar: class {
-    var startStyle: NavigationBarStartStyle { get set }
-    var resizePolicy: NavigationBarResizePolicy { get set }
+    var initialDisplayMode: NavigationBarInitialDisplayMode { get set }
+    var displayMode: NavigationBarDisplayMode { get set }
+    /// preferred height - use this height for calculate real height taking display mode
     var preferredHeight: CGFloat { get set }
 
+    /// min navigation bar height. Calculated use display mode
     var minHeight: CGFloat { get }
+    /// max navigation bar height. Calculated use display mode
     var maxHeight: CGFloat { get }
 
-    /// before set leftItems setup items width
+    /// left items. Before set items setup his width.
     var leftItems: [UIView] { get set }
-    /// before set rightItems setup items width
+    /// right items. Before set items setup his width.
     var rightItems: [UIView] { get set }
+    /// `true` if needs right items glue to bottom. it's Actually only with large display mode. Default - `false`
     var rightItemsGlueBottom: Bool { get set }
+
+    /// additional views under navigation bar. Before set items setup his height.
+    var accessoryItems: [UIView & INavigationBarResizableView] { get set }
 
     var backgroundView: UIView? { get set }
     var centerContentView: (UIView & INavigationBarResizableView)? { get set }

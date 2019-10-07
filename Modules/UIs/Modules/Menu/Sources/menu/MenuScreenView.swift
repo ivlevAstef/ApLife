@@ -70,11 +70,18 @@ final class MenuScreenView: UIViewController, MenuScreenViewContract
         centerContentView.text = "Alexander"
         centerContentView.textColor = .black
 
+        let accessoryView = NavCenterLabelView()
+        accessoryView.frame.size.height = 30.0
+        accessoryView.backgroundColor = .red
+        accessoryView.text = "ACCESSORY"
+        accessoryView.textColor = .black
+        navStatusBar.accessoryItems = [accessoryView]
+
         navStatusBar.backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
 
+        navStatusBar.initialDisplayMode = .large
+        navStatusBar.displayMode = .fullyAuto
         navStatusBar.rightItemsGlueBottom = true
-        navStatusBar.resizePolicy = .fullyAuto
-        navStatusBar.startStyle = .large
 
         navStatusBar.frame.origin = .zero
     }

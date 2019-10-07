@@ -15,13 +15,13 @@ private enum Consts {
 
 public class StatusNavigationBar: UIView, INavigationBar
 {
-    public var startStyle: NavigationBarStartStyle {
-        set { navBar.startStyle = newValue; update() }
-        get { return navBar.startStyle }
+    public var initialDisplayMode: NavigationBarInitialDisplayMode {
+        set { navBar.initialDisplayMode = newValue; update() }
+        get { return navBar.initialDisplayMode }
     }
-    public var resizePolicy: NavigationBarResizePolicy {
-        set { navBar.resizePolicy = newValue; update() }
-        get { return navBar.resizePolicy }
+    public var displayMode: NavigationBarDisplayMode {
+        set { navBar.displayMode = newValue; update() }
+        get { return navBar.displayMode }
     }
     public var preferredHeight: CGFloat {
         set { navBar.preferredHeight = newValue - Consts.statusBarHeight; update() }
@@ -32,16 +32,21 @@ public class StatusNavigationBar: UIView, INavigationBar
     public var maxHeight: CGFloat { return navBar.maxHeight + Consts.statusBarHeight }
 
     public var leftItems: [UIView] {
-        set { navBar.leftItems = newValue; }
+        set { navBar.leftItems = newValue }
         get { return navBar.leftItems }
     }
     public var rightItems: [UIView] {
-        set { navBar.rightItems = newValue; }
+        set { navBar.rightItems = newValue }
         get { return navBar.rightItems }
     }
     public var rightItemsGlueBottom: Bool {
         set { navBar.rightItemsGlueBottom = newValue }
         get { return navBar.rightItemsGlueBottom }
+    }
+
+    public var accessoryItems: [UIView & INavigationBarResizableView] {
+        set { navBar.accessoryItems = newValue; update() }
+        get { return navBar.accessoryItems }
     }
 
     public var backgroundView: UIView? {
