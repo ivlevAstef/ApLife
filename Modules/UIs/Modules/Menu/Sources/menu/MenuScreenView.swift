@@ -52,17 +52,14 @@ final class MenuScreenView: UIViewController, MenuScreenViewContract
 
         view.addSubview(navStatusBar)
 
-        let leftView1 = UIView(frame: CGRect(x: 0, y: 0, width: 45.0, height: 0.0))
+        let leftView1 = TestNavItemView(width: 45.0)
         leftView1.backgroundColor = .black
-        leftView1.translatesAutoresizingMaskIntoConstraints = false
-        let leftView2 = UIView(frame: CGRect(x: 0, y: 0, width: 25.0, height: 0.0))
+        let leftView2 = TestNavItemView(width: 25.0)
         leftView2.backgroundColor = .white
-        leftView2.translatesAutoresizingMaskIntoConstraints = false
         navStatusBar.leftItems = [leftView1, leftView2]
 
-        let rightView1 = UIView(frame: CGRect(x: 0, y: 0, width: 45.0, height: 0.0))
+        let rightView1 = TestNavItemView(width: 45.0)
         rightView1.backgroundColor = .black
-        rightView1.translatesAutoresizingMaskIntoConstraints = false
         navStatusBar.rightItems = [rightView1]
 
         let centerContentView = NavCenterLabelView()
@@ -70,12 +67,11 @@ final class MenuScreenView: UIViewController, MenuScreenViewContract
         centerContentView.text = "Alexander"
         centerContentView.textColor = .black
 
-        let accessoryView = NavCenterLabelView()
-        accessoryView.frame.size.height = 30.0
-        accessoryView.backgroundColor = .red
-        accessoryView.text = "ACCESSORY"
-        accessoryView.textColor = .black
-        navStatusBar.accessoryItems = [accessoryView]
+        let accessoryView1 = TestAccessoryView(fullyHeight: 55.0, canHidden: false)
+        accessoryView1.backgroundColor = .red
+        let accessoryView2 = TestAccessoryView(fullyHeight: 35.0, canHidden: true)
+        accessoryView2.backgroundColor = .yellow
+        navStatusBar.accessoryItems = [accessoryView1, accessoryView2]
 
         navStatusBar.backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
 

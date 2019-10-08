@@ -8,7 +8,7 @@
 
 import UIKit
 
-public final class NavCenterLabelView: UIView, INavigationBarResizableView
+public final class NavCenterLabelView: UIView, INavigationBarCenterView
 {
     public var text: String {
         set { label.text = newValue }

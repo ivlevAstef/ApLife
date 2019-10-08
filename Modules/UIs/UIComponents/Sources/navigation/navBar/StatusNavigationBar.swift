@@ -31,11 +31,11 @@ public class StatusNavigationBar: UIView, INavigationBar
     public var minHeight: CGFloat { return navBar.minHeight + Consts.statusBarHeight }
     public var maxHeight: CGFloat { return navBar.maxHeight + Consts.statusBarHeight }
 
-    public var leftItems: [UIView] {
+    public var leftItems: [UIView & INavigationBarItemView] {
         set { navBar.leftItems = newValue }
         get { return navBar.leftItems }
     }
-    public var rightItems: [UIView] {
+    public var rightItems: [UIView & INavigationBarItemView] {
         set { navBar.rightItems = newValue }
         get { return navBar.rightItems }
     }
@@ -44,7 +44,7 @@ public class StatusNavigationBar: UIView, INavigationBar
         get { return navBar.rightItemsGlueBottom }
     }
 
-    public var accessoryItems: [UIView & INavigationBarResizableView] {
+    public var accessoryItems: [UIView & INavigationBarAccessoryView] {
         set { navBar.accessoryItems = newValue; update() }
         get { return navBar.accessoryItems }
     }
@@ -53,7 +53,7 @@ public class StatusNavigationBar: UIView, INavigationBar
         didSet { updateBackgroundView(prev: oldValue) }
     }
 
-    public var centerContentView: (UIView & INavigationBarResizableView)? {
+    public var centerContentView: (UIView & INavigationBarCenterView)? {
         set { navBar.centerContentView = newValue; update() }
         get { return navBar.centerContentView }
     }

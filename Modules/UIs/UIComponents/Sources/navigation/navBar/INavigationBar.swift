@@ -30,11 +30,22 @@ public enum NavigationBarDisplayMode {
 }
 
 
-/// Don't change origin and size this view, but can modify subviews
-public protocol INavigationBarResizableView {
+public protocol INavigationBarCenterView {
     /// called if need recalculate subviews or properties
-    /// - Parameter t: 0 == hide, default == 1, large == 2, more > 2
+    /// - Parameter t: hide == 0, default == 1, large == 2, more == 2...3
     func recalculateViews(for t: CGFloat)
+}
+
+public protocol INavigationBarAccessoryView {
+    var fullyHeight: CGFloat { get }
+    var canHidden: Bool { get }
+    /// called if need recalculate subviews or properties
+    /// - Parameter t: hide == 0, fully == 1
+    func recalculateViews(for t: CGFloat)
+}
+
+public protocol INavigationBarItemView {
+    var width: CGFloat { get }
 }
 
 public protocol INavigationBar: class {
@@ -49,17 +60,17 @@ public protocol INavigationBar: class {
     var maxHeight: CGFloat { get }
 
     /// left items. Before set items setup his width.
-    var leftItems: [UIView] { get set }
+    var leftItems: [UIView & INavigationBarItemView] { get set }
     /// right items. Before set items setup his width.
-    var rightItems: [UIView] { get set }
+    var rightItems: [UIView & INavigationBarItemView] { get set }
     /// `true` if needs right items glue to bottom. it's Actually only with large display mode. Default - `false`
     var rightItemsGlueBottom: Bool { get set }
 
     /// additional views under navigation bar. Before set items setup his height.
-    var accessoryItems: [UIView & INavigationBarResizableView] { get set }
+    var accessoryItems: [UIView & INavigationBarAccessoryView] { get set }
 
     var backgroundView: UIView? { get set }
-    var centerContentView: (UIView & INavigationBarResizableView)? { get set }
+    var centerContentView: (UIView & INavigationBarCenterView)? { get set }
 
     func calculatePreferredHeight(targetHeight: CGFloat) -> CGFloat
 

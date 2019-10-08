@@ -18,6 +18,8 @@
 		AB0D8BF12348F2BF00CC5579 /* NavCenterLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8BF02348F2BF00CC5579 /* NavCenterLabelView.swift */; };
 		AB0D8BF32348FD2900CC5579 /* ScrollNavigationBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8BF22348FD2900CC5579 /* ScrollNavigationBarController.swift */; };
 		AB0D8BF5234B96ED00CC5579 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8BF4234B96ED00CC5579 /* NavigationBar.swift */; };
+		AB0D8BF7234C311A00CC5579 /* TestAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8BF6234C311A00CC5579 /* TestAccessoryView.swift */; };
+		AB0D8BFB234C313E00CC5579 /* TestNavItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8BFA234C313E00CC5579 /* TestNavItemView.swift */; };
 		AB423465233F4A2C005A78A8 /* libDesign.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB423464233F4A2C005A78A8 /* libDesign.a */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +47,8 @@
 		AB0D8BF02348F2BF00CC5579 /* NavCenterLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavCenterLabelView.swift; sourceTree = "<group>"; };
 		AB0D8BF22348FD2900CC5579 /* ScrollNavigationBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollNavigationBarController.swift; sourceTree = "<group>"; };
 		AB0D8BF4234B96ED00CC5579 /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		AB0D8BF6234C311A00CC5579 /* TestAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAccessoryView.swift; sourceTree = "<group>"; };
+		AB0D8BFA234C313E00CC5579 /* TestNavItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestNavItemView.swift; sourceTree = "<group>"; };
 		AB423464233F4A2C005A78A8 /* libDesign.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libDesign.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB5B58212336B16500E3E61A /* libUIComponents.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUIComponents.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -91,6 +95,8 @@
 				AB0D8BEE2348E9B900CC5579 /* StatusNavigationBar.swift */,
 				AB0D8BF02348F2BF00CC5579 /* NavCenterLabelView.swift */,
 				AB0D8BF22348FD2900CC5579 /* ScrollNavigationBarController.swift */,
+				AB0D8BF6234C311A00CC5579 /* TestAccessoryView.swift */,
+				AB0D8BFA234C313E00CC5579 /* TestNavItemView.swift */,
 			);
 			path = navBar;
 			sourceTree = "<group>";
@@ -195,7 +201,9 @@
 				AB0D8BF12348F2BF00CC5579 /* NavCenterLabelView.swift in Sources */,
 				AB0D8BF5234B96ED00CC5579 /* NavigationBar.swift in Sources */,
 				AB0D8BDD23479D3C00CC5579 /* UIComponentsStartPoint.swift in Sources */,
+				AB0D8BF7234C311A00CC5579 /* TestAccessoryView.swift in Sources */,
 				AB0D8BF32348FD2900CC5579 /* ScrollNavigationBarController.swift in Sources */,
+				AB0D8BFB234C313E00CC5579 /* TestNavItemView.swift in Sources */,
 				AB0D8BEF2348E9B900CC5579 /* StatusNavigationBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
