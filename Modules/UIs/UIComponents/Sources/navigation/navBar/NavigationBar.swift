@@ -65,6 +65,9 @@ public class NavigationBar: UIView, INavigationBar
     private let centerView: UIView = UIView(frame: .zero)
     private let rightView: UIView = UIView(frame: .zero)
 
+    /// internal need for support status navigation bar...
+    internal var scrollController: ScrollNavigationBarController?
+
     public init() {
         super.init(frame: CGRect(x: 0, y: 0, width: 0, height: -1.0/*for first update without force*/))
 
@@ -91,7 +94,7 @@ public class NavigationBar: UIView, INavigationBar
             return
         }
 
-        initializePreferredHeightIfNeeded()
+        initializeIfNeeded()
         updateHeightAnchorsAndInfinityMode()
         let newHeight = calculateHeightInNormalRange(for: preferredHeight)
 
@@ -103,8 +106,10 @@ public class NavigationBar: UIView, INavigationBar
         recalculateSubviews()
 
         setNeedsLayout()
+    }
 
-        isFullyInitialized = true
+    public func bind(to scrollView: UIScrollView) {
+        scrollController = ScrollNavigationBarController(scrollView: scrollView, navBar: self)
     }
 
     public func calculatePreferredHeight(targetHeight: CGFloat) -> CGFloat {
@@ -194,9 +199,9 @@ public class NavigationBar: UIView, INavigationBar
 
         // originX needs only for correct calculate all accessory heights
         var originX: CGFloat = 0.0
-        let lastNotAccessoryAnchorIndex = heightAnchors.count - accessoryItems.count - 1
+        let lastNotAccessoryAnchorIndex = heightAnchors.count - canHiddenAccessoryItems.count - 1
         if lastNotAccessoryAnchorIndex > 0 {
-            originX = heightAnchors[lastNotAccessoryAnchorIndex]
+            originX = heightAnchors[lastNotAccessoryAnchorIndex] - calculateMinAccessoriesHeight()
         } else {
             log.assert("Height anchors is too small...")
         }
@@ -271,7 +276,7 @@ public class NavigationBar: UIView, INavigationBar
 
     // MARK: - math
 
-    private func initializePreferredHeightIfNeeded() {
+    private func initializeIfNeeded() {
         if isFullyInitialized {
             return
         }
@@ -286,6 +291,10 @@ public class NavigationBar: UIView, INavigationBar
         case .large:
             _preferredHeight = minAccessoriesHeight + Consts.largeHeight
         }
+
+        scrollController?.update()
+
+        isFullyInitialized = true
     }
 
     private func updateHeightAnchorsAndInfinityMode() {
@@ -349,17 +358,25 @@ public class NavigationBar: UIView, INavigationBar
         return minAccessoriesHeight
     }
 
+    private func calculateFullyAccessoriesHeight() -> CGFloat {
+        return accessoryItems.map { $0.fullyHeight }.reduce(0, +)
+    }
+
     private func calculateCurrentAccessoriesHeight() -> CGFloat {
         return accessoryItems.map { $0.frame.height }.reduce(0, +)
     }
 
-    private func calculateGlobalT(for height: CGFloat) -> CGFloat {
-        let height = height - calculateMinAccessoriesHeight()
+    private func calculateGlobalT(for fullyHeight: CGFloat) -> CGFloat {
+        let height = fullyHeight - calculateMinAccessoriesHeight()
+        let realHeight = fullyHeight - calculateFullyAccessoriesHeight()
+
         let extraHeight = Consts.extraLargeHeightRelativeToScreenHeight * UIScreen.main.bounds.height
         let t: CGFloat
-        if height > Consts.largeHeight {
+        if realHeight > Consts.largeHeight {
             let denominator = Consts.largeHeight + extraHeight
-            t = min(3.0, 2.0 + ((height - Consts.largeHeight) / denominator))
+            t = min(3.0, 2.0 + ((realHeight - Consts.largeHeight) / denominator))
+        } else if height > Consts.largeHeight {
+            t = 2.0
         } else if height > Consts.defaultHeight {
             t = 1.0 + ((height - Consts.defaultHeight) / (Consts.largeHeight - Consts.defaultHeight))
         } else {

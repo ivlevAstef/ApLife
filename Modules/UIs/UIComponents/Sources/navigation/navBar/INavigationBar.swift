@@ -75,6 +75,8 @@ public protocol INavigationBar: class {
     func calculatePreferredHeight(targetHeight: CGFloat) -> CGFloat
 
     func update(force: Bool)
+
+    func bind(to scrollView: UIScrollView)
 }
 
 extension INavigationBar {

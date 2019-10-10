@@ -16,11 +16,7 @@ final class MenuScreenView: UIViewController, MenuScreenViewContract
     private let scrollView: UIScrollView = UIScrollView(frame: .zero)
     private let contentView: UIView = UIView(frame: .zero)
 
-    private let scrollNavController: ScrollNavigationBarController
-
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        self.scrollNavController = ScrollNavigationBarController(scrollView: scrollView, navBar: navStatusBar)
-
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
@@ -31,7 +27,8 @@ final class MenuScreenView: UIViewController, MenuScreenViewContract
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .green
+        view.backgroundColor = .lightGray
+        view.addSubview(UIImageView(image: UIImage(named: "background")))
 
         view.addSubview(scrollView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -40,7 +37,8 @@ final class MenuScreenView: UIViewController, MenuScreenViewContract
         scrollView.addSubview(contentView)
         contentView.frame.origin = .zero
         contentView.frame.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 2.0)
-        contentView.backgroundColor = .blue
+        contentView.backgroundColor = .lightGray
+        contentView.addSubview(UIImageView(image: UIImage(named: "background")))
         contentView.clipsToBounds = true
         for i in 0..<75 {
             let label = UILabel(frame: .zero)
@@ -67,11 +65,8 @@ final class MenuScreenView: UIViewController, MenuScreenViewContract
         centerContentView.text = "Alexander"
         centerContentView.textColor = .black
 
-        let accessoryView1 = TestAccessoryView(fullyHeight: 55.0, canHidden: false)
-        accessoryView1.backgroundColor = .red
-        let accessoryView2 = TestAccessoryView(fullyHeight: 35.0, canHidden: true)
-        accessoryView2.backgroundColor = .yellow
-        navStatusBar.accessoryItems = [accessoryView1, accessoryView2]
+        let accessoryView1 = TestAccessoryView(fullyHeight: 50.0, canHidden: false)
+        navStatusBar.accessoryItems = [accessoryView1, SearchBarAccessoryView()]
 
         navStatusBar.backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
 
@@ -80,6 +75,7 @@ final class MenuScreenView: UIViewController, MenuScreenViewContract
         navStatusBar.rightItemsGlueBottom = true
 
         navStatusBar.frame.origin = .zero
+        navStatusBar.bind(to: scrollView)
     }
 
     override func viewWillLayoutSubviews() {
@@ -93,7 +89,6 @@ final class MenuScreenView: UIViewController, MenuScreenViewContract
             navStatusBar.frame.size.width = view.bounds.width
 
             navStatusBar.update(force: true)
-            scrollNavController.update()
         }
     }
 }

@@ -59,6 +59,7 @@ public class StatusNavigationBar: UIView, INavigationBar
     }
 
     private let navBar: NavigationBar = NavigationBar()
+    private var scrollController: ScrollNavigationBarController?
 
     public init() {
         super.init(frame: .zero)
@@ -74,7 +75,8 @@ public class StatusNavigationBar: UIView, INavigationBar
     }
 
     public func calculatePreferredHeight(targetHeight: CGFloat) -> CGFloat {
-        return navBar.calculatePreferredHeight(targetHeight: targetHeight) + Consts.statusBarHeight
+        let statusBarHeight = Consts.statusBarHeight
+        return navBar.calculatePreferredHeight(targetHeight: targetHeight - statusBarHeight) + statusBarHeight
     }
 
     public func update(force: Bool) {
@@ -97,6 +99,10 @@ public class StatusNavigationBar: UIView, INavigationBar
         backgroundView?.frame = CGRect(x: 0, y: 0, width: frame.width, height: newHeight)
 
         setNeedsLayout()
+    }
+
+    public func bind(to scrollView: UIScrollView) {
+        navBar.scrollController = ScrollNavigationBarController(scrollView: scrollView, navBar: self)
     }
 
     private func updateBackgroundView(prev prevBackgroundView: UIView?) {

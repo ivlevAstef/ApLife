@@ -8,28 +8,25 @@
 
 import UIKit
 
-public final class ScrollNavigationBarController: NSObject, UIScrollViewDelegate {
+final class ScrollNavigationBarController: NSObject, UIScrollViewDelegate {
 
-    private weak var scrollView: UIScrollView?
+    private let scrollView: UIScrollView
     private weak var navBar: INavigationBar?
 
-    public init(scrollView: UIScrollView, navBar: INavigationBar) {
+    init(scrollView: UIScrollView, navBar: INavigationBar) {
         self.scrollView = scrollView
         self.navBar = navBar
 
         super.init()
 
-        scrollView.bounces = true
         scrollView.delegate = self
     }
 
-    public func update() {
-        if let scrollView = scrollView {
-            setStartedContentInsets(scrollView: scrollView)
-        }
+    func update() {
+        setStartedContentInsets(scrollView: scrollView)
     }
 
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard let navBar = navBar else {
             return
         }
@@ -41,10 +38,7 @@ public final class ScrollNavigationBarController: NSObject, UIScrollViewDelegate
         }
     }
 
-    public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-    }
-
-    public func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         guard let navBar = navBar else {
             return
         }
@@ -52,7 +46,7 @@ public final class ScrollNavigationBarController: NSObject, UIScrollViewDelegate
         let distance = calculateMoveDistance(velocity: velocity.y, decelerationRate: scrollView.decelerationRate.rawValue)
 
         let targetHeight = -scrollView.contentOffset.y - distance
-        setContentInsets(scrollView: scrollView, targetHeight: targetHeight - scrollView.safeAreaInsets.top)
+        setContentInsets(scrollView: scrollView, targetHeight: targetHeight)
 
         if navBar.minHeight <= targetHeight && targetHeight <= navBar.maxHeight {
             let height = scrollView.contentInset.top + scrollView.safeAreaInsets.top
