@@ -10,11 +10,14 @@ import DITranquillity
 
 public protocol CommonStartPoint
 {
-    /// Pre configure module
+    /// Pre configure module. Called before reg
     func configure()
 
     /// Registrate dependencies
     /// - Parameter container: common container for registration dependencies
     func reg(container: DIContainer)
+
+    /// Post configure module. Called after reg
+    func initialize()
 }
 

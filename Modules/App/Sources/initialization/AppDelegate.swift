@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         log.info("configuration finished")
         AppStartPoint.reg()
         log.info("registration and validate dependency finished")
+        AppStartPoint.initialize()
+        log.info("initialize modules finished")
 
         AppStartPoint.app.configureAndInitialization(launchOptions: launchOptions)
         log.info("configure and initializate application finished")

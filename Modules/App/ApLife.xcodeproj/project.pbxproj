@@ -14,6 +14,7 @@
 		AB0D8BA82344FCD000CC5579 /* LogInitialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8BA72344FCD000CC5579 /* LogInitialization.swift */; };
 		AB0D8BAA2344FDAB00CC5579 /* XcodeDebugLogDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8BA92344FDAB00CC5579 /* XcodeDebugLogDestination.swift */; };
 		AB0D8BCD23464A8500CC5579 /* libBiography.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0D8BCC23464A8500CC5579 /* libBiography.a */; };
+		AB105C1B23557A9900472DC6 /* libSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB105C1A23557A9900472DC6 /* libSettings.a */; };
 		AB32FA2F2337A8D9002B8F1B /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32FA2E2337A8D9002B8F1B /* AppRouter.swift */; };
 		AB32FA312337A8E6002B8F1B /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32FA302337A8E6002B8F1B /* Application.swift */; };
 		AB32FA332337A977002B8F1B /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32FA322337A977002B8F1B /* AppDependency.swift */; };
@@ -41,6 +42,7 @@
 		AB0D8BA72344FCD000CC5579 /* LogInitialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInitialization.swift; sourceTree = "<group>"; };
 		AB0D8BA92344FDAB00CC5579 /* XcodeDebugLogDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeDebugLogDestination.swift; sourceTree = "<group>"; };
 		AB0D8BCC23464A8500CC5579 /* libBiography.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libBiography.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB105C1A23557A9900472DC6 /* libSettings.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libSettings.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB32FA2E2337A8D9002B8F1B /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		AB32FA302337A8E6002B8F1B /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		AB32FA322337A977002B8F1B /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB105C1B23557A9900472DC6 /* libSettings.a in Frameworks */,
 				AB32FA662337B441002B8F1B /* libNetwork.a in Frameworks */,
 				AB423467233F4A3D005A78A8 /* libDesign.a in Frameworks */,
 				AB32FA682337B441002B8F1B /* libStorage.a in Frameworks */,
@@ -118,6 +121,7 @@
 		AB32FA5B2337B441002B8F1B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AB105C1A23557A9900472DC6 /* libSettings.a */,
 				AB0D8BCC23464A8500CC5579 /* libBiography.a */,
 				AB423488233F5097005A78A8 /* libMenu.a */,
 				AB423466233F4A3D005A78A8 /* libDesign.a */,

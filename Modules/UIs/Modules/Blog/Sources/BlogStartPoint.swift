@@ -29,6 +29,10 @@ public final class BlogStartPoint: UIStartPoint
         routerProvider = container.resolve()
     }
 
+    public func initialize() {
+
+    }
+
     public func isSupportOpen(with parameters: RoutingParamaters) -> Bool {
         return parameters.moduleName == Self.name
     }

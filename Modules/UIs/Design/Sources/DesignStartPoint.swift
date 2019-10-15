@@ -1,16 +1,15 @@
 //
-//  CoreStartPoint.swift
-//  Core
+//  DesignStartPoint.swift
+//  Design
 //
-//  Created by Alexander Ivlev on 01/10/2019.
+//  Created by Alexander Ivlev on 15/10/2019.
 //  Copyright © 2019 ApostleLife. All rights reserved.
 //
 
-
-import UIKit
+import Core
 import DITranquillity
 
-public final class CoreStartPoint: CommonStartPoint
+public final class DesignStartPoint: CommonStartPoint
 {
     public init() {
 
@@ -21,9 +20,9 @@ public final class CoreStartPoint: CommonStartPoint
     }
 
     public func reg(container: DIContainer) {
+        container.register(StyleController.init)
     }
 
     public func initialize() {
     }
 }
-

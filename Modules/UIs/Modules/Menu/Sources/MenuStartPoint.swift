@@ -36,6 +36,10 @@ public final class MenuStartPoint: UIStartPoint
         routerProvider = container.resolve()
     }
 
+    public func initialize() {
+
+    }
+
     public func isSupportOpen(with parameters: RoutingParamaters) -> Bool {
         return parameters.moduleName == Self.name
     }

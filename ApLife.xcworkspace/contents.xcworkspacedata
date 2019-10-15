@@ -29,6 +29,9 @@
          <FileRef
             location = "group:Modules/UIs/Modules/Biography/Biography.xcodeproj">
          </FileRef>
+         <FileRef
+            location = "group:Modules/UIs/Modules/Settings/Settings.xcodeproj">
+         </FileRef>
       </Group>
       <FileRef
          location = "group:UIComponents/UIComponents.xcodeproj">

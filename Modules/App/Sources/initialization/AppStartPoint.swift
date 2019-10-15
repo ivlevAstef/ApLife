@@ -36,4 +36,10 @@ final class AppStartPoint
 
         AppDependency.validate(container: container)
     }
+
+    static func initialize() {
+        for startPoint in StartPoints.common + StartPoints.ui.values.map({ $0 as CommonStartPoint }) {
+            startPoint.initialize()
+        }
+    }
 }

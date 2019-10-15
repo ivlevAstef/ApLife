@@ -17,6 +17,7 @@
 		AB0D8B9F2344F97700CC5579 /* LogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8B9B2344F97700CC5579 /* LogLevel.swift */; };
 		AB0D8BA12344F9C100CC5579 /* Logger+Levels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8BA02344F9C100CC5579 /* Logger+Levels.swift */; };
 		AB0D8BAC23463F5200CC5579 /* Getter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8BAB23463F5200CC5579 /* Getter.swift */; };
+		AB105BD92354D96700472DC6 /* WeakArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB105BD82354D96700472DC6 /* WeakArray.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,6 +43,7 @@
 		AB0D8B9B2344F97700CC5579 /* LogLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogLevel.swift; sourceTree = "<group>"; };
 		AB0D8BA02344F9C100CC5579 /* Logger+Levels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Logger+Levels.swift"; sourceTree = "<group>"; };
 		AB0D8BAB23463F5200CC5579 /* Getter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Getter.swift; sourceTree = "<group>"; };
+		AB105BD82354D96700472DC6 /* WeakArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakArray.swift; sourceTree = "<group>"; };
 		AB5B580E2336B12700E3E61A /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -63,6 +65,7 @@
 				AB0D8B842341C58600CC5579 /* ModelsDiff.swift */,
 				AB0D8B932343A8FC00CC5579 /* Weak.swift */,
 				AB0D8BAB23463F5200CC5579 /* Getter.swift */,
+				AB105BD82354D96700472DC6 /* WeakArray.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -171,6 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB105BD92354D96700472DC6 /* WeakArray.swift in Sources */,
 				AB0BBF3D233BE3250082DDC6 /* FastLock.swift in Sources */,
 				AB0D8B9C2344F97700CC5579 /* LogDestination.swift in Sources */,
 				AB0D8B852341C58600CC5579 /* ModelsDiff.swift in Sources */,
@@ -224,7 +228,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../ThirdParty/**";
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -287,7 +291,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../ThirdParty/**";
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;

@@ -25,4 +25,7 @@ public final class UIComponentsStartPoint: CommonStartPoint
             NavigationController(controller: UINavigationController(nibName: nil, bundle: nil))
         }.lifetime(.perContainer(.weak))
     }
+
+    public func initialize() {
+    }
 }
