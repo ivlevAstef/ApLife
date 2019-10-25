@@ -11,35 +11,79 @@ import UIKit
 /// Style - it's collection of properties with colors, fonts, layouts and animation settings
 public struct Style
 {
+    // MARK: - Colors
     public struct Colors {
         /// background.
-        public internal(set) var background: UIColor
+        public let background: UIColor
         /// used for cell background or accent views on background
-        public internal(set) var accent: UIColor
+        public let accent: UIColor
+        /// used for separate cell or other views
+        public let separator: UIColor
         /// used for navigation bar buttons, or other small elements. for example icons
-        public internal(set) var tint: UIColor
+        public let tint: UIColor
+
+        // MARK: - text
+        /// main text
+        public let mainText: UIColor
+        /// not accent text
+        public let notAccentText: UIColor
+        /// more content text
+        public let contentText: UIColor
+
+        /// for show text above dark background
+        public let lightText: UIColor
+        /// for show text above bright background
+        public let darkText: UIColor
+
+        // MARK: - Cells
+        public enum GradientCellType {
+            case news, favorites, biography, settings
+            case youtube, habr, github, article, podcast, other
+        }
+        /// all configs for gradient cells
+        public let cells: [GradientCellType: Gradient]
+
+        /// use for show blur view above gradient cell, and show text into this view
+        public let frontStyle: UIBlurEffect.Style
+
     }
 
+    // MARK: - Fonts
     public struct Fonts {
-        public internal(set) var title: UIFont
-        public internal(set) var subtitle: UIFont
-        public internal(set) var text: UIFont
+        /// use for navigation bar large style
+        public let navLarge: UIFont
+        /// use for navigation bar default style
+        public let navDefault: UIFont
+
+        /// use into main cells into front gradient view
+        public let large: UIFont
+
+        /// use into normal cells, title for articles and other accent
+        public let title: UIFont
+        /// used for additional information into cell
+        public let subtitle: UIFont
+        /// used for more text
+        public let content: UIFont
     }
 
+    // MARK: - Animation
     public struct Animation {
-        public internal(set) var transitionTime: TimeInterval
+        public let transitionTime: TimeInterval
     }
 
+    // MARK: - Layout
     public struct Layout {
-        public internal(set) var safeArea: CGRect
+        public let safeAreaInsets: UIEdgeInsets
+        public let innerInsets: UIEdgeInsets
     }
 
-    public internal(set) var colors: Colors
-    public internal(set) var fonts: Fonts
-    public internal(set) var animation: Animation
-    public internal(set) var layout: Layout
+    // MARK: -
+    public let colors: Colors
+    public let fonts: Fonts
+    public let animation: Animation
+    public let layout: Layout
 
-    public init(colors: Colors, fonts: Fonts, animation: Animation, layout: Layout) {
+    init(colors: Colors, fonts: Fonts, animation: Animation, layout: Layout) {
         self.colors = colors
         self.fonts = fonts
         self.animation = animation

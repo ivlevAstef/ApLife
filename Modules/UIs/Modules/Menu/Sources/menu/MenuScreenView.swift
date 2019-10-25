@@ -9,15 +9,19 @@
 import UIKit
 import Common
 import UIComponents
+import Design
 
 final class MenuScreenView: UIViewController, MenuScreenViewContract
 {
+    private let styleMaker: StyleMaker
+
     private let navStatusBar: StatusNavigationBar = StatusNavigationBar()
     private let scrollView: UIScrollView = UIScrollView(frame: .zero)
     private let contentView: UIView = UIView(frame: .zero)
 
-    public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    public init(styleMaker: StyleMaker) {
+        self.styleMaker = styleMaker
+        super.init(nibName: nil, bundle: nil)
     }
 
     required init?(coder: NSCoder) {
@@ -76,6 +80,8 @@ final class MenuScreenView: UIViewController, MenuScreenViewContract
 
         navStatusBar.frame.origin = .zero
         navStatusBar.bind(to: scrollView)
+
+        print(styleMaker.makeStyle(for: self))
     }
 
     override func viewWillLayoutSubviews() {

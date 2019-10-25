@@ -7,9 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB0A7D2A23635C0B00A46A90 /* ConstColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0A7D2923635C0B00A46A90 /* ConstColors.swift */; };
+		AB0A7D2D23635C6D00A46A90 /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0A7D2C23635C6D00A46A90 /* UIColor+Hex.swift */; };
+		AB0A7D2F23635F2300A46A90 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0A7D2E23635F2300A46A90 /* Gradient.swift */; };
+		AB0A7D322363606F00A46A90 /* ConstsFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0A7D312363606F00A46A90 /* ConstsFonts.swift */; };
+		AB0A7D3423636B7900A46A90 /* ConstsAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0A7D3323636B7900A46A90 /* ConstsAnimation.swift */; };
+		AB0A7D3623636B8400A46A90 /* ConstsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0A7D3523636B8400A46A90 /* ConstsLayout.swift */; };
 		AB105BD32354B49E00472DC6 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB105BD22354B49D00472DC6 /* Style.swift */; };
-		AB105BD52354B72900472DC6 /* StyleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB105BD42354B72900472DC6 /* StyleController.swift */; };
-		AB105BD72354BB9900472DC6 /* StyleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB105BD62354BB9900472DC6 /* StyleComponent.swift */; };
+		AB105BD52354B72900472DC6 /* StyleMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB105BD42354B72900472DC6 /* StyleMaker.swift */; };
 		AB105BDB2355746800472DC6 /* DesignStartPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB105BDA2355746800472DC6 /* DesignStartPoint.swift */; };
 		AB105BF2235576E900472DC6 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB105BF1235576E900472DC6 /* libCommon.a */; };
 		AB105BF4235576E900472DC6 /* libCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB105BF3235576E900472DC6 /* libCore.a */; };
@@ -28,9 +33,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AB0A7D2923635C0B00A46A90 /* ConstColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstColors.swift; sourceTree = "<group>"; };
+		AB0A7D2C23635C6D00A46A90 /* UIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
+		AB0A7D2E23635F2300A46A90 /* Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
+		AB0A7D312363606F00A46A90 /* ConstsFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstsFonts.swift; sourceTree = "<group>"; };
+		AB0A7D3323636B7900A46A90 /* ConstsAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstsAnimation.swift; sourceTree = "<group>"; };
+		AB0A7D3523636B8400A46A90 /* ConstsLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstsLayout.swift; sourceTree = "<group>"; };
 		AB105BD22354B49D00472DC6 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
-		AB105BD42354B72900472DC6 /* StyleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleController.swift; sourceTree = "<group>"; };
-		AB105BD62354BB9900472DC6 /* StyleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleComponent.swift; sourceTree = "<group>"; };
+		AB105BD42354B72900472DC6 /* StyleMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleMaker.swift; sourceTree = "<group>"; };
 		AB105BDA2355746800472DC6 /* DesignStartPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignStartPoint.swift; sourceTree = "<group>"; };
 		AB105BF1235576E900472DC6 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB105BF3235576E900472DC6 /* libCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,12 +60,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB0A7D2B23635C5D00A46A90 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				AB0A7D2C23635C6D00A46A90 /* UIColor+Hex.swift */,
+				AB0A7D2E23635F2300A46A90 /* Gradient.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		AB0A7D302363605F00A46A90 /* consts */ = {
+			isa = PBXGroup;
+			children = (
+				AB0A7D2923635C0B00A46A90 /* ConstColors.swift */,
+				AB0A7D312363606F00A46A90 /* ConstsFonts.swift */,
+				AB0A7D3323636B7900A46A90 /* ConstsAnimation.swift */,
+				AB0A7D3523636B8400A46A90 /* ConstsLayout.swift */,
+			);
+			path = consts;
+			sourceTree = "<group>";
+		};
 		AB105BDC2355746C00472DC6 /* Style */ = {
 			isa = PBXGroup;
 			children = (
+				AB0A7D302363605F00A46A90 /* consts */,
 				AB105BD22354B49D00472DC6 /* Style.swift */,
-				AB105BD62354BB9900472DC6 /* StyleComponent.swift */,
-				AB105BD42354B72900472DC6 /* StyleController.swift */,
+				AB105BD42354B72900472DC6 /* StyleMaker.swift */,
 			);
 			path = Style;
 			sourceTree = "<group>";
@@ -89,6 +119,7 @@
 		AB42345F233F4A16005A78A8 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				AB0A7D2B23635C5D00A46A90 /* Common */,
 				AB105BDA2355746800472DC6 /* DesignStartPoint.swift */,
 				AB105BDC2355746C00472DC6 /* Style */,
 			);
@@ -153,9 +184,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB105BD52354B72900472DC6 /* StyleController.swift in Sources */,
+				AB0A7D322363606F00A46A90 /* ConstsFonts.swift in Sources */,
+				AB0A7D2A23635C0B00A46A90 /* ConstColors.swift in Sources */,
+				AB105BD52354B72900472DC6 /* StyleMaker.swift in Sources */,
+				AB0A7D3423636B7900A46A90 /* ConstsAnimation.swift in Sources */,
 				AB105BD32354B49E00472DC6 /* Style.swift in Sources */,
-				AB105BD72354BB9900472DC6 /* StyleComponent.swift in Sources */,
+				AB0A7D2F23635F2300A46A90 /* Gradient.swift in Sources */,
+				AB0A7D2D23635C6D00A46A90 /* UIColor+Hex.swift in Sources */,
+				AB0A7D3623636B8400A46A90 /* ConstsLayout.swift in Sources */,
 				AB105BDB2355746800472DC6 /* DesignStartPoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

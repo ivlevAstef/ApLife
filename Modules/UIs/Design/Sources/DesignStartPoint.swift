@@ -20,7 +20,8 @@ public final class DesignStartPoint: CommonStartPoint
     }
 
     public func reg(container: DIContainer) {
-        container.register(StyleController.init)
+        container.register(StyleMaker.init)
+            .lifetime(.prototype)
     }
 
     public func initialize() {

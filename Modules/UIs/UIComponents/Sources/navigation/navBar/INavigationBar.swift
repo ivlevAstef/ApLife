@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Design
 
 public enum NavigationBarInitialDisplayMode {
     case hide

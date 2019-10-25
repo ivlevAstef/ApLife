@@ -14,8 +14,6 @@ import SwiftLazy
 public final class SettingsStartPoint: UIStartPoint
 {
     public static let name: UIModuleName = .settings
-    
-    private var styleControllerProvider = Provider<StyleController>()
 
     public init() {
 
@@ -25,7 +23,6 @@ public final class SettingsStartPoint: UIStartPoint
     }
 
     public func reg(container: DIContainer) {
-        styleControllerProvider = container.resolve()
     }
 
     public func initialize() {
