@@ -8,11 +8,6 @@
 
 import UIKit
 
-private enum Consts {
-    // TODO: changed if change rotation, and device model
-    static let statusBarHeight: CGFloat = 44.0
-}
-
 public class StatusNavigationBar: UIView, INavigationBar
 {
     public var initialDisplayMode: NavigationBarInitialDisplayMode {
@@ -24,12 +19,12 @@ public class StatusNavigationBar: UIView, INavigationBar
         get { return navBar.displayMode }
     }
     public var preferredHeight: CGFloat {
-        set { navBar.preferredHeight = newValue - Consts.statusBarHeight; update() }
-        get { return navBar.preferredHeight + Consts.statusBarHeight }
+        set { navBar.preferredHeight = newValue - statusBarHeight; update() }
+        get { return navBar.preferredHeight + statusBarHeight }
     }
 
-    public var minHeight: CGFloat { return navBar.minHeight + Consts.statusBarHeight }
-    public var maxHeight: CGFloat { return navBar.maxHeight + Consts.statusBarHeight }
+    public var minHeight: CGFloat { return navBar.minHeight + statusBarHeight }
+    public var maxHeight: CGFloat { return navBar.maxHeight + statusBarHeight }
 
     public var leftItems: [UIView & INavigationBarItemView] {
         set { navBar.leftItems = newValue }
@@ -59,6 +54,7 @@ public class StatusNavigationBar: UIView, INavigationBar
     }
 
     private let navBar: NavigationBar = NavigationBar()
+    private var statusBarHeight: CGFloat = 44.0
     private var scrollController: ScrollNavigationBarController?
 
     public init() {
@@ -75,8 +71,18 @@ public class StatusNavigationBar: UIView, INavigationBar
     }
 
     public func calculatePreferredHeight(targetHeight: CGFloat) -> CGFloat {
-        let statusBarHeight = Consts.statusBarHeight
         return navBar.calculatePreferredHeight(targetHeight: targetHeight - statusBarHeight) + statusBarHeight
+    }
+
+    public func update(layout: NavigationBarLayout) {
+        navBar.update(layout: layout)
+
+        if layout.statusBarHeight != statusBarHeight {
+            statusBarHeight = layout.statusBarHeight
+            
+            update(force: true)
+            scrollController?.update()
+        }
     }
 
     public func update(force: Bool) {
@@ -85,13 +91,14 @@ public class StatusNavigationBar: UIView, INavigationBar
             return
         }
 
-        navBar.frame.origin = CGPoint(x: 0.0, y: Consts.statusBarHeight)
+        navBar.frame.origin = CGPoint(x: 0.0, y: statusBarHeight)
         navBar.frame.size.width = frame.size.width
 
         navBar.update(force: force)
 
-        let newHeight = Consts.statusBarHeight + navBar.frame.height
-        if abs(newHeight - frame.size.height) < 0.1 {
+        let newHeight = statusBarHeight + navBar.frame.height
+
+        if !force && abs(newHeight - frame.size.height) < 0.1 {
             return
         }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB0A7D3A2363F2E700A46A90 /* ApViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0A7D392363F2E700A46A90 /* ApViewController.swift */; };
 		AB0BBF29233A85F80082DDC6 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0BBF28233A85F80082DDC6 /* libCommon.a */; };
 		AB0BBF2B233A85F80082DDC6 /* libCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0BBF2A233A85F80082DDC6 /* libCore.a */; };
 		AB0D8B7D2340FDAE00CC5579 /* ChangeableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8B7C2340FDAE00CC5579 /* ChangeableImage.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AB0A7D392363F2E700A46A90 /* ApViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApViewController.swift; sourceTree = "<group>"; };
 		AB0BBF28233A85F80082DDC6 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB0BBF2A233A85F80082DDC6 /* libCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB0D8B7C2340FDAE00CC5579 /* ChangeableImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeableImage.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				AB0D8BDB23479CF700CC5579 /* navigation */,
 				AB5B584E2336B23800E3E61A /* smartpreview */,
 				AB0D8B7C2340FDAE00CC5579 /* ChangeableImage.swift */,
+				AB0A7D392363F2E700A46A90 /* ApViewController.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 				AB0D8BEA23479E1B00CC5579 /* Screen.swift in Sources */,
 				AB0D8B7D2340FDAE00CC5579 /* ChangeableImage.swift in Sources */,
 				AB0D8BE723479DBB00CC5579 /* NavigationController.swift in Sources */,
+				AB0A7D3A2363F2E700A46A90 /* ApViewController.swift in Sources */,
 				AB0D8BED2348E96A00CC5579 /* INavigationBar.swift in Sources */,
 				AB0D8BF12348F2BF00CC5579 /* NavCenterLabelView.swift in Sources */,
 				AB0D8BF5234B96ED00CC5579 /* NavigationBar.swift in Sources */,

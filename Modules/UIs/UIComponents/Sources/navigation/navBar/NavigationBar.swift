@@ -10,10 +10,6 @@ import UIKit
 import Common
 
 private enum Consts {
-    // TODO: changed if change rotation
-    static let defaultHeight: CGFloat = 44.0
-    static let largeHeight: CGFloat = 96.0
-
     static let extraLargeHeightRelativeToScreenHeight: CGFloat = 0.4
 }
 
@@ -65,6 +61,9 @@ public class NavigationBar: UIView, INavigationBar
     private let centerView: UIView = UIView(frame: .zero)
     private let rightView: UIView = UIView(frame: .zero)
 
+    private var defaultHeight: CGFloat = 44.0
+    private var largeHeight: CGFloat = 96.0
+
     /// internal need for support status navigation bar...
     internal var scrollController: ScrollNavigationBarController?
 
@@ -86,6 +85,17 @@ public class NavigationBar: UIView, INavigationBar
         addSubview(centerView)
 
         updateHeightAnchorsAndInfinityMode()
+    }
+
+    public func update(layout: NavigationBarLayout) {
+        if layout.navigationBarDefaultHeight != defaultHeight
+        || layout.navigationBarLargeHeight != largeHeight {
+            defaultHeight = layout.navigationBarDefaultHeight
+            largeHeight = layout.navigationBarLargeHeight
+            
+            update(force: true)
+            scrollController?.update()
+        }
     }
 
     public func update(force: Bool) {
@@ -230,30 +240,30 @@ public class NavigationBar: UIView, INavigationBar
     private func recalculateLeftViews(for t: CGFloat) {
         var originX: CGFloat = 0.0
         for item in leftItems {
-            item.frame = CGRect(x: originX, y: 0.0, width: item.width, height: Consts.defaultHeight)
+            item.frame = CGRect(x: originX, y: 0.0, width: item.width, height: defaultHeight)
             originX += item.width
         }
 
-        let y = (min(t, 1.0) - 1.0) * Consts.defaultHeight
-        leftView.frame = CGRect(x: 0.0, y: y, width: originX, height: Consts.defaultHeight)
+        let y = (min(t, 1.0) - 1.0) * defaultHeight
+        leftView.frame = CGRect(x: 0.0, y: y, width: originX, height: defaultHeight)
     }
 
     private func recalculateRightViews(for t: CGFloat) {
         var originX: CGFloat = 0.0
         for item in rightItems.reversed() {
-            item.frame = CGRect(x: originX, y: 0.0, width: item.width, height: Consts.defaultHeight)
+            item.frame = CGRect(x: originX, y: 0.0, width: item.width, height: defaultHeight)
             originX += item.width
         }
 
         let y: CGFloat
         if rightItemsGlueBottom {
             let accessoriesHeight = calculateCurrentAccessoriesHeight()
-            y = (frame.height - accessoriesHeight) - Consts.defaultHeight
+            y = (frame.height - accessoriesHeight) - defaultHeight
         } else {
-            y = (min(t, 1.0) - 1.0) * Consts.defaultHeight
+            y = (min(t, 1.0) - 1.0) * defaultHeight
         }
 
-        rightView.frame = CGRect(x: frame.width - originX, y: y, width: originX, height: Consts.defaultHeight)
+        rightView.frame = CGRect(x: frame.width - originX, y: y, width: originX, height: defaultHeight)
     }
 
     private func recalculateCenterContentView(for t: CGFloat) {
@@ -261,7 +271,7 @@ public class NavigationBar: UIView, INavigationBar
             return
         }
 
-        let y = max(0.0, min((t - 1.0) * Consts.defaultHeight, Consts.defaultHeight))
+        let y = max(0.0, min((t - 1.0) * defaultHeight, defaultHeight))
         let leftX = leftView.frame.origin.x + max(0.0, min(leftView.frame.width * (2.0 - t), leftView.frame.width))
         let rightX = rightView.frame.origin.x + max(0.0, min(rightView.frame.width * (t - 1.0), rightView.frame.width))
         let accessoryHeight = calculateCurrentAccessoriesHeight()
@@ -287,9 +297,9 @@ public class NavigationBar: UIView, INavigationBar
         case .hide:
             _preferredHeight = minAccessoriesHeight
         case .default:
-            _preferredHeight = minAccessoriesHeight + Consts.defaultHeight
+            _preferredHeight = minAccessoriesHeight + defaultHeight
         case .large:
-            _preferredHeight = minAccessoriesHeight + Consts.largeHeight
+            _preferredHeight = minAccessoriesHeight + max(defaultHeight, largeHeight)
         }
 
         scrollController?.update()
@@ -305,19 +315,27 @@ public class NavigationBar: UIView, INavigationBar
             heightAnchors = [0.0]
             infinityMode = false
         case .default:
-            heightAnchors = [Consts.defaultHeight]
+            heightAnchors = [defaultHeight]
             infinityMode = false
         case .large:
-            heightAnchors = [Consts.largeHeight]
+            heightAnchors = [max(defaultHeight, largeHeight)]
             infinityMode = false
         case .smallAuto:
-            heightAnchors = [0.0, Consts.defaultHeight]
+            heightAnchors = [0.0, defaultHeight]
             infinityMode = false
         case .largeAuto:
-            heightAnchors = [Consts.defaultHeight, Consts.largeHeight]
+            if largeHeight > defaultHeight { // screen size or rotation can don't support large height
+                heightAnchors = [defaultHeight, largeHeight]
+            } else {
+                heightAnchors = [defaultHeight]
+            }
             infinityMode = true
         case .fullyAuto:
-            heightAnchors = [0.0, Consts.defaultHeight, Consts.largeHeight]
+            if largeHeight > defaultHeight { // screen size or rotation can don't support large height
+                heightAnchors = [0.0, defaultHeight, largeHeight]
+            } else {
+                heightAnchors = [0.0, defaultHeight]
+            }
             infinityMode = true
         }
 
@@ -372,15 +390,15 @@ public class NavigationBar: UIView, INavigationBar
 
         let extraHeight = Consts.extraLargeHeightRelativeToScreenHeight * UIScreen.main.bounds.height
         let t: CGFloat
-        if realHeight > Consts.largeHeight {
-            let denominator = Consts.largeHeight + extraHeight
-            t = min(3.0, 2.0 + ((realHeight - Consts.largeHeight) / denominator))
-        } else if height > Consts.largeHeight {
+        if realHeight > largeHeight && largeHeight > defaultHeight {
+            let denominator = largeHeight + extraHeight
+            t = min(3.0, 2.0 + ((realHeight - largeHeight) / denominator))
+        } else if height > largeHeight && largeHeight > defaultHeight {
             t = 2.0
-        } else if height > Consts.defaultHeight {
-            t = 1.0 + ((height - Consts.defaultHeight) / (Consts.largeHeight - Consts.defaultHeight))
+        } else if height > defaultHeight && largeHeight > defaultHeight {
+            t = min(2.0, 1.0 + ((height - defaultHeight) / (largeHeight - defaultHeight)))
         } else {
-            t = height / Consts.defaultHeight
+            t = min(1.0, height / defaultHeight)
         }
         return t
     }

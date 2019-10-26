@@ -30,6 +30,20 @@ public enum NavigationBarDisplayMode {
     case fullyAuto
 }
 
+public struct NavigationBarLayout
+{
+    public let statusBarHeight: CGFloat
+    public let navigationBarDefaultHeight: CGFloat
+    /// Can be 0.0 - if this rotation or screen size not support larget height
+    public let navigationBarLargeHeight: CGFloat
+
+    public init(statusBarHeight: CGFloat, navigationBarDefaultHeight: CGFloat, navigationBarLargeHeight: CGFloat) {
+        self.statusBarHeight = statusBarHeight
+        self.navigationBarDefaultHeight = navigationBarDefaultHeight
+        self.navigationBarLargeHeight = navigationBarLargeHeight
+    }
+}
+
 
 public protocol INavigationBarCenterView {
     /// called if need recalculate subviews or properties
@@ -76,6 +90,7 @@ public protocol INavigationBar: class {
     func calculatePreferredHeight(targetHeight: CGFloat) -> CGFloat
 
     func update(force: Bool)
+    func update(layout: NavigationBarLayout)
 
     func bind(to scrollView: UIScrollView)
 }
@@ -83,5 +98,13 @@ public protocol INavigationBar: class {
 extension INavigationBar {
     public func update() {
         update(force: false)
+    }
+}
+
+extension Style.Layout {
+    public var navLayout: NavigationBarLayout {
+        return NavigationBarLayout(statusBarHeight: statusBarHeight,
+                                   navigationBarDefaultHeight: navigationBarDefaultHeight,
+                                   navigationBarLargeHeight: navigationBarLargeHeight)
     }
 }

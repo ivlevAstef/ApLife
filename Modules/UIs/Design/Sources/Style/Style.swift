@@ -75,6 +75,11 @@ public struct Style
     public struct Layout {
         public let safeAreaInsets: UIEdgeInsets
         public let innerInsets: UIEdgeInsets
+
+        public let statusBarHeight: CGFloat
+        public let navigationBarDefaultHeight: CGFloat
+        /// Can be 0.0 - if this rotation or screen size not support larget height
+        public let navigationBarLargeHeight: CGFloat
     }
 
     // MARK: -

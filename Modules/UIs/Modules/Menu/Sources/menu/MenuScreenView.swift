@@ -11,32 +11,33 @@ import Common
 import UIComponents
 import Design
 
-final class MenuScreenView: UIViewController, MenuScreenViewContract
+final class MenuScreenView: ApViewController, MenuScreenViewContract
 {
-    private let styleMaker: StyleMaker
-
-    private let navStatusBar: StatusNavigationBar = StatusNavigationBar()
     private let scrollView: UIScrollView = UIScrollView(frame: .zero)
     private let contentView: UIView = UIView(frame: .zero)
 
-    public init(styleMaker: StyleMaker) {
-        self.styleMaker = styleMaker
-        super.init(nibName: nil, bundle: nil)
+    public init() {
+        super.init(navStatusBar: StatusNavigationBar())
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func styleDidChange(_ style: Style) {
+        super.styleDidChange(style)
+        print(style)
+    }
 
+    override func viewDidLoad() {
         view.backgroundColor = .lightGray
         view.addSubview(UIImageView(image: UIImage(named: "background")))
 
         view.addSubview(scrollView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 2.0)
+
+        super.viewDidLoad()
 
         scrollView.addSubview(contentView)
         contentView.frame.origin = .zero
@@ -51,8 +52,6 @@ final class MenuScreenView: UIViewController, MenuScreenViewContract
             label.frame = CGRect(x: 100, y: i * 30, width: 100, height: 20)
             contentView.addSubview(label)
         }
-
-        view.addSubview(navStatusBar)
 
         let leftView1 = TestNavItemView(width: 45.0)
         leftView1.backgroundColor = .black
@@ -78,10 +77,7 @@ final class MenuScreenView: UIViewController, MenuScreenViewContract
         navStatusBar.displayMode = .fullyAuto
         navStatusBar.rightItemsGlueBottom = true
 
-        navStatusBar.frame.origin = .zero
         navStatusBar.bind(to: scrollView)
-
-        print(styleMaker.makeStyle(for: self))
     }
 
     override func viewWillLayoutSubviews() {
@@ -89,12 +85,6 @@ final class MenuScreenView: UIViewController, MenuScreenViewContract
 
         if !scrollView.frame.size.equalTo(view.bounds.size) {
             scrollView.frame = view.bounds
-        }
-
-        if abs(navStatusBar.frame.width - view.bounds.width) > 0.1 {
-            navStatusBar.frame.size.width = view.bounds.width
-
-            navStatusBar.update(force: true)
         }
     }
 }

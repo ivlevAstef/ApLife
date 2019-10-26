@@ -17,7 +17,7 @@ final class MenuDependency: DIFramework
 
         container.register(MenuScreen.init)
             .lifetime(.prototype)
-        container.register(MenuScreenView.init(styleMaker:))
+        container.register { MenuScreenView() }
             .as(MenuScreenViewContract.self)
             .lifetime(.objectGraph)
         container.register(MenuScreenPresenter.init)
