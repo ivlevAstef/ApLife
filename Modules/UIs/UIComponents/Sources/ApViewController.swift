@@ -8,19 +8,22 @@
 
 import UIKit
 import Design
+import Common
 
 open class ApViewController: UIViewController {
     public var navStatusBar: INavigationBar! {
-        return _navStatusBar
+        return stylizingNavBar.navStatusBar
     }
 
     public private(set) lazy var style: Style = styleMaker.makeStyle(for: self)
 
-    private let _navStatusBar: (UIView & INavigationBar)?
+    private let stylizingNavBar: StylizingNavBar
     private let styleMaker: StyleMaker = StyleMaker()
 
+    private var viewsForStylizing: [Weak<StylizingView>] = []
+
     public init(navStatusBar: (UIView & INavigationBar)?) {
-        self._navStatusBar = navStatusBar
+        self.stylizingNavBar = StylizingNavBar(navStatusBar: navStatusBar)
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -28,25 +31,37 @@ open class ApViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    public func addViewForStylizing(_ view: StylizingView, immediately: Bool = true) {
+        viewsForStylizing.append(Weak(view))
+        if immediately {
+            view.configure(use: style)
+        }
+    }
+
     open func styleDidChange(_ style: Style) {
-        _navStatusBar?.update(layout: style.layout.navLayout)
+        view.backgroundColor = style.colors.background
+
+        viewsForStylizing.removeAll { $0.value == nil }
+        for refStylizingView in viewsForStylizing.reversed() {
+            refStylizingView.value?.configure(use: style)
+        }
     }
 
     open override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let navStatusBar = _navStatusBar {
+        if let navStatusBar = stylizingNavBar.navStatusBar {
             view.addSubview(navStatusBar)
             navStatusBar.frame = .zero
         }
 
-        styleDidChange(style)
+        addViewForStylizing(stylizingNavBar)
     }
 
     open override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
 
-        if let navStatusBar = _navStatusBar {
+        if let navStatusBar = stylizingNavBar.navStatusBar {
             view.bringSubviewToFront(navStatusBar)
             if abs(navStatusBar.frame.width - view.bounds.width) > 0.1 {
                 navStatusBar.frame.size.width = view.bounds.width
@@ -63,17 +78,23 @@ open class ApViewController: UIViewController {
         styleDidChange(style)
     }
 
-    open override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.willTransition(to: newCollection, with: coordinator)
+//    open override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+//        super.willTransition(to: newCollection, with: coordinator)
+//
+//        style = styleMaker.makeStyle(for: self, traitCollection: newCollection)
+//        styleDidChange(style)
+//    }
+}
 
-        style = styleMaker.makeStyle(for: self, traitCollection: newCollection)
-        styleDidChange(style)
+private class StylizingNavBar: StylizingView {
+    let navStatusBar: (UIView & INavigationBar)?
+
+    init(navStatusBar: (UIView & INavigationBar)?) {
+        self.navStatusBar = navStatusBar
     }
 
-    open override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-
-        style = styleMaker.makeStyle(for: self, size: size)
-        styleDidChange(style)
+    func configure(use style: Style) {
+        navStatusBar?.update(layout: style.layout.navLayout)
+        navStatusBar?.backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: style.colors.frontStyle))
     }
 }

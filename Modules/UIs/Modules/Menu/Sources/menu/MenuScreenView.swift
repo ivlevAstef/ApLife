@@ -26,12 +26,9 @@ final class MenuScreenView: ApViewController, MenuScreenViewContract
 
     override func styleDidChange(_ style: Style) {
         super.styleDidChange(style)
-        print(style)
     }
 
     override func viewDidLoad() {
-        view.backgroundColor = .lightGray
-        view.addSubview(UIImageView(image: UIImage(named: "background")))
 
         view.addSubview(scrollView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -64,14 +61,12 @@ final class MenuScreenView: ApViewController, MenuScreenViewContract
         navStatusBar.rightItems = [rightView1]
 
         let centerContentView = NavCenterLabelView()
-        navStatusBar.centerContentView = centerContentView
         centerContentView.text = "Alexander"
-        centerContentView.textColor = .black
+        navStatusBar.centerContentView = centerContentView
+        addViewForStylizing(centerContentView)
 
         let accessoryView1 = TestAccessoryView(fullyHeight: 50.0, canHidden: false)
         navStatusBar.accessoryItems = [accessoryView1, SearchBarAccessoryView()]
-
-        navStatusBar.backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
 
         navStatusBar.initialDisplayMode = .large
         navStatusBar.displayMode = .fullyAuto

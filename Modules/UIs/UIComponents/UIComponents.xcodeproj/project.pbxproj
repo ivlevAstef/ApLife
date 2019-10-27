@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		AB0A7D3A2363F2E700A46A90 /* ApViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0A7D392363F2E700A46A90 /* ApViewController.swift */; };
+		AB0A7D3D236542F300A46A90 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0A7D3C236542F300A46A90 /* GradientView.swift */; };
+		AB0A7D3F2365AA1000A46A90 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0A7D3E2365AA1000A46A90 /* CellView.swift */; };
 		AB0BBF29233A85F80082DDC6 /* libCommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0BBF28233A85F80082DDC6 /* libCommon.a */; };
 		AB0BBF2B233A85F80082DDC6 /* libCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB0BBF2A233A85F80082DDC6 /* libCore.a */; };
 		AB0D8B7D2340FDAE00CC5579 /* ChangeableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0D8B7C2340FDAE00CC5579 /* ChangeableImage.swift */; };
@@ -39,6 +41,8 @@
 
 /* Begin PBXFileReference section */
 		AB0A7D392363F2E700A46A90 /* ApViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApViewController.swift; sourceTree = "<group>"; };
+		AB0A7D3C236542F300A46A90 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		AB0A7D3E2365AA1000A46A90 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		AB0BBF28233A85F80082DDC6 /* libCommon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCommon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB0BBF2A233A85F80082DDC6 /* libCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB0D8B7C2340FDAE00CC5579 /* ChangeableImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeableImage.swift; sourceTree = "<group>"; };
@@ -71,6 +75,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB0A7D3B236542D100A46A90 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				AB0A7D3C236542F300A46A90 /* GradientView.swift */,
+				AB0A7D3E2365AA1000A46A90 /* CellView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
 		AB0BBF27233A85F80082DDC6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +147,7 @@
 		AB5B584D2336B23800E3E61A /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				AB0A7D3B236542D100A46A90 /* views */,
 				AB0D8BDC23479D3C00CC5579 /* UIComponentsStartPoint.swift */,
 				AB0D8BDB23479CF700CC5579 /* navigation */,
 				AB5B584E2336B23800E3E61A /* smartpreview */,
@@ -214,10 +228,12 @@
 				AB0A7D3A2363F2E700A46A90 /* ApViewController.swift in Sources */,
 				AB0D8BED2348E96A00CC5579 /* INavigationBar.swift in Sources */,
 				AB0D8BF12348F2BF00CC5579 /* NavCenterLabelView.swift in Sources */,
+				AB0A7D3D236542F300A46A90 /* GradientView.swift in Sources */,
 				AB0D8BF5234B96ED00CC5579 /* NavigationBar.swift in Sources */,
 				AB0D8BDD23479D3C00CC5579 /* UIComponentsStartPoint.swift in Sources */,
 				AB0D8BF7234C311A00CC5579 /* TestAccessoryView.swift in Sources */,
 				AB0D8BF32348FD2900CC5579 /* ScrollNavigationBarController.swift in Sources */,
+				AB0A7D3F2365AA1000A46A90 /* CellView.swift in Sources */,
 				AB0D8BFE234F7C1F00CC5579 /* SearchBarAccessoryView.swift in Sources */,
 				AB0D8BFB234C313E00CC5579 /* TestNavItemView.swift in Sources */,
 				AB0D8BEF2348E9B900CC5579 /* StatusNavigationBar.swift in Sources */,

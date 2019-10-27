@@ -13,6 +13,7 @@
 		AB0A7D322363606F00A46A90 /* ConstsFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0A7D312363606F00A46A90 /* ConstsFonts.swift */; };
 		AB0A7D3423636B7900A46A90 /* ConstsAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0A7D3323636B7900A46A90 /* ConstsAnimation.swift */; };
 		AB0A7D3623636B8400A46A90 /* ConstsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0A7D3523636B8400A46A90 /* ConstsLayout.swift */; };
+		AB0A7D412365B38900A46A90 /* StylizingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB0A7D402365B38900A46A90 /* StylizingView.swift */; };
 		AB105BD32354B49E00472DC6 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB105BD22354B49D00472DC6 /* Style.swift */; };
 		AB105BD52354B72900472DC6 /* StyleMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB105BD42354B72900472DC6 /* StyleMaker.swift */; };
 		AB105BDB2355746800472DC6 /* DesignStartPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB105BDA2355746800472DC6 /* DesignStartPoint.swift */; };
@@ -39,6 +40,7 @@
 		AB0A7D312363606F00A46A90 /* ConstsFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstsFonts.swift; sourceTree = "<group>"; };
 		AB0A7D3323636B7900A46A90 /* ConstsAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstsAnimation.swift; sourceTree = "<group>"; };
 		AB0A7D3523636B8400A46A90 /* ConstsLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstsLayout.swift; sourceTree = "<group>"; };
+		AB0A7D402365B38900A46A90 /* StylizingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StylizingView.swift; sourceTree = "<group>"; };
 		AB105BD22354B49D00472DC6 /* Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		AB105BD42354B72900472DC6 /* StyleMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleMaker.swift; sourceTree = "<group>"; };
 		AB105BDA2355746800472DC6 /* DesignStartPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignStartPoint.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				AB0A7D302363605F00A46A90 /* consts */,
 				AB105BD22354B49D00472DC6 /* Style.swift */,
 				AB105BD42354B72900472DC6 /* StyleMaker.swift */,
+				AB0A7D402365B38900A46A90 /* StylizingView.swift */,
 			);
 			path = Style;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 			files = (
 				AB0A7D322363606F00A46A90 /* ConstsFonts.swift in Sources */,
 				AB0A7D2A23635C0B00A46A90 /* ConstColors.swift in Sources */,
+				AB0A7D412365B38900A46A90 /* StylizingView.swift in Sources */,
 				AB105BD52354B72900472DC6 /* StyleMaker.swift in Sources */,
 				AB0A7D3423636B7900A46A90 /* ConstsAnimation.swift in Sources */,
 				AB105BD32354B49E00472DC6 /* Style.swift in Sources */,

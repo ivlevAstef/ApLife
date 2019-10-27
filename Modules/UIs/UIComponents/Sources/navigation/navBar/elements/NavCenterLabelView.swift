@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Design
+import Common
 
 public final class NavCenterLabelView: UIView, INavigationBarCenterView
 {
@@ -20,6 +22,9 @@ public final class NavCenterLabelView: UIView, INavigationBarCenterView
         get { return label.textColor ?? .clear }
     }
 
+    public var defaultFont: UIFont?
+    public var largeFont: UIFont?
+
     private let label = UILabel(frame: .zero)
 
     public init() {
@@ -32,7 +37,25 @@ public final class NavCenterLabelView: UIView, INavigationBarCenterView
     }
 
     public func recalculateViews(for t: CGFloat) {
-        label.font = UIFont.systemFont(ofSize: 8.0 + 10.0 * t)
+        guard let defaultFont = defaultFont, let largeFont = largeFont else {
+            log.assert("For use nav center label view your need setup fonts")
+            return
+        }
+
+        var font = defaultFont
+        if t > 1.75 {
+            font = largeFont
+        }
+
+        if t >= 1.0 {
+            let fontSize = (t - 1.0) * largeFont.pointSize + defaultFont.pointSize * (2.0 - t)
+            font = font.withSize(fontSize)
+        } else {
+            let fontSize = t * (defaultFont.pointSize - defaultFont.pointSize * 0.75) + defaultFont.pointSize * 0.75
+            font = font.withSize(fontSize)
+        }
+
+        label.font = font
         label.sizeToFit()
 
         label.frame.origin.x = 4.0
@@ -42,5 +65,13 @@ public final class NavCenterLabelView: UIView, INavigationBarCenterView
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension NavCenterLabelView: StylizingView {
+    public func configure(use style: Style) {
+        textColor = style.colors.mainText
+        defaultFont = style.fonts.navDefault
+        largeFont = style.fonts.navLarge
     }
 }
