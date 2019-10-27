@@ -60,9 +60,12 @@ public class StyleMaker
        return Style.Layout(
            safeAreaInsets: safeAreaInsets,
            innerInsets: UIEdgeInsets(top: 16.0, left: 16.0, bottom: 16.0, right: 16.0),
+           cellInnerInsets: UIEdgeInsets(top: 12.0, left: 16.0, bottom: 20.0, right: 16.0),
            statusBarHeight: windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0,
            navigationBarDefaultHeight: 44.0,
-           navigationBarLargeHeight: canUseLarge ? 96.0 : 0.0
+           navigationBarLargeHeight: canUseLarge ? 96.0 : 0.0,
+           cellShadowRadius: 10.0,
+           cellShadowOffset: CGSize(width: 0, height: 10.0)
        )
    }
 }

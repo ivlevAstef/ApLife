@@ -13,7 +13,7 @@ import Design
 
 final class MenuScreenView: ApViewController, MenuScreenViewContract
 {
-    private let scrollView: UIScrollView = UIScrollView(frame: .zero)
+    private lazy var tableView = MenuTable(parent: self)
     private let contentView: UIView = UIView(frame: .zero)
 
     public init() {
@@ -29,26 +29,16 @@ final class MenuScreenView: ApViewController, MenuScreenViewContract
     }
 
     override func viewDidLoad() {
-
-        view.addSubview(scrollView)
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 2.0)
+        view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.viewModels = [
+            MenuViewModel(style: .news, title: "News", subtitle: "youtube, podcasts, articles"),
+            MenuViewModel(style: .favorites, title: "Favorites", subtitle: "you choice"),
+            MenuViewModel(style: .biography, title: "Biography", subtitle: "about author"),
+            MenuViewModel(style: .settings, title: "Settings", subtitle: "custumize yourself")
+        ]
 
         super.viewDidLoad()
-
-        scrollView.addSubview(contentView)
-        contentView.frame.origin = .zero
-        contentView.frame.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * 2.0)
-        contentView.backgroundColor = .lightGray
-        contentView.addSubview(UIImageView(image: UIImage(named: "background")))
-        contentView.clipsToBounds = true
-        for i in 0..<75 {
-            let label = UILabel(frame: .zero)
-            label.text = "\(i)"
-            label.font = UIFont.systemFont(ofSize: 20.0)
-            label.frame = CGRect(x: 100, y: i * 30, width: 100, height: 20)
-            contentView.addSubview(label)
-        }
 
         let leftView1 = TestNavItemView(width: 45.0)
         leftView1.backgroundColor = .black
@@ -65,22 +55,59 @@ final class MenuScreenView: ApViewController, MenuScreenViewContract
         navStatusBar.centerContentView = centerContentView
         addViewForStylizing(centerContentView)
 
-        let accessoryView1 = TestAccessoryView(fullyHeight: 50.0, canHidden: false)
-        navStatusBar.accessoryItems = [accessoryView1, SearchBarAccessoryView()]
+        navStatusBar.accessoryItems = [SearchBarAccessoryView()]
 
         navStatusBar.initialDisplayMode = .large
         navStatusBar.displayMode = .fullyAuto
         navStatusBar.rightItemsGlueBottom = true
 
-        navStatusBar.bind(to: scrollView)
+        navStatusBar.bind(to: tableView)
     }
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
 
-        if !scrollView.frame.size.equalTo(view.bounds.size) {
-            scrollView.frame = view.bounds
+        if !tableView.frame.size.equalTo(view.bounds.size) {
+            tableView.frame = view.bounds
         }
     }
 }
 
+private class MenuTable: UITableView, UITableViewDataSource, UITableViewDelegate {
+    var viewModels: [MenuViewModel] = []
+
+    private unowned var parent: MenuScreenView
+
+    init(parent: MenuScreenView) {
+        self.parent = parent
+        super.init(frame: .zero, style: .plain)
+
+        register(MenuCell.self, forCellReuseIdentifier: MenuCell.identifier)
+
+        dataSource = self
+        delegate = self
+
+        tableFooterView = UIView(frame: .zero)
+        separatorStyle = .none
+        allowsSelection = false
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModels.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MenuCell.identifier) as? MenuCell else {
+            log.fatal("reusable cell it's invalid")
+        }
+
+        cell.setup(viewModels[indexPath.row])
+        parent.addViewForStylizing(cell)
+
+        return cell
+    }
+}

@@ -32,6 +32,8 @@ public enum ConstColors
             .podcast: gradient(from: 0xbce56e, to: 0x3db523),
             .other: gradient(from: 0x312a6c, to: 0x852d91)
         ],
+        cellShadowColor: nil,
+        cellShadowOpacity: 0.0,
         frontStyle: .dark
     )
 
@@ -57,6 +59,8 @@ public enum ConstColors
             .podcast: gradient(from: 0xbce56e, to: 0x3db523),
             .other: gradient(from: 0x312a6c, to: 0x852d91)
         ],
+        cellShadowColor: color(hex24: 0x000000),
+        cellShadowOpacity: 0.25,
         frontStyle: .light
     )
 }

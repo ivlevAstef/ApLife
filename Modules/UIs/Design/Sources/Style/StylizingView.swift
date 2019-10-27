@@ -7,5 +7,5 @@
 //
 
 public protocol StylizingView: class {
-    func configure(use style: Style)
+    func apply(use style: Style)
 }

@@ -12,6 +12,10 @@ import Design
 import Common
 
 public class CellView: UIView {
+    public var contentView: UIView {
+        get { return gradientView }
+    }
+
     public var gradient: Gradient? {
         set { gradientView.gradient = newValue }
         get { return gradientView.gradient }
@@ -25,6 +29,8 @@ public class CellView: UIView {
 
     public override init(frame: CGRect = .zero) {
         super.init(frame: frame)
+
+        initialize()
     }
 
     required init?(coder: NSCoder) {
@@ -43,17 +49,24 @@ public class CellView: UIView {
         gradientView.startPoint = CGPoint(x: 0.5, y: 0.0)
         gradientView.endPoint = CGPoint(x: 0.5, y: 1.0)
 
-        layer.masksToBounds = true
+        gradientView.clipsToBounds = true
+        clipsToBounds = false
     }
 
     private func updateCornerRadius() {
+        gradientView.layer.cornerRadius = cornerRadius
         layer.cornerRadius = cornerRadius
     }
 }
 
 extension CellView {
-    func configure(use style: Style, for type: Style.Colors.GradientCellType) {
+    public func apply(use style: Style, for type: Style.Colors.GradientCellType) {
         cornerRadius = min(style.layout.innerInsets.top, style.layout.innerInsets.left)
         gradient = style.colors.cells[type]
+
+        layer.shadowColor = style.colors.cellShadowColor?.cgColor
+        layer.shadowOpacity = style.colors.cellShadowOpacity
+        layer.shadowRadius = style.layout.cellShadowRadius
+        layer.shadowOffset = style.layout.cellShadowOffset
     }
 }

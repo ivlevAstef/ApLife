@@ -34,7 +34,7 @@ open class ApViewController: UIViewController {
     public func addViewForStylizing(_ view: StylizingView, immediately: Bool = true) {
         viewsForStylizing.append(Weak(view))
         if immediately {
-            view.configure(use: style)
+            view.apply(use: style)
         }
     }
 
@@ -43,7 +43,7 @@ open class ApViewController: UIViewController {
 
         viewsForStylizing.removeAll { $0.value == nil }
         for refStylizingView in viewsForStylizing.reversed() {
-            refStylizingView.value?.configure(use: style)
+            refStylizingView.value?.apply(use: style)
         }
     }
 
@@ -93,7 +93,7 @@ private class StylizingNavBar: StylizingView {
         self.navStatusBar = navStatusBar
     }
 
-    func configure(use style: Style) {
+    func apply(use style: Style) {
         navStatusBar?.update(layout: style.layout.navLayout)
         navStatusBar?.backgroundView = UIVisualEffectView(effect: UIBlurEffect(style: style.colors.frontStyle))
     }

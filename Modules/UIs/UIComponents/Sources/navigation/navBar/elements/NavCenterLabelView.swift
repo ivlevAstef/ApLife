@@ -69,7 +69,7 @@ public final class NavCenterLabelView: UIView, INavigationBarCenterView
 }
 
 extension NavCenterLabelView: StylizingView {
-    public func configure(use style: Style) {
+    public func apply(use style: Style) {
         textColor = style.colors.mainText
         defaultFont = style.fonts.navDefault
         largeFont = style.fonts.navLarge

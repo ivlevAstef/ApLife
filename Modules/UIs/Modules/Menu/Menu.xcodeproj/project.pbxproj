@@ -16,6 +16,8 @@
 		AB423483233F4EE8005A78A8 /* libCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB423482233F4EE8005A78A8 /* libCore.a */; };
 		AB423485233F4EE8005A78A8 /* libDesign.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB423484233F4EE8005A78A8 /* libDesign.a */; };
 		AB423487233F4EE8005A78A8 /* libUIComponents.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB423486233F4EE8005A78A8 /* libUIComponents.a */; };
+		AB811FF52365CD81002BB7FA /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB811FF42365CD81002BB7FA /* MenuCell.swift */; };
+		AB811FF72365CF0F002BB7FA /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB811FF62365CF0F002BB7FA /* MenuViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,6 +43,8 @@
 		AB423482233F4EE8005A78A8 /* libCore.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libCore.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB423484233F4EE8005A78A8 /* libDesign.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libDesign.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB423486233F4EE8005A78A8 /* libUIComponents.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libUIComponents.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB811FF42365CD81002BB7FA /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
+		AB811FF62365CF0F002BB7FA /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 			children = (
 				AB0D8B89234267C200CC5579 /* MenuScreenPresenter.swift */,
 				AB0D8B8D234267E400CC5579 /* MenuScreenView.swift */,
+				AB811FF42365CD81002BB7FA /* MenuCell.swift */,
+				AB811FF62365CF0F002BB7FA /* MenuViewModel.swift */,
 			);
 			path = menu;
 			sourceTree = "<group>";
@@ -165,7 +171,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB0D8B8A234267C200CC5579 /* MenuScreenPresenter.swift in Sources */,
+				AB811FF72365CF0F002BB7FA /* MenuViewModel.swift in Sources */,
 				AB0D8B90234267FB00CC5579 /* MenuDependency.swift in Sources */,
+				AB811FF52365CD81002BB7FA /* MenuCell.swift in Sources */,
 				AB42347C233F4EB1005A78A8 /* MenuStartPoint.swift in Sources */,
 				AB42347E233F4EBB005A78A8 /* MenuRouter.swift in Sources */,
 				AB0D8B8E234267E400CC5579 /* MenuScreenView.swift in Sources */,
