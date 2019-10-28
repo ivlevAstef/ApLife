@@ -37,10 +37,22 @@ public struct NavigationBarLayout
     /// Can be 0.0 - if this rotation or screen size not support larget height
     public let navigationBarLargeHeight: CGFloat
 
-    public init(statusBarHeight: CGFloat, navigationBarDefaultHeight: CGFloat, navigationBarLargeHeight: CGFloat) {
+    public let leftInset: CGFloat
+    public let rightInset: CGFloat
+    public let bottomInset: CGFloat
+
+    public init(statusBarHeight: CGFloat,
+                navigationBarDefaultHeight: CGFloat,
+                navigationBarLargeHeight: CGFloat,
+                leftInset: CGFloat,
+                rightInset: CGFloat,
+                bottomInset: CGFloat) {
         self.statusBarHeight = statusBarHeight
         self.navigationBarDefaultHeight = navigationBarDefaultHeight
         self.navigationBarLargeHeight = navigationBarLargeHeight
+        self.leftInset = leftInset
+        self.rightInset = rightInset
+        self.bottomInset = bottomInset
     }
 }
 
@@ -105,6 +117,9 @@ extension Style.Layout {
     public var navLayout: NavigationBarLayout {
         return NavigationBarLayout(statusBarHeight: statusBarHeight,
                                    navigationBarDefaultHeight: navigationBarDefaultHeight,
-                                   navigationBarLargeHeight: navigationBarLargeHeight)
+                                   navigationBarLargeHeight: navigationBarLargeHeight,
+                                   leftInset: innerInsets.left + safeAreaInsets.left,
+                                   rightInset: innerInsets.right + safeAreaInsets.right,
+                                   bottomInset: 6.0)
     }
 }

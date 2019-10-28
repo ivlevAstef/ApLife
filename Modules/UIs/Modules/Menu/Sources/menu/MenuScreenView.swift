@@ -13,6 +13,7 @@ import Design
 
 final class MenuScreenView: ApViewController, MenuScreenViewContract
 {
+    private let avatarView = NavigationAvatarView()
     private lazy var tableView = MenuTable(parent: self)
     private let contentView: UIView = UIView(frame: .zero)
 
@@ -40,15 +41,9 @@ final class MenuScreenView: ApViewController, MenuScreenViewContract
 
         super.viewDidLoad()
 
-        let leftView1 = TestNavItemView(width: 45.0)
-        leftView1.backgroundColor = .black
-        let leftView2 = TestNavItemView(width: 25.0)
-        leftView2.backgroundColor = .white
-        navStatusBar.leftItems = [leftView1, leftView2]
-
-        let rightView1 = TestNavItemView(width: 45.0)
-        rightView1.backgroundColor = .black
-        navStatusBar.rightItems = [rightView1]
+        avatarView.setup(letter: "AP")
+        navStatusBar.rightItems = [avatarView]
+        addViewForStylizing(avatarView)
 
         let centerContentView = NavCenterLabelView()
         centerContentView.text = "Alexander"
@@ -58,7 +53,7 @@ final class MenuScreenView: ApViewController, MenuScreenViewContract
         navStatusBar.accessoryItems = [SearchBarAccessoryView()]
 
         navStatusBar.initialDisplayMode = .large
-        navStatusBar.displayMode = .fullyAuto
+        navStatusBar.displayMode = .largeAuto
         navStatusBar.rightItemsGlueBottom = true
 
         navStatusBar.bind(to: tableView)

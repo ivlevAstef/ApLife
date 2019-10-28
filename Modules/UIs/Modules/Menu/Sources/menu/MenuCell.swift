@@ -93,19 +93,19 @@ class MenuCell: UITableViewCell {
         backgroundEdgesConstraint = backgroundConstraints
 
         NSLayoutConstraint.activate([
-            front.bottomAnchor.constraint(equalTo: background.contentView.bottomAnchor),
-            front.leftAnchor.constraint(equalTo: background.contentView.leftAnchor),
-            front.rightAnchor.constraint(equalTo: background.contentView.rightAnchor),
+            front.contentView.bottomAnchor.constraint(equalTo: background.contentView.bottomAnchor),
+            front.contentView.leftAnchor.constraint(equalTo: background.contentView.leftAnchor),
+            front.contentView.rightAnchor.constraint(equalTo: background.contentView.rightAnchor),
 
-            title.topAnchor.constraint(equalTo: front.topAnchor, constant: 4.0),
-            title.leftAnchor.constraint(equalTo: front.leftAnchor, constant: 16.0),
-            title.rightAnchor.constraint(equalTo: front.rightAnchor, constant: -16.0),
+            title.topAnchor.constraint(equalTo: front.contentView.topAnchor, constant: 4.0),
+            title.leftAnchor.constraint(equalTo: front.contentView.leftAnchor, constant: 16.0),
+            title.rightAnchor.constraint(equalTo: front.contentView.rightAnchor, constant: -16.0),
 
             title.bottomAnchor.constraint(equalTo: subtitle.topAnchor, constant: 2.0),
 
             subtitle.leftAnchor.constraint(equalTo: title.leftAnchor),
             subtitle.rightAnchor.constraint(equalTo: title.rightAnchor),
-            subtitle.bottomAnchor.constraint(equalTo: front.bottomAnchor, constant: -8.0)
+            subtitle.bottomAnchor.constraint(equalTo: front.contentView.bottomAnchor, constant: -8.0)
         ])
     }
 }

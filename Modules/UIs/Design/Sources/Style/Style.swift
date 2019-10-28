@@ -61,6 +61,9 @@ public struct Style
         /// use into main cells into front gradient view
         public let large: UIFont
 
+        /// use into generated avatar
+        public let avatar: UIFont
+
         /// use into normal cells, title for articles and other accent
         public let title: UIFont
         /// used for additional information into cell

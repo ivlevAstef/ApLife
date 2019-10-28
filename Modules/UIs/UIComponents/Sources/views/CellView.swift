@@ -44,7 +44,15 @@ public class CellView: UIView {
     }
 
     private func initialize() {
+        gradientView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(gradientView)
+
+        NSLayoutConstraint.activate([
+            gradientView.topAnchor.constraint(equalTo: self.topAnchor),
+            gradientView.leftAnchor.constraint(equalTo: self.leftAnchor),
+            gradientView.rightAnchor.constraint(equalTo: self.rightAnchor),
+            gradientView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+        ])
 
         gradientView.startPoint = CGPoint(x: 0.5, y: 0.0)
         gradientView.endPoint = CGPoint(x: 0.5, y: 1.0)

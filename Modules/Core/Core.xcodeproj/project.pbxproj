@@ -16,6 +16,7 @@
 		AB32FAA62337D296002B8F1B /* RoutingParamaters.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32FAA52337D296002B8F1B /* RoutingParamaters.swift */; };
 		AB32FAB52339309F002B8F1B /* UIStartPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32FAB42339309F002B8F1B /* UIStartPoint.swift */; };
 		AB32FAB723393139002B8F1B /* CommonStartPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB32FAB623393139002B8F1B /* CommonStartPoint.swift */; };
+		AB811FF9236614DA002BB7FA /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB811FF8236614DA002BB7FA /* Localization.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,6 +43,7 @@
 		AB32FAA52337D296002B8F1B /* RoutingParamaters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingParamaters.swift; sourceTree = "<group>"; };
 		AB32FAB42339309F002B8F1B /* UIStartPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStartPoint.swift; sourceTree = "<group>"; };
 		AB32FAB623393139002B8F1B /* CommonStartPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonStartPoint.swift; sourceTree = "<group>"; };
+		AB811FF8236614DA002BB7FA /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				AB32FAAD23392B8A002B8F1B /* module_initialization */,
 				AB32FAA22337D243002B8F1B /* deeplinks */,
 				AB32FA9D2337D1FB002B8F1B /* routing */,
+				AB811FF8236614DA002BB7FA /* Localization.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 				AB32FAB52339309F002B8F1B /* UIStartPoint.swift in Sources */,
 				AB32FAA42337D267002B8F1B /* DeepLink.swift in Sources */,
 				AB0D8B88234265F400CC5579 /* UIModuleName.swift in Sources */,
+				AB811FF9236614DA002BB7FA /* Localization.swift in Sources */,
 				AB32FAA62337D296002B8F1B /* RoutingParamaters.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

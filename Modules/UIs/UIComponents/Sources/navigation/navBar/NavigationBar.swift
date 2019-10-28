@@ -37,7 +37,9 @@ public class NavigationBar: UIView, INavigationBar
     public var rightItems: [UIView & INavigationBarItemView] = [] {
         didSet { configureRightItems() }
     }
-    public var rightItemsGlueBottom: Bool = false
+    public var rightItemsGlueBottom: Bool = false  {
+       didSet { configureRightItems() }
+    }
 
     public var accessoryItems: [UIView & INavigationBarAccessoryView] = [] {
         didSet { updateHeightAnchorsAndInfinityMode(); configureAccessoryItems(oldItems: oldValue) }
@@ -63,6 +65,9 @@ public class NavigationBar: UIView, INavigationBar
 
     private var defaultHeight: CGFloat = 44.0
     private var largeHeight: CGFloat = 96.0
+    private var leftInset: CGFloat = 16.0
+    private var rightInset: CGFloat = 16.0
+    private var bottomInset: CGFloat = 8.0
 
     /// internal need for support status navigation bar...
     internal var scrollController: ScrollNavigationBarController?
@@ -92,6 +97,9 @@ public class NavigationBar: UIView, INavigationBar
         || layout.navigationBarLargeHeight != largeHeight {
             defaultHeight = layout.navigationBarDefaultHeight
             largeHeight = layout.navigationBarLargeHeight
+            leftInset = layout.leftInset
+            rightInset = layout.rightInset
+            bottomInset = layout.bottomInset
             
             update(force: true)
             scrollController?.update()
@@ -210,7 +218,7 @@ public class NavigationBar: UIView, INavigationBar
         // originX needs only for correct calculate all accessory heights
         var originX: CGFloat = 0.0
         let lastNotAccessoryAnchorIndex = heightAnchors.count - canHiddenAccessoryItems.count - 1
-        if lastNotAccessoryAnchorIndex > 0 {
+        if lastNotAccessoryAnchorIndex >= 0 {
             originX = heightAnchors[lastNotAccessoryAnchorIndex] - calculateMinAccessoriesHeight()
         } else {
             log.assert("Height anchors is too small...")
@@ -238,20 +246,25 @@ public class NavigationBar: UIView, INavigationBar
     }
 
     private func recalculateLeftViews(for t: CGFloat) {
+        let height = defaultHeight - bottomInset
         var originX: CGFloat = 0.0
         for item in leftItems {
-            item.frame = CGRect(x: originX, y: 0.0, width: item.width, height: defaultHeight)
+            item.frame = CGRect(x: originX, y: 0.0, width: item.width, height: height)
             originX += item.width
         }
 
         let y = (min(t, 1.0) - 1.0) * defaultHeight
-        leftView.frame = CGRect(x: 0.0, y: y, width: originX, height: defaultHeight)
+        leftView.frame = CGRect(x: leftInset,
+                                y: y,
+                                width: originX,
+                                height: height)
     }
 
     private func recalculateRightViews(for t: CGFloat) {
+        let height = defaultHeight - bottomInset
         var originX: CGFloat = 0.0
         for item in rightItems.reversed() {
-            item.frame = CGRect(x: originX, y: 0.0, width: item.width, height: defaultHeight)
+            item.frame = CGRect(x: originX, y: 0.0, width: item.width, height: height)
             originX += item.width
         }
 
@@ -263,7 +276,10 @@ public class NavigationBar: UIView, INavigationBar
             y = (min(t, 1.0) - 1.0) * defaultHeight
         }
 
-        rightView.frame = CGRect(x: frame.width - originX, y: y, width: originX, height: defaultHeight)
+        rightView.frame = CGRect(x: frame.width - originX - rightInset,
+                                 y: y,
+                                 width: originX,
+                                 height: height)
     }
 
     private func recalculateCenterContentView(for t: CGFloat) {
@@ -278,7 +294,7 @@ public class NavigationBar: UIView, INavigationBar
         centerView.frame = CGRect(x: leftX,
                                   y: y,
                                   width: rightX - leftX,
-                                  height: frame.height - accessoryHeight - y)
+                                  height: frame.height - accessoryHeight - y - bottomInset)
 
         centerContentView.frame = CGRect(x: 0, y: 0, width: centerView.frame.width, height: centerView.frame.height)
         centerContentView.recalculateViews(for: t)
