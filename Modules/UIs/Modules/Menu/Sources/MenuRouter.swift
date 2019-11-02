@@ -53,8 +53,42 @@ final class MenuRouter: IRouter
     private func configureMenuScreen() {
         let screen = menuScreenProvider.value
         _ = screen.presenter
+        // TODO: I can use `getter.hasCallback()` for configure menu...
+        screen.presenter.showAccount.weakJoin( { (self, showParams) in
+            self.showScreen(use: self.accountGetter, showParams: showParams)
+        }, owner: self)
+        screen.presenter.showNews.weakJoin( { (self, showParams) in
+            self.showScreen(use: self.blogGetter, showParams: showParams)
+        }, owner: self)
+        screen.presenter.showFavorites.weakJoin( { (self, showParams) in
+            self.showScreen(use: self.favoritesGetter, showParams: showParams)
+        }, owner: self)
+        screen.presenter.showBiography.weakJoin( { (self, showParams) in
+            self.showScreen(use: self.biographyGetter, showParams: showParams)
+        }, owner: self)
+        screen.presenter.showSettings.weakJoin( { (self, showParams) in
+            self.showScreen(use: self.settingsGetter, showParams: showParams)
+        }, owner: self)
 
         log.info("configure menu screen success")
+    }
+
+    private func showScreen(use getter: Getter<Void, IRouter>, showParams: MenuScreenPresenter.ShowParams) {
+        log.info("will show \(getter)")
+        guard let router = getter.get(()) else {
+            log.info("Not support show \(getter)")
+            return
+        }
+
+        if !showParams.preview {
+            navController.push(router, animated: true)
+            log.info("did show \(getter)")
+        } else {
+            #warning("Support preview")
+            log.info("did preview \(getter)")
+        }
+
+
     }
 }
 

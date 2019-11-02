@@ -250,6 +250,7 @@ public class NavigationBar: UIView, INavigationBar
         var originX: CGFloat = 0.0
         for item in leftItems {
             item.frame = CGRect(x: originX, y: 0.0, width: item.width, height: height)
+            item.recalculateViews(for: t)
             originX += item.width
         }
 
@@ -261,19 +262,22 @@ public class NavigationBar: UIView, INavigationBar
     }
 
     private func recalculateRightViews(for t: CGFloat) {
-        let height = defaultHeight - bottomInset
+        let y: CGFloat
+        let height: CGFloat
+        if rightItemsGlueBottom {
+            y = max(0.0, min((t - 1.0) * defaultHeight, defaultHeight))
+            let accessoryHeight = calculateCurrentAccessoriesHeight()
+            height = frame.height - accessoryHeight - y - bottomInset
+        } else {
+            y = (min(t, 1.0) - 1.0) * defaultHeight
+            height = defaultHeight - bottomInset
+        }
+
         var originX: CGFloat = 0.0
         for item in rightItems.reversed() {
             item.frame = CGRect(x: originX, y: 0.0, width: item.width, height: height)
+            item.recalculateViews(for: t)
             originX += item.width
-        }
-
-        let y: CGFloat
-        if rightItemsGlueBottom {
-            let accessoriesHeight = calculateCurrentAccessoriesHeight()
-            y = (frame.height - accessoriesHeight) - defaultHeight
-        } else {
-            y = (min(t, 1.0) - 1.0) * defaultHeight
         }
 
         rightView.frame = CGRect(x: frame.width - originX - rightInset,
@@ -289,7 +293,12 @@ public class NavigationBar: UIView, INavigationBar
 
         let y = max(0.0, min((t - 1.0) * defaultHeight, defaultHeight))
         let leftX = leftView.frame.origin.x + max(0.0, min(leftView.frame.width * (2.0 - t), leftView.frame.width))
-        let rightX = rightView.frame.origin.x + max(0.0, min(rightView.frame.width * (t - 1.0), rightView.frame.width))
+        let rightX: CGFloat
+        if rightItemsGlueBottom {
+            rightX = rightView.frame.origin.x
+        } else {
+            rightX = rightView.frame.origin.x + max(0.0, min(rightView.frame.width * (t - 1.0), rightView.frame.width))
+        }
         let accessoryHeight = calculateCurrentAccessoriesHeight()
         centerView.frame = CGRect(x: leftX,
                                   y: y,

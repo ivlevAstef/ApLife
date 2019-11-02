@@ -73,6 +73,10 @@ public protocol INavigationBarAccessoryView {
 
 public protocol INavigationBarItemView {
     var width: CGFloat { get }
+    
+    /// called if need recalculate subviews or properties
+    /// - Parameter t: hide == 0, default == 1, large == 2, more == 2...3
+    func recalculateViews(for t: CGFloat)
 }
 
 public protocol INavigationBar: class {

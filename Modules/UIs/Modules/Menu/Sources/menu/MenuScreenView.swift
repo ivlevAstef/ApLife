@@ -13,6 +13,12 @@ import Design
 
 final class MenuScreenView: ApViewController, MenuScreenViewContract
 {
+    let showAccount = Notifier<Void>()
+    var viewModels: [MenuViewModel]  {
+        get { return tableView.viewModels }
+        set { tableView.viewModels = newValue; tableView.reloadData() }
+    }
+
     private let avatarView = NavigationAvatarView()
     private lazy var tableView = MenuTable(parent: self)
     private let contentView: UIView = UIView(frame: .zero)
@@ -32,15 +38,10 @@ final class MenuScreenView: ApViewController, MenuScreenViewContract
     override func viewDidLoad() {
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.viewModels = [
-            MenuViewModel(style: .news, title: "News", subtitle: "youtube, podcasts, articles"),
-            MenuViewModel(style: .favorites, title: "Favorites", subtitle: "you choice"),
-            MenuViewModel(style: .biography, title: "Biography", subtitle: "about author"),
-            MenuViewModel(style: .settings, title: "Settings", subtitle: "custumize yourself")
-        ]
 
         super.viewDidLoad()
 
+        avatarView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tapOnAvatar)))
         avatarView.setup(letter: "AP")
         navStatusBar.rightItems = [avatarView]
         addViewForStylizing(avatarView)
@@ -65,6 +66,11 @@ final class MenuScreenView: ApViewController, MenuScreenViewContract
         if !tableView.frame.size.equalTo(view.bounds.size) {
             tableView.frame = view.bounds
         }
+    }
+
+    @objc
+    private func tapOnAvatar() {
+        showAccount.notify(())
     }
 }
 

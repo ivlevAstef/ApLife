@@ -64,6 +64,21 @@ public final class Notifier<Result>
         self.line = line
     }
 
+    public init(_ listener: @escaping (Result) -> Void, file: String = #file, line: UInt = #line) {
+        self.name = file.components(separatedBy: ["\\","/"]).last ?? "unknown"
+        self.line = line
+        self.join(listener, file: file, line: line)
+    }
+
+    public init<ListenerResult>(_ listener: Notifier<ListenerResult>,
+                                map: @escaping (Result) -> ListenerResult,
+                                file: String = #file,
+                                line: UInt = #line) {
+        self.name = file.components(separatedBy: ["\\","/"]).last ?? "unknown"
+        self.line = line
+        self.join(listener, map: map)
+    }
+
     // MARK: - strong joins
     
     /// Add listener into listeners list for notify about changes.

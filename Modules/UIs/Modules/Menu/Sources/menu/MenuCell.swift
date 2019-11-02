@@ -34,6 +34,9 @@ class MenuCell: UITableViewCell {
     private var backgroundEdgesConstraint: [NSLayoutConstraint] = []
     private var viewModel: MenuViewModel?
 
+    // TODO: need use CoreHaptic for improve
+    private let longTapFeedback = UIImpactFeedbackGenerator(style: .heavy)
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         initialize()
@@ -53,6 +56,23 @@ class MenuCell: UITableViewCell {
         subtitle.text = viewModel.subtitle
     }
 
+    @objc
+    private func tapOnCell() {
+        viewModel?.show.notify(())
+    }
+
+    @objc
+    private func longTapOnCell(_ recognizer: UILongPressGestureRecognizer) {
+        switch recognizer.state {
+        case .began:
+            longTapFeedback.impactOccurred(intensity: 1.0)
+        case .ended:
+            viewModel?.preview.notify(())
+        default:
+            break
+        }
+    }
+
     private func preferredHeight(for viewModel: MenuViewModel) -> CGFloat {
         switch viewModel.style {
         case .news:
@@ -67,6 +87,16 @@ class MenuCell: UITableViewCell {
     }
 
     private func initialize() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapOnCell))
+        tapGesture.delegate = self
+        let longTapGesture = UILongPressGestureRecognizer(target: self, action: #selector(longTapOnCell(_:)))
+        longTapGesture.delegate = self
+
+        tapGesture.require(toFail: longTapGesture)
+
+        contentView.addGestureRecognizer(tapGesture)
+        contentView.addGestureRecognizer(longTapGesture)
+
         background.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(background)
 
@@ -107,6 +137,13 @@ class MenuCell: UITableViewCell {
             subtitle.rightAnchor.constraint(equalTo: title.rightAnchor),
             subtitle.bottomAnchor.constraint(equalTo: front.contentView.bottomAnchor, constant: -8.0)
         ])
+    }
+}
+
+extension MenuCell {
+    override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                                    shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }
 

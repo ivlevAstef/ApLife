@@ -10,16 +10,16 @@ import UIKit
 import Design
 
 private enum Consts {
-    static let size: CGFloat = 40.0
+    static let maxSize: CGFloat = 40.0
 }
 
 public class NavigationAvatarView: UIView, INavigationBarItemView {
-    public let width: CGFloat = Consts.size
+    public let width: CGFloat = Consts.maxSize
 
-    private let avatarView = AvatarView(size: Consts.size)
+    private let avatarView = AvatarView(size: Consts.maxSize)
 
     public init() {
-        super.init(frame: CGRect(x: 0, y: 0, width: Consts.size, height: Consts.size))
+        super.init(frame: CGRect(x: 0, y: 0, width: Consts.maxSize, height: Consts.maxSize))
         initialize()
     }
 
@@ -39,16 +39,17 @@ public class NavigationAvatarView: UIView, INavigationBarItemView {
         avatarView.setup(image)
     }
 
-    public override func layoutSubviews() {
-        super.layoutSubviews()
+    public func recalculateViews(for t: CGFloat) {
+        let size = min(frame.width, frame.height)
 
-        avatarView.size = min(frame.width, frame.height)
-        avatarView.frame.origin = CGPoint(x: 0, y: (frame.height - avatarView.size) * 0.5)
+        avatarView.size = size
+        avatarView.frame.origin = CGPoint(x: frame.width - size, y: frame.height - size)
 
-        avatarView.setNeedsLayout()
+        avatarView.setNeedsDisplay()
     }
 
     private func initialize() {
+        backgroundColor = .clear
         self.translatesAutoresizingMaskIntoConstraints = false
         avatarView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(avatarView)

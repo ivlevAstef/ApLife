@@ -6,7 +6,7 @@
 //  Copyright © 2019 ApostleLife. All rights reserved.
 //
 
-import Foundation
+import Common
 
 struct MenuViewModel {
     enum Style {
@@ -19,4 +19,7 @@ struct MenuViewModel {
 
     let title: String
     let subtitle: String
+
+    let show: Notifier<Void>
+    let preview: Notifier<Void>
 }
