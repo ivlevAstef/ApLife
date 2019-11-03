@@ -8,10 +8,10 @@
       location = "group:Modules/Infrastructure"
       name = "Infrastructure">
       <FileRef
-         location = "group:Storage/Storage.xcodeproj">
+         location = "group:/Users/alexanderivlev/Projects/ApLife/Modules/Infrastructure/Storage">
       </FileRef>
       <FileRef
-         location = "group:Network/Network.xcodeproj">
+         location = "group:/Users/alexanderivlev/Projects/ApLife/Modules/Infrastructure/Network">
       </FileRef>
    </Group>
    <Group
@@ -21,47 +21,39 @@
          location = "container:"
          name = "Modules">
          <FileRef
-            location = "group:Modules/UIs/Modules/Menu/Menu.xcodeproj">
+            location = "group:Modules/UIs/Modules/Menu">
          </FileRef>
          <FileRef
-            location = "group:Modules/UIs/Modules/Blog/Blog.xcodeproj">
+            location = "group:Modules/UIs/Modules/News">
          </FileRef>
          <FileRef
-            location = "group:Modules/UIs/Modules/Biography/Biography.xcodeproj">
+            location = "group:Modules/UIs/Modules/Biography">
          </FileRef>
          <FileRef
-            location = "group:Modules/UIs/Modules/Settings/Settings.xcodeproj">
+            location = "group:Modules/UIs/Modules/Settings">
          </FileRef>
       </Group>
       <FileRef
-         location = "group:UIComponents/UIComponents.xcodeproj">
+         location = "group:/Users/alexanderivlev/Projects/ApLife/Modules/UIs/UIComponents">
       </FileRef>
       <FileRef
-         location = "group:Design/Design.xcodeproj">
+         location = "group:/Users/alexanderivlev/Projects/ApLife/Modules/UIs/Design">
       </FileRef>
    </Group>
    <Group
       location = "group:Modules/Domain"
       name = "Domain">
       <FileRef
-         location = "group:Services/Services.xcodeproj">
+         location = "group:/Users/alexanderivlev/Projects/ApLife/Modules/Domain/Services">
       </FileRef>
       <FileRef
-         location = "group:Models/Models.xcodeproj">
+         location = "group:/Users/alexanderivlev/Projects/ApLife/Modules/Domain/Models">
       </FileRef>
    </Group>
-   <Group
-      location = "container:"
-      name = "Core">
-      <FileRef
-         location = "group:Modules/Core/Core.xcodeproj">
-      </FileRef>
-   </Group>
-   <Group
-      location = "group:Modules/Common"
-      name = "Common">
-      <FileRef
-         location = "group:Common.xcodeproj">
-      </FileRef>
-   </Group>
+   <FileRef
+      location = "group:Modules/Core">
+   </FileRef>
+   <FileRef
+      location = "group:Modules/Common">
+   </FileRef>
 </Workspace>

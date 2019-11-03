@@ -56,7 +56,7 @@ public class AvatarView: UIView {
         let owner = AvatarUnique()
         unique = owner
         letter = nil
-        newImage.changeImageNotifier.weakJoin({ [weak self] (_, newImage) in
+        newImage.changeImageNotifier.weakJoin(listener: { [weak self] (_, newImage) in
             self?.image = newImage
         }, owner: owner)
     }

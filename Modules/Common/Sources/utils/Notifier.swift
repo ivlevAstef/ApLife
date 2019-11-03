@@ -64,10 +64,10 @@ public final class Notifier<Result>
         self.line = line
     }
 
-    public init(_ listener: @escaping (Result) -> Void, file: String = #file, line: UInt = #line) {
+    public init(listener: @escaping (Result) -> Void, file: String = #file, line: UInt = #line) {
         self.name = file.components(separatedBy: ["\\","/"]).last ?? "unknown"
         self.line = line
-        self.join(listener, file: file, line: line)
+        self.join(listener: listener, file: file, line: line)
     }
 
     public init<ListenerResult>(_ listener: Notifier<ListenerResult>,
@@ -83,7 +83,7 @@ public final class Notifier<Result>
     
     /// Add listener into listeners list for notify about changes.
     /// - Parameter listener: Closure for receive result.
-    public func join(_ listener: @escaping (Result) -> Void,
+    public func join(listener: @escaping (Result) -> Void,
                      file: String = #file, line: UInt = #line) {
         let name = file.components(separatedBy: ["\\","/"]).last ?? "unknown"
 
@@ -123,7 +123,7 @@ public final class Notifier<Result>
     /// Removed if owner deinited.
     /// - Parameter listener: Closure for receive result.
     /// - Parameter owner: Owner for check need call listener - call only if not nil.
-    public func weakJoin<Owner: AnyObject>(_ listener: @escaping (Owner, Result) -> Void,
+    public func weakJoin<Owner: AnyObject>(listener: @escaping (Owner, Result) -> Void,
                                            owner: Owner,
                                            file: String = #file, line: UInt = #line) {
         let name = file.components(separatedBy: ["\\","/"]).last ?? "unknown"

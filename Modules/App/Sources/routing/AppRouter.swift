@@ -12,7 +12,7 @@ import Common
 import UIComponents
 
 import Menu
-import Blog
+import News
 import Biography
 
 final class AppRouter: IRouter
@@ -27,7 +27,7 @@ final class AppRouter: IRouter
         self.navController = navController
 
         self.subscribeOn(StartPoints.menu)
-        self.subscribeOn(StartPoints.blog)
+        self.subscribeOn(StartPoints.news)
         self.subscribeOn(StartPoints.biography)
     }
 
@@ -59,15 +59,15 @@ final class AppRouter: IRouter
     }
 
     private func subscribeOn(_ startPoint: MenuStartPoint) {
-        StartPoints.menu.blogGetter.take(use: {
-            return StartPoints.blog.makeRouter().configure()
+        StartPoints.menu.newsGetter.take(use: {
+            return StartPoints.news.makeRouter().configure()
         })
         StartPoints.menu.biographyGetter.take(use: {
             return StartPoints.biography.makeRouter().configure()
         })
     }
 
-    private func subscribeOn(_ startPoint: BlogStartPoint) {
+    private func subscribeOn(_ startPoint: NewsStartPoint) {
 
     }
 

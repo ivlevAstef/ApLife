@@ -16,7 +16,7 @@ public final class MenuStartPoint: UIStartPoint
     public static let name: UIModuleName = .menu
 
     public let accountGetter = Getter<Void, IRouter>()
-    public let blogGetter = Getter<Void, IRouter>()
+    public let newsGetter = Getter<Void, IRouter>()
     public let favoritesGetter = Getter<Void, IRouter>()
     public let biographyGetter = Getter<Void, IRouter>()
     public let settingsGetter = Getter<Void, IRouter>()
@@ -47,7 +47,7 @@ public final class MenuStartPoint: UIStartPoint
     public func makeRouter() -> IRouter {
         let router = routerProvider.value
         router.accountGetter.take(from: accountGetter)
-        router.blogGetter.take(from: blogGetter)
+        router.newsGetter.take(from: newsGetter)
         router.favoritesGetter.take(from: favoritesGetter)
         router.biographyGetter.take(from: biographyGetter)
         router.settingsGetter.take(from: settingsGetter)

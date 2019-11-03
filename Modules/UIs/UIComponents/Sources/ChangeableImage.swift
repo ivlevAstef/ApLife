@@ -37,14 +37,14 @@ public extension ChangeableImage
 {
     func join(imageView: UIImageView) {
         imageView.image = image
-        changeImageNotifier.join({ [weak imageView] image in
+        changeImageNotifier.join(listener: { [weak imageView] image in
             imageView?.image = image
         })
     }
 
     func join(imageView: UIImageView, owner: AnyObject) {
         imageView.image = image
-        changeImageNotifier.weakJoin({ [weak imageView] (_, image) in
+        changeImageNotifier.weakJoin(listener: { [weak imageView] (_, image) in
             imageView?.image = image
         }, owner: owner)
     }

@@ -8,7 +8,7 @@
 
 public enum UIModuleName {
     case menu
-    case blog
+    case news
     case account
     case biography
     case settings
@@ -16,7 +16,7 @@ public enum UIModuleName {
     public var deeplinkName: DeepLink.Name {
         switch self {
         case .menu: return "menu"
-        case .blog: return "blog"
+        case .news: return "news"
         case .account: return "account"
         case .biography: return "biography"
         case .settings: return "settings"

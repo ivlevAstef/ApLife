@@ -19,11 +19,12 @@ typealias MenuScreen = Screen<MenuScreenView, MenuScreenPresenter>
 final class MenuRouter: IRouter
 {
     let accountGetter = Getter<Void, IRouter>()
-    let blogGetter = Getter<Void, IRouter>()
+    let newsGetter = Getter<Void, IRouter>()
     let favoritesGetter = Getter<Void, IRouter>()
     let biographyGetter = Getter<Void, IRouter>()
     let settingsGetter = Getter<Void, IRouter>()
 
+    // TODO: change on provider because current implementation have memory leaks
     /*dependency*/var menuScreenProvider = Lazy<MenuScreen>()
     
     var rootViewController: UIViewController {
@@ -52,23 +53,22 @@ final class MenuRouter: IRouter
 
     private func configureMenuScreen() {
         let screen = menuScreenProvider.value
-        _ = screen.presenter
-        // TODO: I can use `getter.hasCallback()` for configure menu...
-        screen.presenter.showAccount.weakJoin( { (self, showParams) in
+        // TODO: Can use `getter.hasCallback()` for configure menu...
+        screen.presenter.showAccount.join(listener: { [self] (showParams) -> Void in
             self.showScreen(use: self.accountGetter, showParams: showParams)
-        }, owner: self)
-        screen.presenter.showNews.weakJoin( { (self, showParams) in
-            self.showScreen(use: self.blogGetter, showParams: showParams)
-        }, owner: self)
-        screen.presenter.showFavorites.weakJoin( { (self, showParams) in
+        })
+        screen.presenter.showNews.join(listener: { [self] showParams in
+            self.showScreen(use: self.newsGetter, showParams: showParams)
+        })
+        screen.presenter.showFavorites.join(listener: { [self] showParams in
             self.showScreen(use: self.favoritesGetter, showParams: showParams)
-        }, owner: self)
-        screen.presenter.showBiography.weakJoin( { (self, showParams) in
+        })
+        screen.presenter.showBiography.join(listener: { [self] showParams in
             self.showScreen(use: self.biographyGetter, showParams: showParams)
-        }, owner: self)
-        screen.presenter.showSettings.weakJoin( { (self, showParams) in
+        })
+        screen.presenter.showSettings.join(listener: { [self] showParams in
             self.showScreen(use: self.settingsGetter, showParams: showParams)
-        }, owner: self)
+        })
 
         log.info("configure menu screen success")
     }
@@ -87,7 +87,6 @@ final class MenuRouter: IRouter
             #warning("Support preview")
             log.info("did preview \(getter)")
         }
-
 
     }
 }

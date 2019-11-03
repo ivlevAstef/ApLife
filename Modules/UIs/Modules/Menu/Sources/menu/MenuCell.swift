@@ -34,8 +34,7 @@ class MenuCell: UITableViewCell {
     private var backgroundEdgesConstraint: [NSLayoutConstraint] = []
     private var viewModel: MenuViewModel?
 
-    // TODO: need use CoreHaptic for improve
-    private let longTapFeedback = UIImpactFeedbackGenerator(style: .heavy)
+    private let longTapFeedback = AppHapticFeedback.preview()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -65,7 +64,7 @@ class MenuCell: UITableViewCell {
     private func longTapOnCell(_ recognizer: UILongPressGestureRecognizer) {
         switch recognizer.state {
         case .began:
-            longTapFeedback.impactOccurred(intensity: 1.0)
+            longTapFeedback.noise()
         case .ended:
             viewModel?.preview.notify(())
         default:
