@@ -19,8 +19,4 @@ final class BiographyScreenPresenter
     init(view: BiographyScreenViewContract) {
         self.view = view
     }
-
-    private func subscribeOn(_ view: BiographyScreenViewContract) {
-
-    }
 }

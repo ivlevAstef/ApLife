@@ -24,12 +24,12 @@ final class MenuRouter: IRouter
     let biographyGetter = Getter<Void, IRouter>()
     let settingsGetter = Getter<Void, IRouter>()
 
-    // TODO: change on provider because current implementation have memory leaks
-    /*dependency*/var menuScreenProvider = Lazy<MenuScreen>()
+    /*dependency*/var menuScreenProvider = Provider<MenuScreen>()
     
     var rootViewController: UIViewController {
-        log.assert(menuScreenProvider.wasMade, "Please call start before get root view controller")
-        return menuScreenProvider.value.view
+        let screen = menuScreenProvider.value
+        configure(screen)
+        return screen.view
     }
 
     private let navController: NavigationController
@@ -39,7 +39,6 @@ final class MenuRouter: IRouter
     }
 
     func configure(parameters: RoutingParamaters) -> IRouter {
-        configureMenuScreen()
         return self
     }
 
@@ -51,26 +50,36 @@ final class MenuRouter: IRouter
 //        }
     }
 
-    private func configureMenuScreen() {
-        let screen = menuScreenProvider.value
+    private func configure(_ screen: MenuScreen) {
+        screen.setRouter(self)
+        
         // TODO: Can use `getter.hasCallback()` for configure menu...
-        screen.presenter.showAccount.join(listener: { [self] (showParams) -> Void in
-            self.showScreen(use: self.accountGetter, showParams: showParams)
-        })
-        screen.presenter.showNews.join(listener: { [self] showParams in
+        screen.presenter.showAccount.weakJoin(listener: { (self, _) in
+            self.showAccount()
+        }, owner: self)
+        screen.presenter.showNews.weakJoin(listener: { (self, showParams) in
             self.showScreen(use: self.newsGetter, showParams: showParams)
-        })
-        screen.presenter.showFavorites.join(listener: { [self] showParams in
+        }, owner: self)
+        screen.presenter.showFavorites.weakJoin(listener: { (self, showParams) in
             self.showScreen(use: self.favoritesGetter, showParams: showParams)
-        })
-        screen.presenter.showBiography.join(listener: { [self] showParams in
+        }, owner: self)
+        screen.presenter.showBiography.weakJoin(listener: { (self, showParams) in
             self.showScreen(use: self.biographyGetter, showParams: showParams)
-        })
-        screen.presenter.showSettings.join(listener: { [self] showParams in
+        }, owner: self)
+        screen.presenter.showSettings.weakJoin(listener: { (self, showParams) in
             self.showScreen(use: self.settingsGetter, showParams: showParams)
-        })
+        }, owner: self)
+    }
 
-        log.info("configure menu screen success")
+    private func showAccount() {
+        log.info("will show \(accountGetter)")
+        guard let router = accountGetter.get(()) else {
+            log.info("Not support show \(accountGetter)")
+            return
+        }
+
+        navController.present(router, animated: true)
+        log.info("did show \(accountGetter)")
     }
 
     private func showScreen(use getter: Getter<Void, IRouter>, showParams: MenuScreenPresenter.ShowParams) {
@@ -87,7 +96,6 @@ final class MenuRouter: IRouter
             #warning("Support preview")
             log.info("did preview \(getter)")
         }
-
     }
 }
 

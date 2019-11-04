@@ -16,12 +16,12 @@ typealias BiographyScreen = Screen<BiographyScreenView, BiographyScreenPresenter
 
 final class BiographyRouter: IRouter
 {
-
-    /*dependency*/var biographyScreenProvider = Lazy<BiographyScreen>()
+    /*dependency*/var biographyScreenProvider = Provider<BiographyScreen>()
     
     var rootViewController: UIViewController {
-        log.assert(biographyScreenProvider.wasMade, "Please call start before get root view controller")
-        return biographyScreenProvider.value.view
+        let screen = biographyScreenProvider.value
+        configure(screen)
+        return screen.view
     }
 
     private let navController: NavigationController
@@ -31,8 +31,6 @@ final class BiographyRouter: IRouter
     }
     
     func configure(parameters: RoutingParamaters) -> IRouter {
-        configureBiographyScreen()
-
         return self
     }
 
@@ -40,10 +38,7 @@ final class BiographyRouter: IRouter
 
     }
 
-    private func configureBiographyScreen() {
-        let screen = biographyScreenProvider.value
-        _ = screen.presenter
-
-        log.info("configure biography screen success")
+    private func configure(_ screen: BiographyScreen) {
+        screen.setRouter(self)
     }
 }

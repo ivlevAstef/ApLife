@@ -8,8 +8,10 @@
 
 import Foundation
 import UIKit
+import Core
 
 private /*static*/var associatedForRetainKey: UInt8 = 0
+private /*static*/var associatedForRouterRetainKey: UInt8 = 0
 
 public class Screen<View: UIViewController, Presenter: AnyObject>
 {	
@@ -22,5 +24,10 @@ public class Screen<View: UIViewController, Presenter: AnyObject>
 
         // yes it's not good, but optimization all code
         objc_setAssociatedObject(view, &associatedForRetainKey, presenter, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    }
+
+    public func setRouter(_ router: IRouter) {
+        // yes it's not good, but optimization all code
+        objc_setAssociatedObject(view, &associatedForRouterRetainKey, router, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
 }

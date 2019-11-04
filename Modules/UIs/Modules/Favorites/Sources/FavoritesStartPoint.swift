@@ -1,6 +1,6 @@
 //
-//  SettingsStartPoint.swift
-//  Settings
+//  FavoritesStartPoint.swift
+//  Favorites
 //
 //  Created by Alexander Ivlev on 15/10/2019.
 //  Copyright © 2019 ApostleLife. All rights reserved.
@@ -11,11 +11,11 @@ import DITranquillity
 import Design
 import SwiftLazy
 
-public final class SettingsStartPoint: UIStartPoint
+public final class FavoritesStartPoint: UIStartPoint
 {
-    public static let name: UIModuleName = .settings
+    public static let name: UIModuleName = .favorites
 
-    private var routerProvider = Provider<SettingsRouter>()
+    private var routerProvider = Provider<FavoritesRouter>()
 
     public init() {
 
@@ -25,7 +25,7 @@ public final class SettingsStartPoint: UIStartPoint
     }
 
     public func reg(container: DIContainer) {
-        container.append(framework: SettingsDependency.self)
+        container.append(framework: FavoritesDependency.self)
         routerProvider = container.resolve()
     }
 

@@ -24,6 +24,12 @@
             location = "group:Modules/UIs/Modules/Menu">
          </FileRef>
          <FileRef
+            location = "group:Modules/UIs/Modules/Account">
+         </FileRef>
+         <FileRef
+            location = "group:Modules/UIs/Modules/Favorites">
+         </FileRef>
+         <FileRef
             location = "group:Modules/UIs/Modules/News">
          </FileRef>
          <FileRef

@@ -231,7 +231,10 @@ public class NavigationBar: UIView, INavigationBar
             let t = accessoryView.canHidden ? (normalHeight / height) : 1.0
 
             accessoryView.isHidden = (t == 0.0)
-            accessoryView.frame = CGRect(x: 0, y: originX, width: frame.width, height: t * height)
+            accessoryView.frame = CGRect(x: leftInset,
+                                         y: originX,
+                                         width: frame.width - leftInset - rightInset,
+                                         height: t * height)
             accessoryView.recalculateViews(for: t)
 
             originX += height

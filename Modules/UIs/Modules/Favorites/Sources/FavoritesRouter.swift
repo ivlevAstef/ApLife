@@ -1,44 +1,46 @@
 //
-//  NewsRouter.swift
-//  News
+//  FavoritesRouter.swift
+//  Favorites
 //
-//  Created by Alexander Ivlev on 24/09/2019.
+//  Created by Alexander Ivlev on 03/11/2019.
 //  Copyright © 2019 ApostleLife. All rights reserved.
 //
 
 import UIKit
 import Core
+import UIComponents
 import Common
 import SwiftLazy
-import UIComponents
 
-typealias RibbonScreen = Screen<RibbonScreenView, RibbonScreenPresenter>
 
-final class NewsRouter: IRouter
+typealias FavoritesScreen = Screen<FavoritesScreenView, FavoritesScreenPresenter>
+
+final class FavoritesRouter: IRouter
 {
-    /*dependency*/var ribbonScreenProvider = Provider<RibbonScreen>()
-    
+    /*dependency*/var favoritesScreenProvider = Provider<FavoritesScreen>()
+
     var rootViewController: UIViewController {
-        let screen = ribbonScreenProvider.value
+        let screen = favoritesScreenProvider.value
         configure(screen)
         return screen.view
     }
 
     private let navController: NavigationController
-    
+
     init(navController: NavigationController) {
         self.navController = navController
     }
-    
+
     func configure(parameters: RoutingParamaters) -> IRouter {
         return self
     }
 
     func start() {
-
     }
 
-    private func configure(_ screen: RibbonScreen) {
+    private func configure(_ screen: FavoritesScreen) {
         screen.setRouter(self)
     }
 }
+
+

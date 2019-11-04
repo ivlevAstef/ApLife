@@ -32,6 +32,8 @@
 		AB812018236EC175002BB7FA /* Settings in Frameworks */ = {isa = PBXBuildFile; productRef = AB812017236EC175002BB7FA /* Settings */; };
 		AB81201A236EC175002BB7FA /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = AB812019236EC175002BB7FA /* Storage */; };
 		AB81201C236EC175002BB7FA /* UIComponents in Frameworks */ = {isa = PBXBuildFile; productRef = AB81201B236EC175002BB7FA /* UIComponents */; };
+		AB81201E236EEC81002BB7FA /* Favorites in Frameworks */ = {isa = PBXBuildFile; productRef = AB81201D236EEC81002BB7FA /* Favorites */; };
+		AB812020236EEF33002BB7FA /* Account in Frameworks */ = {isa = PBXBuildFile; productRef = AB81201F236EEF33002BB7FA /* Account */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,7 +77,9 @@
 				AB812016236EC175002BB7FA /* Services in Frameworks */,
 				AB81200C236EC175002BB7FA /* Design in Frameworks */,
 				AB812012236EC175002BB7FA /* Network in Frameworks */,
+				AB81201E236EEC81002BB7FA /* Favorites in Frameworks */,
 				AB812014236EC175002BB7FA /* News in Frameworks */,
+				AB812020236EEF33002BB7FA /* Account in Frameworks */,
 				AB812006236EC175002BB7FA /* Biography in Frameworks */,
 				AB81200A236EC175002BB7FA /* Core in Frameworks */,
 				AB81201C236EC175002BB7FA /* UIComponents in Frameworks */,
@@ -211,6 +215,8 @@
 				AB812017236EC175002BB7FA /* Settings */,
 				AB812019236EC175002BB7FA /* Storage */,
 				AB81201B236EC175002BB7FA /* UIComponents */,
+				AB81201D236EEC81002BB7FA /* Favorites */,
+				AB81201F236EEF33002BB7FA /* Account */,
 			);
 			productName = ApLife;
 			productReference = AB05387A2336ABE90014138E /* ApLife.app */;
@@ -539,6 +545,14 @@
 		AB81201B236EC175002BB7FA /* UIComponents */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = UIComponents;
+		};
+		AB81201D236EEC81002BB7FA /* Favorites */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Favorites;
+		};
+		AB81201F236EEF33002BB7FA /* Account */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Account;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

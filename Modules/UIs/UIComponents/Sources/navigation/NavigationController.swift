@@ -31,14 +31,14 @@ public final class NavigationController
     }
 
     public func push(_ router: IRouter, animated: Bool = true) {
-        notStartPush(router, animated: animated)
+        pushButNotStart(router, animated: animated)
 
         router.start()
 
         log.info("router: \(type(of: router)) started")
     }
 
-    public func notStartPush(_ router: IRouter, animated: Bool = true) {
+    public func pushButNotStart(_ router: IRouter, animated: Bool = true) {
         let vc = router.rootViewController
         push(vc, animated: animated)
         vcRouterContainer.push(vc: vc, router: router)
@@ -91,6 +91,28 @@ public final class NavigationController
         self.uiController.popToRootViewController(animated: animated)
 
         log.info("pop to root")
+    }
+
+    public func present(_ router: IRouter, animated: Bool = true) {
+        presentButNotStart(router, animated: animated)
+
+        router.start()
+
+        log.info("router: \(type(of: router)) started")
+    }
+
+    public func presentButNotStart(_ router: IRouter, animated: Bool = true) {
+        let vc = router.rootViewController
+        present(vc, animated: animated)
+        vcRouterContainer.push(vc: vc, router: router)
+
+        log.info("present router: \(type(of: router))")
+    }
+
+    public func present(_ vc: UIViewController, animated: Bool = true) {
+        self.uiController.present(vc, animated: animated, completion: nil)
+
+        log.info("present view controller: \(type(of: vc))")
     }
 }
 

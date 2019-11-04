@@ -1,44 +1,46 @@
 //
-//  NewsRouter.swift
-//  News
+//  AccountRouter.swift
+//  Account
 //
-//  Created by Alexander Ivlev on 24/09/2019.
+//  Created by Alexander Ivlev on 03/11/2019.
 //  Copyright © 2019 ApostleLife. All rights reserved.
 //
 
 import UIKit
 import Core
+import UIComponents
 import Common
 import SwiftLazy
-import UIComponents
 
-typealias RibbonScreen = Screen<RibbonScreenView, RibbonScreenPresenter>
 
-final class NewsRouter: IRouter
+typealias AccountScreen = Screen<AccountScreenView, AccountScreenPresenter>
+
+final class AccountRouter: IRouter
 {
-    /*dependency*/var ribbonScreenProvider = Provider<RibbonScreen>()
-    
+    /*dependency*/var accountScreenProvider = Provider<AccountScreen>()
+
     var rootViewController: UIViewController {
-        let screen = ribbonScreenProvider.value
+        let screen = accountScreenProvider.value
         configure(screen)
         return screen.view
     }
 
     private let navController: NavigationController
-    
+
     init(navController: NavigationController) {
         self.navController = navController
     }
-    
+
     func configure(parameters: RoutingParamaters) -> IRouter {
         return self
     }
 
     func start() {
-
     }
 
-    private func configure(_ screen: RibbonScreen) {
+    private func configure(_ screen: AccountScreen) {
         screen.setRouter(self)
     }
 }
+
+

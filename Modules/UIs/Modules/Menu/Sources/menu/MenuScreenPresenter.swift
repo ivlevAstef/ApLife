@@ -20,7 +20,7 @@ final class MenuScreenPresenter
     struct ShowParams {
         let preview: Bool
     }
-    let showAccount = Notifier<ShowParams>()
+    let showAccount = Notifier<Void>()
     let showNews = Notifier<ShowParams>()
     let showFavorites = Notifier<ShowParams>()
     let showBiography = Notifier<ShowParams>()
@@ -35,7 +35,7 @@ final class MenuScreenPresenter
     }
 
     private func configure() {
-        view.showAccount.join(showAccount, map: { ShowParams(preview: false) })
+        view.showAccount.join(showAccount)
 
         view.viewModels = [
             MenuViewModel(

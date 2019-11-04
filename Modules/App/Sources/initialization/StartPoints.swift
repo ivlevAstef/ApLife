@@ -11,14 +11,18 @@ import Design
 import UIComponents
 
 import Menu
+import Account
 import News
+import Favorites
 import Biography
 import Settings
 
 enum StartPoints
 {
     static let menu = MenuStartPoint()
+    static let account = AccountStartPoint()
     static let news = NewsStartPoint()
+    static let favorites = FavoritesStartPoint()
     static let biography = BiographyStartPoint()
     static let settings = SettingsStartPoint()
 
@@ -30,7 +34,9 @@ enum StartPoints
 
     static let ui: [UIModuleName: UIStartPoint] = [
         MenuStartPoint.name: menu,
+        AccountStartPoint.name: account,
         NewsStartPoint.name: news,
+        FavoritesStartPoint.name: favorites,
         BiographyStartPoint.name: biography,
         SettingsStartPoint.name: settings,
     ]

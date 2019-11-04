@@ -1,5 +1,5 @@
 //
-//  NavCenterLabelView.swift
+//  NavigationCenterTextView.swift
 //  UIComponents
 //
 //  Created by Alexander Ivlev on 05/10/2019.
@@ -10,7 +10,7 @@ import UIKit
 import Design
 import Common
 
-public final class NavCenterLabelView: UIView, INavigationBarCenterView
+public final class NavigationCenterTextView: UIView, INavigationBarCenterView
 {
     public var text: String {
         set { label.text = newValue }
@@ -68,7 +68,7 @@ public final class NavCenterLabelView: UIView, INavigationBarCenterView
     }
 }
 
-extension NavCenterLabelView: StylizingView {
+extension NavigationCenterTextView: StylizingView {
     public func apply(use style: Style) {
         textColor = style.colors.mainText
         defaultFont = style.fonts.navDefault

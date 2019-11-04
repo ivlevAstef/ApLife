@@ -46,12 +46,15 @@ final class MenuScreenView: ApViewController, MenuScreenViewContract
         navStatusBar.rightItems = [avatarView]
         addViewForStylizing(avatarView)
 
-        let centerContentView = NavCenterLabelView()
+        let centerContentView = NavigationCenterTextView()
         centerContentView.text = "Alexander"
         navStatusBar.centerContentView = centerContentView
         addViewForStylizing(centerContentView)
 
-        navStatusBar.accessoryItems = [SearchBarAccessoryView()]
+        let searchView = NavigationSearchBarAccessoryView()
+        searchView.placeholder = "Search"
+        navStatusBar.accessoryItems = [searchView]
+        addViewForStylizing(searchView)
 
         navStatusBar.initialDisplayMode = .large
         navStatusBar.displayMode = .largeAuto

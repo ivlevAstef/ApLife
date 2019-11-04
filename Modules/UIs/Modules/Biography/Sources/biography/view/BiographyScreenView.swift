@@ -15,6 +15,6 @@ final class BiographyScreenView: UIViewController, BiographyScreenViewContract
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .red
+        view.backgroundColor = .green
     }
 }

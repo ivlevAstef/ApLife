@@ -46,7 +46,7 @@ final class AppRouter: IRouter
         if startPointsCanOpened.isEmpty {
             navController.push(router, animated: false)
         } else {
-            navController.notStartPush(router, animated: false)
+            navController.pushButNotStart(router, animated: false)
         }
 
         log.assert(startPointsCanOpened.count <= 1, "By parameters can open more start points - it's correct, or not?")
@@ -59,11 +59,21 @@ final class AppRouter: IRouter
     }
 
     private func subscribeOn(_ startPoint: MenuStartPoint) {
+        StartPoints.menu.accountGetter.take(use: {
+            return StartPoints.account.makeRouter().configure()
+        })
+
         StartPoints.menu.newsGetter.take(use: {
             return StartPoints.news.makeRouter().configure()
         })
+        StartPoints.menu.favoritesGetter.take(use: {
+            return StartPoints.favorites.makeRouter().configure()
+        })
         StartPoints.menu.biographyGetter.take(use: {
             return StartPoints.biography.makeRouter().configure()
+        })
+        StartPoints.menu.settingsGetter.take(use: {
+            return StartPoints.settings.makeRouter().configure()
         })
     }
 
