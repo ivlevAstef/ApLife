@@ -12,9 +12,13 @@ import SwiftLazy
 
 public final class NewsStartPoint: UIStartPoint
 {
-    public static let name: UIModuleName = .news
+    public static let name: UIModuleName = "news"
 
-    private var routerProvider = Provider<NewsRouter>()
+    public struct Subscribers {
+    }
+    public var subscribersFiller: (_ navigator: Navigator, _ subscribers: Subscribers) -> Void = { _, _ in }
+
+    private var routerProvider = Provider1<NewsRouter, Navigator>()
 
     public init() {
 
@@ -37,8 +41,11 @@ public final class NewsStartPoint: UIStartPoint
         return parameters.moduleName == Self.name
     }
 
-    public func makeRouter() -> IRouter {
-        return routerProvider.value
+    public func makeRouter(use navigator: Navigator) -> IRouter {
+        let router = routerProvider.value(navigator)
+        subscribersFiller(navigator, Subscribers())
+
+        return router
     }
 
 }

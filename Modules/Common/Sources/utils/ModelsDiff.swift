@@ -6,6 +6,7 @@
 //  Copyright © 2019 ApostleLife. All rights reserved.
 //
 
+@available(iOS 13, *)
 public struct ModelsDiff<T: Equatable>
 {
     public enum Change {

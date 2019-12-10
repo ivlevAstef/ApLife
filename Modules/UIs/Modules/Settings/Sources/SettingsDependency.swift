@@ -11,7 +11,7 @@ import DITranquillity
 final class SettingsDependency: DIFramework
 {
     static func load(container: DIContainer) {
-        container.register(SettingsRouter.init)
+        container.register { SettingsRouter(navigator: arg($0)) }
             .injection(\.settingsScreenProvider)
             .lifetime(.objectGraph)
 

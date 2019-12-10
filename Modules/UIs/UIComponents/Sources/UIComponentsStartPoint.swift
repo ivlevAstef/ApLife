@@ -21,9 +21,9 @@ public final class UIComponentsStartPoint: CommonStartPoint
     }
 
     public func reg(container: DIContainer) {
-        container.register {
-            NavigationController(controller: ApNavigationController(nibName: nil, bundle: nil))
-        }.lifetime(.perContainer(.weak))
+        container.register { ApNavigationController(nibName: nil, bundle: nil) }
+        .as(UINavigationController.self)
+        .lifetime(.prototype)
     }
 
     public func initialize() {

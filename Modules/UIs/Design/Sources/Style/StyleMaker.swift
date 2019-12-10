@@ -48,24 +48,41 @@ public class StyleMaker
                            windowScene: UIWindowScene?,
                            size: CGSize) -> Style.Layout {
 
-       let safeAreaInsets = UIEdgeInsets(
-           top: vc.view.safeAreaInsets.top + vc.additionalSafeAreaInsets.top,
-           left: vc.view.safeAreaInsets.left + vc.additionalSafeAreaInsets.left,
-           bottom: vc.view.safeAreaInsets.bottom + vc.additionalSafeAreaInsets.bottom,
-           right: vc.view.safeAreaInsets.right + vc.additionalSafeAreaInsets.right
-       )
+        let safeAreaInsets: UIEdgeInsets
+        if #available(iOS 11.0, *) {
+            safeAreaInsets = UIEdgeInsets(
+                top: vc.view.safeAreaInsets.top + vc.additionalSafeAreaInsets.top,
+                left: vc.view.safeAreaInsets.left + vc.additionalSafeAreaInsets.left,
+                bottom: vc.view.safeAreaInsets.bottom + vc.additionalSafeAreaInsets.bottom,
+                right: vc.view.safeAreaInsets.right + vc.additionalSafeAreaInsets.right
+            )
+        } else {
+            safeAreaInsets = UIEdgeInsets(top: 16.0, left: 16.0, bottom: 16.0, right: 16.0)
+        }
 
-       let canUseLarge = !(windowScene?.interfaceOrientation.isLandscape ?? false)
+        let canUseLarge: Bool
+        if #available(iOS 13.0, *) {
+            canUseLarge = !(windowScene?.interfaceOrientation.isLandscape ?? false)
+        } else {
+            canUseLarge = !UIApplication.shared.statusBarOrientation.isLandscape
+        }
 
-       return Style.Layout(
-           safeAreaInsets: safeAreaInsets,
-           innerInsets: UIEdgeInsets(top: 16.0, left: 16.0, bottom: 16.0, right: 16.0),
-           cellInnerInsets: UIEdgeInsets(top: 12.0, left: 16.0, bottom: 20.0, right: 16.0),
-           statusBarHeight: windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0,
-           navigationBarDefaultHeight: 44.0,
-           navigationBarLargeHeight: canUseLarge ? 96.0 : 0.0,
-           cellShadowRadius: 10.0,
-           cellShadowOffset: CGSize(width: 0, height: 10.0)
+        let statusBarHeight: CGFloat
+        if #available(iOS 13.0, *) {
+            statusBarHeight = windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0
+        } else {
+            statusBarHeight = UIApplication.shared.statusBarFrame.height
+        }
+
+        return Style.Layout(
+            safeAreaInsets: safeAreaInsets,
+            innerInsets: UIEdgeInsets(top: 16.0, left: 16.0, bottom: 16.0, right: 16.0),
+            cellInnerInsets: UIEdgeInsets(top: 12.0, left: 16.0, bottom: 20.0, right: 16.0),
+            statusBarHeight: statusBarHeight,
+            navigationBarDefaultHeight: 44.0,
+            navigationBarLargeHeight: canUseLarge ? 96.0 : 0.0,
+            cellShadowRadius: 10.0,
+            cellShadowOffset: CGSize(width: 0, height: 10.0)
        )
    }
 }

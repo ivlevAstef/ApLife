@@ -11,7 +11,7 @@ import DITranquillity
 final class AccountDependency: DIFramework
 {
     static func load(container: DIContainer) {
-        container.register(AccountRouter.init)
+        container.register { AccountRouter(navigator: arg($0)) }
             .injection(\.accountScreenProvider)
             .lifetime(.objectGraph)
 

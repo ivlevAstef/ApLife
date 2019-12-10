@@ -32,12 +32,12 @@ enum StartPoints
         UIComponentsStartPoint()
     ]
 
-    static let ui: [UIModuleName: UIStartPoint] = [
-        MenuStartPoint.name: menu,
-        AccountStartPoint.name: account,
-        NewsStartPoint.name: news,
-        FavoritesStartPoint.name: favorites,
-        BiographyStartPoint.name: biography,
-        SettingsStartPoint.name: settings,
+    static let ui: [UIStartPoint] = [
+        menu,
+        account,
+        news,
+        favorites,
+        biography,
+        settings,
     ]
 }

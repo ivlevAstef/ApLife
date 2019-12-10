@@ -25,29 +25,18 @@ final class MenuRouter: IRouter
     let settingsGetter = Getter<Void, IRouter>()
 
     /*dependency*/var menuScreenProvider = Provider<MenuScreen>()
-    
-    var rootViewController: UIViewController {
+
+    private let navigator: Navigator
+
+    init(navigator: Navigator) {
+        self.navigator = navigator
+    }
+
+    func start(parameters: RoutingParamaters) {
         let screen = menuScreenProvider.value
         configure(screen)
-        return screen.view
-    }
-
-    private let navController: NavigationController
-
-    init(navController: NavigationController) {
-        self.navController = navController
-    }
-
-    func configure(parameters: RoutingParamaters) -> IRouter {
-        return self
-    }
-
-    func start() {
-//        log.info("will show blog")
-//        if let blogRouter = blogGetter.get(()) {
-//            navController.push(blogRouter, animated: false)
-//            log.info("did show blog")
-//        }
+        
+        navigator.push(screen.view)
     }
 
     private func configure(_ screen: MenuScreen) {
@@ -78,7 +67,7 @@ final class MenuRouter: IRouter
             return
         }
 
-        navController.present(router, animated: true)
+        router.start()
         log.info("did show \(accountGetter)")
     }
 
@@ -90,7 +79,7 @@ final class MenuRouter: IRouter
         }
 
         if !showParams.preview {
-            navController.push(router, animated: true)
+            router.start()
             log.info("did show \(getter)")
         } else {
             #warning("Support preview")

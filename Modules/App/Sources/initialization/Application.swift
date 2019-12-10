@@ -20,11 +20,10 @@ final class Application
 
     func start(_ window: UIWindow) {
         window.rootViewController = router.rootViewController
-        router.start()
     }
 
     func configureAndInitialization(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         // TODO: support parse launch options
-        router.configure(parameters: RoutingParamaters())
+        router.start(parameters: RoutingParamaters())
     }
 }

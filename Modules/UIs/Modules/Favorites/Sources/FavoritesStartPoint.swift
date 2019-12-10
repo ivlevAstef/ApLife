@@ -13,9 +13,13 @@ import SwiftLazy
 
 public final class FavoritesStartPoint: UIStartPoint
 {
-    public static let name: UIModuleName = .favorites
+    public static let name: UIModuleName = "favorites"
 
-    private var routerProvider = Provider<FavoritesRouter>()
+    public struct Subscribers {
+    }
+    public var subscribersFiller: (_ navigator: Navigator, _ subscribers: Subscribers) -> Void = { _, _ in }
+
+    private var routerProvider = Provider1<FavoritesRouter, Navigator>()
 
     public init() {
 
@@ -34,11 +38,14 @@ public final class FavoritesStartPoint: UIStartPoint
     }
 
     public func isSupportOpen(with parameters: RoutingParamaters) -> Bool {
-       return parameters.moduleName == Self.name
-   }
+        return parameters.moduleName == Self.name
+    }
 
-   public func makeRouter() -> IRouter {
-       return routerProvider.value
+    public func makeRouter(use navigator: Navigator) -> IRouter {
+        let router = routerProvider.value(navigator)
+        subscribersFiller(navigator, Subscribers())
+
+        return router
    }
 
 }

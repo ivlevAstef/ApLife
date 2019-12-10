@@ -53,7 +53,7 @@
          location = "group:/Users/alexanderivlev/Projects/ApLife/Modules/Domain/Services">
       </FileRef>
       <FileRef
-         location = "group:/Users/alexanderivlev/Projects/ApLife/Modules/Domain/Models">
+         location = "group:/Users/alexanderivlev/Projects/ApLife/Modules/Domain/Entities">
       </FileRef>
    </Group>
    <FileRef

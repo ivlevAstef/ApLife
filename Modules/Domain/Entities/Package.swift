@@ -4,17 +4,17 @@
 import PackageDescription
 
 let package = Package(
-    name: "Models",
+    name: "Entities",
     platforms: [.iOS(.v13)],
     products: [
-        .library(name: "Models", targets: ["Models"]),
+        .library(name: "Entities", targets: ["Entities"]),
     ],
     dependencies: [
         .package(path: "../../Core"),
     ],
     targets: [
-        .target(name: "Models", dependencies: [
+        .target(name: "Entities", dependencies: [
             .product(name: "Core"),
-        ]),
+        ], path: "./Sources"),
     ]
 )

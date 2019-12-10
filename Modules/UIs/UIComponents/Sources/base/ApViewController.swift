@@ -17,10 +17,14 @@ open class ApViewController: UIViewController {
 
     public private(set) lazy var style: Style = styleMaker.makeStyle(for: self)
 
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
+        return style.colors.preferredStatusBarStyle
+    }
+
     private let stylizingNavBar: StylizingNavBar
     private let styleMaker: StyleMaker = StyleMaker()
 
-    private var viewsForStylizing: [Weak<StylizingView>] = []
+    private let stylizingViewsContainer = StylizingViewsContainer()
 
     public init(navStatusBar: (UIView & INavigationBar)?) {
         self.stylizingNavBar = StylizingNavBar(navStatusBar: navStatusBar)
@@ -32,19 +36,13 @@ open class ApViewController: UIViewController {
     }
 
     public func addViewForStylizing(_ view: StylizingView, immediately: Bool = true) {
-        viewsForStylizing.append(Weak(view))
-        if immediately {
-            view.apply(use: style)
-        }
+        stylizingViewsContainer.addView(view, immediately: immediately)
     }
 
     open func styleDidChange(_ style: Style) {
         view.backgroundColor = style.colors.background
 
-        viewsForStylizing.removeAll { $0.value == nil }
-        for refStylizingView in viewsForStylizing.reversed() {
-            refStylizingView.value?.apply(use: style)
-        }
+        stylizingViewsContainer.styleDidChange(style)
     }
 
     open override func viewDidLoad() {

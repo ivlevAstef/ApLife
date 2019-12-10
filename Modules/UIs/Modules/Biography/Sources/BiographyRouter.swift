@@ -17,28 +17,18 @@ typealias BiographyScreen = Screen<BiographyScreenView, BiographyScreenPresenter
 final class BiographyRouter: IRouter
 {
     /*dependency*/var biographyScreenProvider = Provider<BiographyScreen>()
+
+    private let navigator: Navigator
     
-    var rootViewController: UIViewController {
+    init(navigator: Navigator) {
+        self.navigator = navigator
+    }
+    
+    func start(parameters: RoutingParamaters) {
         let screen = biographyScreenProvider.value
-        configure(screen)
-        return screen.view
-    }
-
-    private let navController: NavigationController
-    
-    init(navController: NavigationController) {
-        self.navController = navController
-    }
-    
-    func configure(parameters: RoutingParamaters) -> IRouter {
-        return self
-    }
-
-    func start() {
-
-    }
-
-    private func configure(_ screen: BiographyScreen) {
         screen.setRouter(self)
+
+        navigator.push(screen.view)
     }
+
 }

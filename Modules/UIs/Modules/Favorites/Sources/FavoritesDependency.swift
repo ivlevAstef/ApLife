@@ -11,7 +11,7 @@ import DITranquillity
 final class FavoritesDependency: DIFramework
 {
     static func load(container: DIContainer) {
-        container.register(FavoritesRouter.init)
+        container.register { FavoritesRouter(navigator: arg($0)) }
             .injection(\.favoritesScreenProvider)
             .lifetime(.objectGraph)
 

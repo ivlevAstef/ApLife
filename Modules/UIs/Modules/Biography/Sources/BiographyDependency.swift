@@ -11,7 +11,7 @@ import DITranquillity
 final class BiographyDependency: DIFramework
 {
     static func load(container: DIContainer) {
-        container.register(BiographyRouter.init)
+        container.register { BiographyRouter(navigator: arg($0)) }
             .injection(\.biographyScreenProvider)
             .lifetime(.objectGraph)
 

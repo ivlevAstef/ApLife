@@ -8,15 +8,19 @@
 
 import UIKit
 
-public class ApNavigationController: UINavigationController, UIGestureRecognizerDelegate
+open class ApNavigationController: UINavigationController, UIGestureRecognizerDelegate
 {
-    public override func viewDidLoad() {
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        return (presentedViewController ?? topViewController)?.preferredStatusBarStyle ?? .default
+    }
+
+    open override func viewDidLoad() {
         super.viewDidLoad()
 
         interactivePopGestureRecognizer?.delegate = self
     }
 
-    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+    open func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         return viewControllers.count > 1
     }
 }

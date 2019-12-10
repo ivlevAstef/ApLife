@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import UIComponents
+import Common
 
 enum RibbonElementViewModel
 {

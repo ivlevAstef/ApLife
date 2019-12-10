@@ -15,6 +15,10 @@ final class AccountScreenView: UIViewController, AccountScreenViewContract
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .yellow
+        let storyboard = UIStoryboard(name: "LaunchScreen22", bundle: nil)
+        let bColor = storyboard.instantiateInitialViewController()?.view.backgroundColor
+
+        //view.backgroundColor = .yellow
+        view.backgroundColor = bColor
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Common
 import Design
 
 private enum Consts {

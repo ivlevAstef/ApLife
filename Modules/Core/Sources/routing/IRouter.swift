@@ -10,24 +10,12 @@ import UIKit
 
 public protocol IRouter
 {
-    var rootViewController: UIViewController { get }
-
-    @discardableResult
-    func configure(parameters: RoutingParamaters) -> IRouter
-
-    func start()
-    func stop()
+    func start(parameters: RoutingParamaters)
 }
 
 public extension IRouter
 {
-    @discardableResult
-    func configure() -> IRouter {
-        return configure(parameters: RoutingParamaters())
-    }
-
     func start() {
-    }
-    func stop() {
+        start(parameters: RoutingParamaters())
     }
 }

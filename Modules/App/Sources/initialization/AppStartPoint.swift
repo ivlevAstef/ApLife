@@ -22,7 +22,7 @@ final class AppStartPoint
         LogInitialization.configure()
         AppDependency.configure()
 
-        for startPoint in StartPoints.common + StartPoints.ui.values.map({ $0 as CommonStartPoint }) {
+        for startPoint in StartPoints.common + StartPoints.ui.map({ $0 as CommonStartPoint }) {
             startPoint.configure()
         }
     }
@@ -30,7 +30,7 @@ final class AppStartPoint
     static func reg() {
         AppDependency.reg(container: container)
 
-        for startPoint in StartPoints.common + StartPoints.ui.values.map({ $0 as CommonStartPoint }) {
+        for startPoint in StartPoints.common + StartPoints.ui.map({ $0 as CommonStartPoint }) {
             startPoint.reg(container: container)
         }
 
@@ -38,7 +38,7 @@ final class AppStartPoint
     }
 
     static func initialize() {
-        for startPoint in StartPoints.common + StartPoints.ui.values.map({ $0 as CommonStartPoint }) {
+        for startPoint in StartPoints.common + StartPoints.ui.map({ $0 as CommonStartPoint }) {
             startPoint.initialize()
         }
     }

@@ -15,6 +15,6 @@ let package = Package(
     targets: [
         .target(name: "Services", dependencies: [
             .product(name: "Core"),
-        ]),
+        ], path: "./Sources"),
     ]
 )

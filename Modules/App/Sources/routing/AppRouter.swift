@@ -18,70 +18,53 @@ import Biography
 final class AppRouter: IRouter
 {
     var rootViewController: UIViewController {
-        return navController.uiController
+        return navigator.controller
     }
 
-    private let navController: NavigationController
+    private let navigator: Navigator
 
-    init(navController: NavigationController) {
-        self.navController = navController
+    init(navigator: Navigator) {
+        self.navigator = navigator
 
-        self.subscribeOn(StartPoints.menu)
-        self.subscribeOn(StartPoints.news)
-        self.subscribeOn(StartPoints.biography)
+        StartPoints.menu.subscribersFiller = subscriberFiller
     }
 
-    @discardableResult
-    func configure(parameters: RoutingParamaters) -> IRouter {
-        let router = StartPoints.menu.makeRouter().configure(parameters: parameters)
+    func start(parameters: RoutingParamaters) {
+        navigator.reset()
+
+        let router = StartPoints.menu.makeRouter(use: navigator)
 
         let startPointsCanOpened = parameters.isEmpty
             ? []
-            : StartPoints.ui.values.filter { $0.isSupportOpen(with: parameters) }
-
-        log.debug("configure first screens, use parameters finished.")
-        log.trace("Params: \(parameters)")
-        log.trace("Opened Start Points: \(startPointsCanOpened)")
+            : StartPoints.ui.filter { $0.isSupportOpen(with: parameters) }
 
         if startPointsCanOpened.isEmpty {
-            navController.push(router, animated: false)
-        } else {
-            navController.pushButNotStart(router, animated: false)
+            router.start()
         }
 
         log.assert(startPointsCanOpened.count <= 1, "By parameters can open more start points - it's correct, or not?")
         for startPoint in startPointsCanOpened {
-            let router = startPoint.makeRouter().configure(parameters: parameters)
-            navController.push(router, animated: false)
+            let router = startPoint.makeRouter(use: navigator)
+            router.start(parameters: parameters)
         }
-
-        return self
     }
 
-    private func subscribeOn(_ startPoint: MenuStartPoint) {
-        StartPoints.menu.accountGetter.take(use: {
-            return StartPoints.account.makeRouter().configure()
+    private func subscriberFiller(_ navigator: Navigator, subscribers: MenuStartPoint.Subscribers) {
+        subscribers.accountGetter.take(use: {
+            return StartPoints.account.makeRouter(use: navigator)
         })
 
-        StartPoints.menu.newsGetter.take(use: {
-            return StartPoints.news.makeRouter().configure()
+        subscribers.newsGetter.take(use: {
+            return StartPoints.news.makeRouter(use: navigator)
         })
-        StartPoints.menu.favoritesGetter.take(use: {
-            return StartPoints.favorites.makeRouter().configure()
+        subscribers.favoritesGetter.take(use: {
+            return StartPoints.favorites.makeRouter(use: navigator)
         })
-        StartPoints.menu.biographyGetter.take(use: {
-            return StartPoints.biography.makeRouter().configure()
+        subscribers.biographyGetter.take(use: {
+            return StartPoints.biography.makeRouter(use: navigator)
         })
-        StartPoints.menu.settingsGetter.take(use: {
-            return StartPoints.settings.makeRouter().configure()
+        subscribers.settingsGetter.take(use: {
+            return StartPoints.settings.makeRouter(use: navigator)
         })
-    }
-
-    private func subscribeOn(_ startPoint: NewsStartPoint) {
-
-    }
-
-    private func subscribeOn(_ startPoint: BiographyStartPoint) {
-
     }
 }

@@ -19,27 +19,17 @@ final class FavoritesRouter: IRouter
 {
     /*dependency*/var favoritesScreenProvider = Provider<FavoritesScreen>()
 
-    var rootViewController: UIViewController {
+    private let navigator: Navigator
+
+    init(navigator: Navigator) {
+        self.navigator = navigator
+    }
+
+    func start(parameters: RoutingParamaters) {
         let screen = favoritesScreenProvider.value
-        configure(screen)
-        return screen.view
-    }
-
-    private let navController: NavigationController
-
-    init(navController: NavigationController) {
-        self.navController = navController
-    }
-
-    func configure(parameters: RoutingParamaters) -> IRouter {
-        return self
-    }
-
-    func start() {
-    }
-
-    private func configure(_ screen: FavoritesScreen) {
         screen.setRouter(self)
+
+        navigator.push(screen.view)
     }
 }
 

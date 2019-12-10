@@ -1,3 +1,3 @@
-struct Models {
+struct Entities {
     var text = "Hello, World!"
 }

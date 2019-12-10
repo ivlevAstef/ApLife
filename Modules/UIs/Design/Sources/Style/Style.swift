@@ -35,6 +35,9 @@ public struct Style
         /// for show text above bright background
         public let darkText: UIColor
 
+        /// for status bar
+        public let preferredStatusBarStyle: UIStatusBarStyle
+
         // MARK: - Cells
         public enum GradientCellType {
             case news, favorites, biography, settings
